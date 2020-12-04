@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Tienda</title>
+    <title>La feria del calzado</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -40,20 +40,20 @@
                       Latest
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                      <a class="dropdown-item" href="#">Men</a>
-                      <a class="dropdown-item" href="#">Women</a>
-                      <a class="dropdown-item" href="#">Children</a>
+                      <a class="dropdown-item" href="#">Hombres</a>
+                      <a class="dropdown-item" href="#">Mujeres</a>
+                      <a class="dropdown-item" href="#">Niños</a>
                     </div>
                   </div>
                   <div class="btn-group">
                     <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                      <a class="dropdown-item" href="#">Relevance</a>
-                      <a class="dropdown-item" href="#">Name, A to Z</a>
-                      <a class="dropdown-item" href="#">Name, Z to A</a>
+                      <a class="dropdown-item" href="#">Relevancia</a>
+                      <a class="dropdown-item" href="#">Nombre, A to Z</a>
+                      <a class="dropdown-item" href="#">Nombre, Z to A</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Price, low to high</a>
-                      <a class="dropdown-item" href="#">Price, high to low</a>
+                      <a class="dropdown-item" href="#">Precio, low to high</a>
+                      <a class="dropdown-item" href="#">Precio, high to low</a>
                     </div>
                   </div>
                 </div>
@@ -130,21 +130,21 @@
             <div class="border p-4 rounded mb-4">
               <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
               <ul class="list-unstyled mb-0">
-                <li class="mb-1"><a href="#" class="d-flex"><span>Men</span> <span class="text-black ml-auto">(2,220)</span></a></li>
-                <li class="mb-1"><a href="#" class="d-flex"><span>Women</span> <span class="text-black ml-auto">(2,550)</span></a></li>
-                <li class="mb-1"><a href="#" class="d-flex"><span>Children</span> <span class="text-black ml-auto">(2,124)</span></a></li>
+                <li class="mb-1"><a href="#" class="d-flex"><span>Hombres</span> <span class="text-black ml-auto">(2,220)</span></a></li>
+                <li class="mb-1"><a href="#" class="d-flex"><span>Mujeres</span> <span class="text-black ml-auto">(2,550)</span></a></li>
+                <li class="mb-1"><a href="#" class="d-flex"><span>Niños</span> <span class="text-black ml-auto">(2,124)</span></a></li>
               </ul>
             </div>
 
             <div class="border p-4 rounded mb-4">
               <div class="mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrado por precio</h3>
                 <div id="slider-range" class="border-primary"></div>
                 <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
               </div>
 
               <div class="mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Talla</h3>
                 <label for="s_sm" class="d-flex">
                   <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small (2,319)</span>
                 </label>
@@ -159,16 +159,16 @@
               <div class="mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Color</h3>
                 <a href="#" class="d-flex color-item align-items-center" >
-                  <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Red (2,429)</span>
+                  <span class="bg-danger color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Rojo (2,429)</span>
                 </a>
                 <a href="#" class="d-flex color-item align-items-center" >
-                  <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Green (2,298)</span>
+                  <span class="bg-success color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Verde (2,298)</span>
                 </a>
                 <a href="#" class="d-flex color-item align-items-center" >
-                  <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Blue (1,075)</span>
+                  <span class="bg-info color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Azul (1,075)</span>
                 </a>
                 <a href="#" class="d-flex color-item align-items-center" >
-                  <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Purple (1,075)</span>
+                  <span class="bg-primary color d-inline-block rounded-circle mr-2"></span> <span class="text-black">Purpura (1,075)</span>
                 </a>
               </div>
 
@@ -181,7 +181,7 @@
             <div class="site-section site-blocks-2">
                 <div class="row justify-content-center text-center mb-5">
                   <div class="col-md-7 site-section-heading pt-4">
-                    <h2>Categories</h2>
+                    <h2>Categorias</h2>
                   </div>
                 </div>
                 <div class="row">
@@ -191,8 +191,8 @@
                         <img src="images/women.jpg" alt="" class="img-fluid">
                       </figure>
                       <div class="text">
-                        <span class="text-uppercase">Collections</span>
-                        <h3>Women</h3>
+                        <span class="text-uppercase">Colecciones</span>
+                        <h3>Mujer</h3>
                       </div>
                     </a>
                   </div>
@@ -202,8 +202,8 @@
                         <img src="images/children.jpg" alt="" class="img-fluid">
                       </figure>
                       <div class="text">
-                        <span class="text-uppercase">Collections</span>
-                        <h3>Children</h3>
+                        <span class="text-uppercase">Colecciones</span>
+                        <h3>Niños</h3>
                       </div>
                     </a>
                   </div>
@@ -213,8 +213,8 @@
                         <img src="images/men.jpg" alt="" class="img-fluid">
                       </figure>
                       <div class="text">
-                        <span class="text-uppercase">Collections</span>
-                        <h3>Men</h3>
+                        <span class="text-uppercase">Colecciones</span>
+                        <h3>Hombre</h3>
                       </div>
                     </a>
                   </div>

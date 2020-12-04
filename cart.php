@@ -98,12 +98,12 @@
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th class="product-thumbnail">Image</th>
-                    <th class="product-name">Product</th>
-                    <th class="product-price">Price</th>
-                    <th class="product-quantity">Quantity</th>
+                    <th class="product-thumbnail">Imagen</th>
+                    <th class="product-name">Producto</th>
+                    <th class="product-price">Precio</th>
+                    <th class="product-quantity">Cantidad</th>
                     <th class="product-total">Total</th>
-                    <th class="product-remove">Remove</th>
+                    <th class="product-remove">Quitar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -154,22 +154,22 @@
           <div class="col-md-6">
             <div class="row mb-5">
               <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-sm btn-block">Update Cart</button>
+                <button class="btn btn-primary btn-sm btn-block">Actualizar Carrito</button>
               </div>
               <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>
+                <button class="btn btn-outline-primary btn-sm btn-block">Continuar comprando</button>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Coupon</label>
-                <p>Enter your coupon code if you have one.</p>
+                <label class="text-black h4" for="coupon">Cupón</label>
+                <p>Ingresa el código de tu cupón</p>
               </div>
               <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+                <input type="text" class="form-control py-3" id="coupon" placeholder="Código">
               </div>
               <div class="col-md-4">
-                <button class="btn btn-primary btn-sm">Apply Coupon</button>
+                <button class="btn btn-primary btn-sm">Aplicar cupón</button>
               </div>
             </div>
           </div>
@@ -178,7 +178,7 @@
               <div class="col-md-7">
                 <div class="row">
                   <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                    <h3 class="text-black h4 text-uppercase">Total en carrito</h3>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -200,7 +200,7 @@
 
                 <div class="row">
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='checkout.php'">Proceed To Checkout</button>
+                    <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='checkout.php'">Continuar al pago</button>
                   </div>
                 </div>
               </div>
