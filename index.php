@@ -74,9 +74,9 @@
                 $totalProductos = mysqli_fetch_row($totalQuery);
                 $totalBotones = round($totalProductos[0] / $limite);
                 if (isset($_GET['limite'])) {
-                  $resultado = $conexion -> query("SELECT * FROM productos WHERE inventario > 0 LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
+                  $resultado = $conexion -> query("SELECT * FROM productos WHERE stock > 0 LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
                 }else {
-                  $resultado = $conexion -> query("SELECT * FROM productos WHERE inventario > 0 LIMIT ".$limite) or die($conexion -> error);
+                  $resultado = $conexion -> query("SELECT * FROM productos WHERE stock > 0 LIMIT ".$limite) or die($conexion -> error);
                 }
                 while ($fila = mysqli_fetch_array($resultado)) {
                   

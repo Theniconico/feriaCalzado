@@ -1,6 +1,6 @@
 <?php 
     $servidor = "localhost";
-    $nombreBd = "carrito";
+    $nombreBd = "feriacalzado";
     $usuario = "root";
     $password = "";
     $conexion = new mysqli($servidor,$usuario,$password,$nombreBd);
