@@ -50,7 +50,7 @@
 
             <div class="block-7">
               <form action="#" method="post">
-                <label for="email_subscribe" class="footer-heading">Subscribe</label>
+                <label for="email_subscribe" class="footer-heading">Subscribete</label>
                 <div class="form-group">
                   <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email">
                   <input type="submit" class="btn btn-sm btn-primary" value="Send">
@@ -65,8 +65,7 @@
          
             Copyright &copy;
             <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-            <script>document.write(new Date().getFullYear());</script> All rights reserved | 
-            GrijalvaRomero Tiendita <i class="icon-heart" aria-hidden="true"></i>
+            <script>document.write(new Date().getFullYear());</script> La Feria del Calzado
         
             </p>
           </div>

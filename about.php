@@ -44,8 +44,9 @@
             <div class="site-section-heading pt-3 mb-4">
               <h2 class="text-black">Los inicios de "La feria del calzado"</h2>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius repellat, dicta at laboriosam, nemo exercitationem itaque eveniet architecto cumque, deleniti commodi molestias repellendus quos sequi hic fugiat asperiores illum. Atque, in, fuga excepturi corrupti error corporis aliquam unde nostrum quas.</p>
-            <p>Accusantium dolor ratione maiores est deleniti nihil? Dignissimos est, sunt nulla illum autem in, quibusdam cumque recusandae, laudantium minima repellendus.</p>
+            <p>La Feria del Calzado es parte del selecto grupo de zapateros artesanales que recorren gran parte del país cuya feria expositora del mismo nombre es conocido a nivel nacional.
+En este caso nuestro local comercial decidió dejar este rastro nómada y se estableció en un lugar fijo. En este momento ubicado en Chacabuco 430 en pleno centro de la acogedora ciudad de Linares. Principalmente nuestros productos son elaborados a mano, confeccionados con cueros de origen nacional y con forros interiores tipo badana de lo más fino para la delicadeza de tus pies. El principal objetivo de nuestros productos es llegar a clientes de todo tipo y ofrecerles un producto de primera calidad a un precio accesible y de costo justo sin pagar demás. 
+</p>
             
           </div>
         </div>
