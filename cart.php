@@ -100,7 +100,7 @@
                   <tr>
                     <th class="product-thumbnail">Imagen</th>
                     <th class="product-name">Producto</th>
-                    <th class="product-price">Precio</th>
+                    <th class="product-price">Pricio</th>
                     <th class="product-quantity">Cantidad</th>
                     <th class="product-total">Total</th>
                     <th class="product-remove">Quitar</th>
@@ -154,19 +154,19 @@
           <div class="col-md-6">
             <div class="row mb-5">
               <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-sm btn-block">Actualizar Carrito</button>
+                <button class="btn btn-primary btn-sm btn-block">Actualizar Cart</button>
               </div>
               <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-sm btn-block">Continuar comprando</button>
+                <button class="btn btn-outline-primary btn-sm btn-block">Continue Comprando</button>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Cupón</label>
-                <p>Ingresa el código de tu cupón</p>
+                <label class="text-black h4" for="coupon">Coupon</label>
+                <p>Ingresa el código de tu cupón, si es que tienes uno</p>
               </div>
               <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Código">
+                <input type="text" class="form-control py-3" id="coupon" placeholder="Código de cupón">
               </div>
               <div class="col-md-4">
                 <button class="btn btn-primary btn-sm">Aplicar cupón</button>
@@ -178,7 +178,7 @@
               <div class="col-md-7">
                 <div class="row">
                   <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Total en carrito</h3>
+                    <h3 class="text-black h4 text-uppercase">Carro total</h3>
                   </div>
                 </div>
                 <div class="row mb-3">
@@ -200,7 +200,7 @@
 
                 <div class="row">
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='checkout.php'">Continuar al pago</button>
+                    <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='checkout.php'">Contunar al pago</button>
                   </div>
                 </div>
               </div>

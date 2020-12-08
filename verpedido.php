@@ -22,7 +22,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>La feria del calzado</title>
+    <title>Feria del calzado</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -50,7 +50,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h2 class="h3 mb-3 text-black">Get In Touch</h2>
+            <h2 class="h3 mb-3 text-black">Mantengamonos en contacto</h2>
           </div>
           <div class="col-md-7">
 

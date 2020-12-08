@@ -74,7 +74,7 @@ include('./php/conexion.php');
             </div>
 
             </div>
-            <p><a href="cart.php?id=<?php echo $fila[0];?>"class="buy-now btn btn-sm btn-primary">Agregar al carrito</a></p>
+            <p><a href="cart.php?id=<?php echo $fila[0];?>"class="buy-now btn btn-sm btn-primary">Agregar al carro</a></p>
 
           </div>
         </div>
@@ -85,7 +85,7 @@ include('./php/conexion.php');
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-7 site-section-heading text-center pt-4">
-            <h2>Featured Products</h2>
+            <h2>Productos destacados</h2>
           </div>
         </div>
         <div class="row">
@@ -97,9 +97,8 @@ include('./php/conexion.php');
                     <img src="images/cloth_1.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="#">Tank Top</a></h3>
-                    <p class="mb-0">Finding perfect t-shirt</p>
-                    <p class="text-primary font-weight-bold">$50</p>
+                    <h3><a href="#">Ranking top</a></h3>
+                    <p class="mb-0">Encuentra tu producto perfecto</p>
                   </div>
                 </div>
               </div>
@@ -109,9 +108,8 @@ include('./php/conexion.php');
                     <img src="images/shoe_1.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="#">Corater</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold">$50</p>
+                    <h3><a href="#">Zapatos de fiesta</a></h3>
+                    <p class="mb-0">Encuentra tus favoritas</p>
                   </div>
                 </div>
               </div>
@@ -121,9 +119,8 @@ include('./php/conexion.php');
                     <img src="images/cloth_2.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="#">Polo Shirt</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold">$50</p>
+                    <h3><a href="#">Zapatillas</a></h3>
+                    <p class="mb-0">Encuentra tus favoritas</p>
                   </div>
                 </div>
               </div>
@@ -133,9 +130,8 @@ include('./php/conexion.php');
                     <img src="images/cloth_3.jpg" alt="Image placeholder" class="img-fluid">
                   </figure>
                   <div class="block-4-text p-4">
-                    <h3><a href="#">T-Shirt Mockup</a></h3>
-                    <p class="mb-0">Finding perfect products</p>
-                    <p class="text-primary font-weight-bold">$50</p>
+                    <h3><a href="#">Sanfalias</a></h3>
+                    <p class="mb-0">Encuentra tus favoritas</p>
                   </div>
                 </div>
               </div>

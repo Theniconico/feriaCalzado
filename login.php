@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>feria del calzado | Login</title>
+  <title>Feria del calzado</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,7 +26,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Inicia Sesion</p>
+      <p class="login-box-msg">Inicia Sesión</p>
 
       <form action="./php/check.php" method="post">
         <div class="input-group mb-3">
@@ -50,13 +50,13 @@
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
               <label for="remember">
-                Remember Me
+                Recuerdame
               </label>
             </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
           </div>
           <br><br>
           <!-- /.col -->
@@ -74,10 +74,10 @@
      
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        <a href="forgot-password.html">Olvidé mi password</a>
       </p>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="register.html" class="text-center">Registrarse</a>
       </p>
     </div>
     <!-- /.login-card-body -->

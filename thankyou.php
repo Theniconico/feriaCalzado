@@ -82,8 +82,8 @@
         <div class="row">
           <div class="col-md-12 text-center">
             <span class="icon-check_circle display-3 text-success"></span>
-            <h2 class="display-3 text-black">Muchas gracias!</h2>
-            <p class="lead mb-5">Tu orden ha sido realizada correctamente.</p>
+            <h2 class="display-3 text-black">Gracias!</h2>
+            <p class="lead mb-5">Tu orden se ha completado con éxito.</p>
             <p><a href="verpedido.php?id_venta=<?php echo $id_venta;?>" class="btn btn-sm btn-primary">Ver pedido</a></p>
           </div>
         </div>
