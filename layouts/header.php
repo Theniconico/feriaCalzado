@@ -12,7 +12,7 @@
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
               <div class="site-logo">
-              <img src="./images/logo.png" alt="">
+              <img src="./images/logo.png" class="img-fluid" style="max-width:150px" alt="">
               </div>
             </div>
 

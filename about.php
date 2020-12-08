@@ -31,96 +31,44 @@
           <div class="col-md-6">
             <div class="block-16">
               <figure>
-                <img src="images/blog_1.jpg" alt="Image placeholder" class="img-fluid rounded">
-                <a href="https://vimeo.com/channels/staffpicks/93951774" class="play-button popup-vimeo"><span class="ion-md-play"></span></a>
+                <img src="./images/logo.jpeg" alt="Image placeholder" class="img-fluid rounded">
 
               </figure>
             </div>
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-5">
-            
-            
             <div class="site-section-heading pt-3 mb-4">
               <h2 class="text-black">Los inicios de "La feria del calzado"</h2>
             </div>
-            <p>La Feria del Calzado es parte del selecto grupo de zapateros artesanales que recorren gran parte del país cuya feria expositora del mismo nombre es conocido a nivel nacional.
-En este caso nuestro local comercial decidió dejar este rastro nómada y se estableció en un lugar fijo. En este momento ubicado en Chacabuco 430 en pleno centro de la acogedora ciudad de Linares. Principalmente nuestros productos son elaborados a mano, confeccionados con cueros de origen nacional y con forros interiores tipo badana de lo más fino para la delicadeza de tus pies. El principal objetivo de nuestros productos es llegar a clientes de todo tipo y ofrecerles un producto de primera calidad a un precio accesible y de costo justo sin pagar demás. 
-</p>
+            <p>La Feria del Calzado es parte del selecto grupo de zapateros artesanales que recorren gran parte del país cuya feria expositora del mismo nombre es conocido a nivel nacional. En este caso nuestro local comercial decidió dejar este rastro nómada y se estableció en un lugar fijo. En este momento ubicado en Chacabuco 430 en pleno centro de la acogedora ciudad de Linares. Principalmente nuestros productos son elaborados a mano, confeccionados con cueros de origen nacional y con forros interiores tipo badana de lo más fino para la delicadeza de tus pies. El principal objetivo de nuestros productos es llegar a clientes de todo tipo y ofrecerles un producto de primera calidad, a un precio accesible y sin pagar demás. </p>
             
           </div>
         </div>
-      </div>
-    </div>
+        <div class="row mb-5">
+          <div class="col-md-6">
+            <div class="block-16">
+            <div class="site-section-heading pt-3 mb-4">
+              <h2 class="text-black">Historia</h2>
+            </div>
+            <p>La Feria del calzado comienza por un rubro familiar desde hace ya 40 años, comenzando este legado Heriberto Rojas Fuentes con un humilde puesto de ventas con modelos reducidos, un año mas tarde decidió empezar a fabricar de manera artesanal sus primeros calzados en la ciudad de Santiago aprovechando la moda hippie de esos años con modelos sencillos y confortables, con el pasar de los años sus productos fueron tomando mas carácter y calidad diversificando calzados para todo tipo de clientes hasta el día de hoy que contamos con una gran cantidad de modelos. </p>
+            
+             
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-5">
+          <figure>
+                <img src="./images/tienda.jpeg" class="img-fluid rounded">
+               
 
-    <div class="site-section border-bottom" data-aos="fade">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-          <div class="col-md-7 site-section-heading text-center pt-4">
-            <h2>The Team</h2>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-lg-3">
-  
-            <div class="block-38 text-center">
-              <div class="block-38-img">
-                <div class="block-38-header">
-                  <img src="images/person_1.jpg" alt="Image placeholder" class="mb-4">
-                  <h3 class="block-38-heading h4">Elizabeth Graham</h3>
-                  <p class="block-38-subheading">CEO/Co-Founder</p>
-                </div>
-                <div class="block-38-body">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="block-38 text-center">
-              <div class="block-38-img">
-                <div class="block-38-header">
-                  <img src="images/person_2.jpg" alt="Image placeholder" class="mb-4">
-                  <h3 class="block-38-heading h4">Jennifer Greive</h3>
-                  <p class="block-38-subheading">Co-Founder</p>
-                </div>
-                <div class="block-38-body">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="block-38 text-center">
-              <div class="block-38-img">
-                <div class="block-38-header">
-                  <img src="images/person_3.jpg" alt="Image placeholder" class="mb-4">
-                  <h3 class="block-38-heading h4">Patrick Marx</h3>
-                  <p class="block-38-subheading">Marketing</p>
-                </div>
-                <div class="block-38-body">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="block-38 text-center">
-              <div class="block-38-img">
-                <div class="block-38-header">
-                  <img src="images/person_4.jpg" alt="Image placeholder" class="mb-4">
-                  <h3 class="block-38-heading h4">Mike Coolbert</h3>
-                  <p class="block-38-subheading">Sales Manager</p>
-                </div>
-                <div class="block-38-body">
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>
-                </div>
-              </div>
-            </div>
+              </figure>
+
           </div>
         </div>
       </div>
     </div>
+ 
   
 
     <div class="site-section site-section-sm site-blocks-1 border-0" data-aos="fade">
@@ -131,8 +79,8 @@ En este caso nuestro local comercial decidió dejar este rastro nómada y se est
               <span class="icon-truck"></span>
             </div>
             <div class="text">
-              <h2 class="text-uppercase">Free Shipping</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+              <h2 class="text-uppercase">Realiza la compra aquí y retira en tienda</h2>
+              <p>Próximamente contaremos con despacho a todo el pais, por el momento puedes venir a nuestra tienda personalmente a retirar tus productos</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
@@ -140,8 +88,8 @@ En este caso nuestro local comercial decidió dejar este rastro nómada y se est
               <span class="icon-refresh2"></span>
             </div>
             <div class="text">
-              <h2 class="text-uppercase">Free Returns</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+              <h2 class="text-uppercase">Información de stock actualizada</h2>
+              <p>Consulta nuestro catalogo de productos y elige el que más te guste</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
@@ -149,8 +97,8 @@ En este caso nuestro local comercial decidió dejar este rastro nómada y se est
               <span class="icon-help"></span>
             </div>
             <div class="text">
-              <h2 class="text-uppercase">Customer Support</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+              <h2 class="text-uppercase">Soporte a clientes</h2>
+              <p>Si tienes dudas o consultas, contactanos y te ayudaremos con tus productos</p>
             </div>
           </div>
         </div>
