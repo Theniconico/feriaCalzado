@@ -536,7 +536,7 @@ $resultado = $conexion->query("
     <div class="modal fade" id="modalAddStock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form action="../php/insertarProducto.php" method="POST" enctype="multipart/form-data">
+          <form action="../php/addstock.php" method="POST" enctype="multipart/form-data">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Actualizar stock</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
