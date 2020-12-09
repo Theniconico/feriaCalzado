@@ -172,8 +172,15 @@ $resultado = $conexion->query("
               </div>
 
 
-              <div id="collapse" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
+              <div id="collapse" class="accordion" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card">
+                  <div class="card-header">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse">
+                                           Ver más
+                                        </button>
+
+                  </div>
+                  <div class="card-body">
       <div class="form-group">
                 <table class="table" style="width: 100%; border-collapse: collapse; ">
 <tr><th>Talla</th><th>Cantidad</th><th>Añadir</th></tr>
@@ -215,7 +222,10 @@ $resultado = $conexion->query("
                 </div>
 
     </div>
-    </div>
+
+
+                </div>
+          </div>
      
       </div>
     </div>
