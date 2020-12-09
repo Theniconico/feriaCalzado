@@ -133,7 +133,7 @@ $resultado = $conexion->query("
                   <td>$<?php echo number_format($f['precio_venta']); ?></td>
                   <td>
                     <div class="btn-group">
-                    <button class="btn btn-sm btn-primary btnEditar" data-id="<?php echo  $f['id']; ?>" data-nombre="<?php echo  $f['nombre']; ?>" data-descripcion="<?php echo  $f['descripcion']; ?>" data-precio="<?php echo  $f['precio_compra']; ?>" data-inventario="<?php echo  $f['stock']; ?>" data-categoria="<?php echo  $f['id_categoria']; ?>" data-talla="<?php echo  $f['color']; ?>" data-color="<?php echo  $f['estado']; ?>" data-color="<?php echo  $f['precio_venta']; ?>" data-toggle="modal" data-target="#modalEditar">
+                    <button class="btn btn-sm btn-primary btnEditar" data-id="<?php echo  $f['id']; ?>" data-nombre="<?php echo  $f['nombre']; ?>" data-descripcion="<?php echo  $f['descripcion']; ?>" data-precioCompra="<?php echo  $f['precio_compra']; ?>" data-stock="<?php echo  $f['stock']; ?>" data-categoria="<?php echo  $f['id_categoria']; ?>" data-color="<?php echo  $f['color']; ?>" data-precio-venta="<?php echo  $f['precio_venta']; ?>" data-toggle="modal" data-target="#modalEditar">
                       <i class="fa fa-edit"></i>
                     </button>
                     <button class="btn btn-danger btn-sm btnEliminar" data-id="<?php echo  $f['id']; ?>" data-toggle="modal" data-target="#modalEliminar">
@@ -490,13 +490,6 @@ $resultado = $conexion->query("
               </div>
 
               <div class="form-group">
-                <label for="stockActual">Stock actual</label>
-                <input type="number" id="stockActual" name="stockActual" class="form-control" disabled>
-                <label for="stockEdit">stock</label>
-                <input type="number" min="0" name="stockEdit" placeholder="stock" id="stockEdit" class="form-control" required>
-              </div>
-
-              <div class="form-group">
                 <label for="categoriaEdit">Categoria</label>
                 <select name="categoria" id="categoriaEdit" class="form-control" required>
                   <?php
@@ -591,16 +584,12 @@ $resultado = $conexion->query("
         var nombre = $(this).data('nombre');
         var descripcion = $(this).data('descripcion');
         var precio_compra = $(this).data('precio_compra');
-        var stockActual = $(this).data('stockActual');
-        var stockEdit = $(this).data('stockEdit');
         var categoria = $(this).data('categoria');
         var color = $(this).data('color');
         var precio_venta = $(this).data('precio_venta');
         $("#nombreEdit").val(nombre);
         $("#descripcionEdit").val(descripcion);
         $("#precio_compraEdit").val(precio_compra);
-        $("#stockActual").val(stockActual);
-        $("#stockEdit").val(stockEdit);
         $("#categoriaEdit").val(categoria);
         $("#colorEdit").val(color);
         $("#precio_ventaEdit").val(precio_venta);

@@ -1,7 +1,7 @@
 <?php
 include "conexion.php";
 if (isset($_POST['nombre']) && isset($_POST['descripcion']) 
-    && isset($_POST['precio_compra']) && isset($_POST['stock'])
+    && isset($_POST['precio_compra'])
     && isset($_POST['categoria']) && isset($_POST['color']) 
     && isset($_POST['estado']) && isset($_POST['precio_venta'])) {
 
@@ -29,11 +29,9 @@ if (isset($_POST['nombre']) && isset($_POST['descripcion'])
     nombre='".$_POST['nombre']."',
     descripcion='".$_POST['descripcion']."',
     precio_compra=".$_POST['precio_compra'].",
-    precio_=".$_POST['precio_compra'].",
-    stock=".$_POST['stock'].",
     id_categoria=".$_POST['categoria'].",
-    talla='".$_POST['talla']."',
-    color='".$_POST['color']."'
+    color='".$_POST['color']."',
+    precio_venta=".$_POST['precio_venta'].",
     where id=".$_POST['id']);
     echo "Se actualizo";
 }

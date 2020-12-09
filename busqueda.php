@@ -60,7 +60,7 @@
                       <a class="dropdown-item" href="#">Nombre, de la A a la Z</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Precio, menor a mayor</a>
-                      <a class="dropdown-item" href="#">Pricio, mayor a menor</a>
+                      <a class="dropdown-item" href="#">Precio, mayor a menor</a>
                     </div>
                   </div>
                 </div>
@@ -75,7 +75,6 @@
                 WHERE 
                 productos.nombre like '%".$_GET['texto']."%' or
                 productos.descripcion like '%".$_GET['texto']."%' or
-                productos.talla like '%".$_GET['texto']."%' or
                 categorias.nombre like '%".$_GET['texto']."%' or
                 productos.color like '%".$_GET['texto']."%'
                 
@@ -97,7 +96,7 @@
                   <div class="block-4-text p-4">
                     <h3><a href="shop-single.php?id=<?php echo $fila['id'];?>"><?php echo $fila['nombre'] ;?></a></h3>
                     <p class="mb-0"><?php echo $fila['descripcion'] ;?></p>
-                    <p class="text-primary font-weight-bold">$<?php echo $fila['precio'] ;?></p>
+                    <p class="text-primary font-weight-bold">$<?php echo $fila['precio_compra'] ;?></p>
                   </div>
                 </div>
               </div>
