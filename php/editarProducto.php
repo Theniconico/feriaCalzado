@@ -29,6 +29,7 @@ if (isset($_POST['nombre']) && isset($_POST['descripcion'])
     nombre='".$_POST['nombre']."',
     descripcion='".$_POST['descripcion']."',
     precio_compra=".$_POST['precio_compra'].",
+    precio_=".$_POST['precio_compra'].",
     stock=".$_POST['stock'].",
     id_categoria=".$_POST['categoria'].",
     talla='".$_POST['talla']."',
