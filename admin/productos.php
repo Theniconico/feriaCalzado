@@ -10,8 +10,8 @@ if ($arregloUsuario['id_cargo'] != 1) {
 }
 $resultado = $conexion->query("
   select productos.*, categorias.nombre as catego from 
-  productos 
-  inner join categorias on productos.id_categoria = categorias.id
+  productos
+  inner join categorias on productos.id_categoria = categorias.id where productos.estado = 1
   order by id DESC") or die($conexion->error);
 ?>
 <!DOCTYPE html>
@@ -133,7 +133,16 @@ $resultado = $conexion->query("
                   <td>$<?php echo number_format($f['precio_venta']); ?></td>
                   <td>
                     <div class="btn-group">
-                    <button class="btn btn-sm btn-primary btnEditar" data-id="<?php echo  $f['id']; ?>" data-nombre="<?php echo  $f['nombre']; ?>" data-descripcion="<?php echo  $f['descripcion']; ?>" data-precioCompra="<?php echo  $f['precio_compra']; ?>" data-stock="<?php echo  $f['stock']; ?>" data-categoria="<?php echo  $f['id_categoria']; ?>" data-color="<?php echo  $f['color']; ?>" data-precio-venta="<?php echo  $f['precio_venta']; ?>" data-toggle="modal" data-target="#modalEditar">
+                    <button class="btn btn-sm btn-primary btnEditar" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-nombre="<?php echo  $f['nombre']; ?>" 
+                    data-descripcion="<?php echo  $f['descripcion']; ?>" 
+                    data-precio_compra="<?php echo number_format($f['precio_compra']) ; ?>" 
+                    data-stock="<?php echo  $f['stock']; ?>" 
+                    data-categoria="<?php echo  $f['id_categoria']; ?>" 
+                    data-color="<?php echo  $f['color']; ?>" 
+                    data-precio_venta="<?php echo number_format($f['precio_venta']) ; ?>" 
+                    data-toggle="modal" data-target="#modalEditar">
                       <i class="fa fa-edit"></i>
                     </button>
                     <button class="btn btn-danger btn-sm btnEliminar" data-id="<?php echo  $f['id']; ?>" data-toggle="modal" data-target="#modalEliminar">
@@ -174,7 +183,7 @@ $resultado = $conexion->query("
                 <input type="text" name="descripcion" placeholder="DESCRIPCIÓN" id="descripcion" class="form-control" required>
               </div>
 
-
+              <!-- num_calzado-->
               <div id="collapse" class="accordion" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card">
                   <div class="card-header">
@@ -183,6 +192,7 @@ $resultado = $conexion->query("
                     </button>
 
                   </div>
+                  
                   <div class="card-body">
                     <div class="form-group">
                       <table class="table" style="width: 100%; border-collapse: collapse; ">
@@ -372,10 +382,7 @@ $resultado = $conexion->query("
 
                 </div>
               </div>
-              <script>
-                $('.collapse').collapse()
-              </script>
-
+              <!-- FIN num_calzado-->
 
 
 
@@ -486,7 +493,7 @@ $resultado = $conexion->query("
 
               <div class="form-group">
                 <label for="imagen">Imagen</label>
-                <input type="file" name="imagen" id="imagen" class="form-control" required>
+                <input type="file" name="imagen" id="imagen" class="form-control">
               </div>
 
               <div class="form-group">

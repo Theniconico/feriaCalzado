@@ -3,7 +3,7 @@ include "conexion.php";
 if (isset($_POST['nombre']) && isset($_POST['descripcion']) 
     && isset($_POST['precio_compra'])
     && isset($_POST['categoria']) && isset($_POST['color']) 
-    && isset($_POST['estado']) && isset($_POST['precio_venta'])) {
+    && isset($_POST['precio_venta'])) {
 
 
     
