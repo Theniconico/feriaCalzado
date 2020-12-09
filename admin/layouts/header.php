@@ -70,7 +70,7 @@
             </a>
           </li>
          <?php 
-         if($arregloUsuario['cargo']=='1'){
+         if($arregloUsuario['id_cargo'] == 1){
            ?>
           <li class="nav-item">
             <a href="./productos.php" class="nav-link">
