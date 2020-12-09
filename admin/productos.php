@@ -167,18 +167,15 @@ $resultado = $conexion->query("
               </div>
 
               <div class="form-group">
-                <label for="descripcion">Descripcion</label>
+                <label for="descripcion">Descripción</label>
                 <input type="text" name="descripcion" placeholder="DESCRIPCIÓN" id="descripcion" class="form-control" required>
               </div>
 
 
-              <div class="accordionItem open">
-      <h2 class="accordionItemHeading">About accordions</h2>
-      <div class="accordionItemContent">
-        
+              <div id="collapse" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
       <div class="form-group">
-                <table class="table" style="  width: 100%; 
-  border-collapse: collapse; ">
+                <table class="table" style="width: 100%; border-collapse: collapse; ">
 <tr><th>Talla</th><th>Cantidad</th><th>Añadir</th></tr>
 <tr><td> 12</td><td> <input type="number" name="talla_12" id="talla_12" class="form-control"></td><td> <input type="checkbox" id="chk_talla12" name="chk_talla12"></td></tr>
 <tr><td> 13</td><td> <input type="number" name="talla_13" id="talla_13" class="form-control"></td><td> <input type="checkbox" id="chk_talla13" name="chk_talla13"></td></tr>
@@ -217,22 +214,13 @@ $resultado = $conexion->query("
 </table>
                 </div>
 
+    </div>
+    </div>
+     
       </div>
     </div>
 <script>
-  var accHD = document.getElementsByClassName('accordionItemHeading');
-  for (i = 0; i < accHD.length; i++) {
-        accHD[i].addEventListener('click', toggleItem, false);
-    }
-    function toggleItem() {
-        var itemClass = this.parentNode.className;
-        for (i = 0; i < accItem.length; i++) {
-            accItem[i].className = 'accordionItem close';
-        }
-        if (itemClass == 'accordionItem close') {
-            this.parentNode.className = 'accordionItem open';
-        }
-    }
+  $('.collapse').collapse()
 </script>
   
           
