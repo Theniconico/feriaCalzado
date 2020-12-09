@@ -38,11 +38,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../images/users/<?php echo $arregloUsuario['imagen']; ?>" class="img-circle elevation-2" 
-          alt="<?php echo $arregloUsuario['nombre']; ?>">
+          <img src="../images/<?php echo $arregloUsuario['img_perfil']; ?>" class="img-circle elevation-2" 
+          alt="Administrador">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $arregloUsuario['nombre']; ?></a>
+          <a href="#" class="d-block"><?php echo $arregloUsuario['email']; ?></a>
         </div>
       </div>
 

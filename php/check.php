@@ -9,18 +9,17 @@ if(  isset($_POST['email'])  && isset($_POST['password'])   ){
         password='".sha1($_POST['password'])."' limit 1")or die($conexion->error);
     if(mysqli_num_rows($resultado)>0){
         $datos_usuario = mysqli_fetch_row($resultado); 
-        $nombre = $datos_usuario[1];
+        $email = $datos_usuario[1];
         $id_usuario = $datos_usuario[0];
-        $email = $datos_usuario[3];
-        $imagen_perfil = $datos_usuario[5];
-        $nivel = $datos_usuario[6];
+        $img_perfil = $datos_usuario[3];
+        $id_cargo = $datos_usuario[4];
 
         $_SESSION['datos_login']= array(
-            'nombre'=>$nombre,
-            'id_usuario'=>$id_usuario,
             'email'=>$email,
-            'imagen'=>$imagen_perfil,
-            'nivel'=>$nivel
+            'id'=>$id_usuario,
+            'email'=>$email,
+            'img_perfil'=>$img_perfil,
+            'id_cargo'=>$id_cargo
         );
         header("Location: ../admin/");
     }else{

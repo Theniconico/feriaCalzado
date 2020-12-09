@@ -5,7 +5,7 @@ if (!isset($_SESSION['datos_login'])) {
   header("Location: ../index.php");
 }
 $arregloUsuario = $_SESSION['datos_login'];
-if ($arregloUsuario['nivel'] != 'admin') {
+if ($arregloUsuario['id_cargo'] != 1) {
   header("Location: ../index.php");
 }
 $resultado = $conexion->query("
@@ -102,11 +102,12 @@ $resultado = $conexion->query("
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
-                <th>Precio</th>
-                <th>Inventario</th>
+                <th>Precio de compra</th>
+                <th>Stock</th>
                 <th>Categoria</th>
-                <th>Talla</th>
                 <th>Color</th>
+                <th>estado</th>
+                <th>precio de venta</th>
                 <th></th>
               </tr>
             </thead>
@@ -120,25 +121,27 @@ $resultado = $conexion->query("
                 <tr>
                   <td><?php echo $f['id']; ?></td>
                   <td>
-                    <img src="../images/<?php echo $f['imagen']; ?>" width="40px" height="40px" alt="">
+                    <img src="../images/referencia/img_feria/<?php echo $f['imagen']; ?>" width="30px" height="30px" alt="">
                     <?php echo $f['nombre']; ?>
                   </td>
                   <td><?php echo $f['descripcion']; ?></td>
-                  <td>$<?php echo number_format($f['precio']); ?></td>
-                  <td><?php echo $f['inventario']; ?></td>
+                  <td>$<?php echo number_format($f['precio_compra']); ?></td>
+                  <td><?php echo $f['stock']; ?></td>
                   <td><?php echo $f['catego']; ?></td>
-                  <td><?php echo $f['talla']; ?></td>
                   <td><?php echo $f['color']; ?></td>
+                  <td><?php echo $f['estado']; ?></td>
+                  <td>$<?php echo number_format($f['precio_venta']); ?></td>
                   <td>
                     <button class="btn btn-primary btn-smal btnEditar" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-nombre = "<?php echo  $f['nombre']; ?>"
                     data-descripcion = "<?php echo  $f['descripcion']; ?>"
-                    data-precio = "<?php echo  $f['precio']; ?>"
-                    data-inventario = "<?php echo  $f['inventario']; ?>"
+                    data-precio = "<?php echo  $f['precio_compra']; ?>"
+                    data-inventario = "<?php echo  $f['stock']; ?>"
                     data-categoria = "<?php echo  $f['id_categoria']; ?>"
-                    data-talla = "<?php echo  $f['talla']; ?>"
-                    data-color = "<?php echo  $f['color']; ?>"
+                    data-talla = "<?php echo  $f['color']; ?>"
+                    data-color = "<?php echo  $f['estado']; ?>"
+                    data-color = "<?php echo  $f['precio_venta']; ?>"
                     data-toggle="modal" data-target="#modalEditar">
                       <i class="fa fa-edit"></i>
                     </button>
@@ -179,18 +182,18 @@ $resultado = $conexion->query("
               </div>
 
               <div class="form-group">
+                <label for="precio_compra">Precio de compra</label>
+                <input type="number" min="0" name="precio_compra" placeholder="Precio de compra" id="precio_compra" class="form-control" required>
+              </div>
+
+              <div class="form-group">
                 <label for="imagen">Imagen</label>
                 <input type="file" name="imagen" id="imagen" class="form-control" required>
               </div>
 
               <div class="form-group">
-                <label for="precio">Precio</label>
-                <input type="number" min="0" name="precio" placeholder="PRECIO" id="precio" class="form-control" required>
-              </div>
-
-              <div class="form-group">
-                <label for="inventario">Inventario</label>
-                <input type="number" min="0" name="inventario" placeholder="INVENTARIO" id="inventario" class="form-control" required>
+                <label for="stock">stock</label>
+                <input type="number" min="0" name="stock" placeholder="stock" id="stock" class="form-control" required>
               </div>
 
               <div class="form-group">
@@ -206,13 +209,18 @@ $resultado = $conexion->query("
               </div>
 
               <div class="form-group">
-                <label for="talla">Talla</label>
-                <input type="text" name="talla" placeholder="TALLA" id="talla" class="form-control" required>
+                <label for="color">Color</label>
+                <input type="text" name="color" placeholder="COLOR" id="color" class="form-control" required>
               </div>
 
               <div class="form-group">
-                <label for="color">Color</label>
-                <input type="text" name="color" placeholder="COLOR" id="color" class="form-control" required>
+                <label for="estado">Estado</label>
+                <input type="number" min="0" name="estado" placeholder="Estado del producto" id="estado" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="precio_venta">Precio de venta</label>
+                <input type="number" min="0" name="precio_venta" placeholder="Precio de venta" id="precio_venta" class="form-control" required>
               </div>
 
             </div>

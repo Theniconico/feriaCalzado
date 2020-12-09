@@ -2,11 +2,11 @@
     include "./conexion.php";
 
     if (isset($_POST['nombre']) && isset($_POST['descripcion']) 
-    && isset($_POST['precio']) && isset($_POST['inventario'])
-    && isset($_POST['categoria']) && isset($_POST['talla'])
-    && isset($_POST['color'])) {
+    && isset($_POST['precio_compra']) && isset($_POST['stock'])
+    && isset($_POST['stock']) && isset($_POST['id_categoria'])
+    && isset($_POST['color']) && isset($_POST['estado']) && isset($_POST['precio_venta'])) {
         
-        $carpeta="../images/";
+        $carpeta="../images/referencia/img_feria/";
         $nombre = $_FILES['imagen']['name'];
         //para guardar imagen
         $temp = explode('.',$nombre);
@@ -15,12 +15,13 @@
         if ($extension == 'jpg' || $extension == 'png') {
             if (move_uploaded_file($_FILES['imagen']['tmp_name'], $carpeta.$nombreFinal)) {
                 $conexion->query("insert into productos 
-                (nombre, descripcion, imagen, precio, talla, color, id_categoria, inventario) values
+                (nombre, descripcion,precio_compra, imagen, stock, talla, id_categoria, color,estado,precio_venta) values
                 (
                     '".$_POST['nombre']."',
                     '".$_POST['descripcion']."',
+                    ".$_POST['precio_compra'].",
                     '$nombreFinal',
-                    ".$_POST['precio'].",
+                    ".$_POST['stock'].",
                     '".$_POST['talla']."',
                     '".$_POST['color']."',
                     ".$_POST['categoria'].",

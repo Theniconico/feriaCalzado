@@ -1,15 +1,14 @@
 <?php
 include "conexion.php";
-if (
-    isset($_POST['nombre']) && isset($_POST['descripcion'])
-    && isset($_POST['precio']) && isset($_POST['inventario'])
-    && isset($_POST['categoria']) && isset($_POST['talla'])
-    && isset($_POST['color'])) {
+if (isset($_POST['nombre']) && isset($_POST['descripcion']) 
+    && isset($_POST['precio_compra']) && isset($_POST['stock'])
+    && isset($_POST['stock']) && isset($_POST['id_categoria'])
+    && isset($_POST['color']) && isset($_POST['estado']) && isset($_POST['precio_venta'])) {
 
 
     
         if ($_FILES['imagen']['name'] != '') {
-            $carpeta = "../images/";
+            $carpeta = "../images/referencia/img_feria/";
             $nombre = $_FILES['imagen']['name'];
             $temp = explode('.',$nombre);
             $extension = end($temp);

@@ -46,14 +46,6 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Recuerdame
-              </label>
-            </div>
-          </div>
           <!-- /.col -->
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
@@ -74,10 +66,10 @@
      
 
       <p class="mb-1">
-        <a href="forgot-password.html">Olvidé mi password</a>
+        <a href="forgot-password.html">Olvidé mi contraseña</a>
       </p>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Registrarse</a>
+        <a href="register.php" class="text-center">Registrarse</a>
       </p>
     </div>
     <!-- /.login-card-body -->
