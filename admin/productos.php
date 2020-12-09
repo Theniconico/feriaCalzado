@@ -145,10 +145,15 @@ $resultado = $conexion->query("
                     data-toggle="modal" data-target="#modalEditar">
                       <i class="fa fa-edit"></i>
                     </button>
-                    <button class="btn btn-danger btn-sm btnEliminar" data-id="<?php echo  $f['id']; ?>" data-toggle="modal" data-target="#modalEliminar">
+                    <button class="btn btn-danger btn-sm btnEliminar" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-toggle="modal" data-target="#modalEliminar">
                       <i class="fa fa-trash"></i>
                     </button>
-                    <button class="btn btn-success btn-sm btnAddStock" data-id="<?php echo  $f['id']; ?>" data-toggle="modal" data-target="#modalAddStock">
+                    <button class="btn btn-success btn-sm btnAddStock" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-stock="<?php echo  $f['stock']; ?>"
+                    data-toggle="modal" data-target="#modalAddStock">
                       <i class="fa fa-plus"> stock</i>
                     </button>
                     </div>
@@ -544,6 +549,7 @@ $resultado = $conexion->query("
               </button>
             </div>
             <div class="modal-body">
+            <input type="hidden" id="idEditStock" name="id">
             <div class="form-group">
                 <label for="stockEdit">stock a agregar</label>
                 <input type="number" min="0" name="stockEdit" placeholder="stock" id="stockEdit" class="form-control" required>
@@ -559,13 +565,13 @@ $resultado = $conexion->query("
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="submit" class="btn btn-primary editarStock">Guardar</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-    <!-- Modal Insertar stock-->
+    <!--FIN Modal Insertar stock-->
 
     <?php include "./layouts/footer.php"; ?>
   </div>
@@ -639,6 +645,14 @@ $resultado = $conexion->query("
         $("#colorEdit").val(color);
         $("#precio_ventaEdit").val(precio_venta);
         $("#idEdit").val(idEditar);
+      });
+      $(".btnAddStock").click(function(){
+        idEditStock=$(this).data('id');
+        var stockActual=$(this).data('stock');
+        var stockAdd = $(this).data('stockEdit');
+        $("#stockActual").val(stockActual);
+        $("#stockEdit").val(stockAdd);
+        $("#idEditStock").val(idEditStock);
       });
     });
   </script>
