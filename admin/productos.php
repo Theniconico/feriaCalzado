@@ -336,18 +336,6 @@ $resultado = $conexion->query("
                 <input type="text" name="descripcion" placeholder="DESCRIPCIÓN" id="descripcionEdit" class="form-control" required>
               </div>
 
-              <button class="accordion">numero de calzado</button>
-              <div class="panel">
-                <div class="input-group-prepend">
-                  <div class="input-group">
-                    <input type="checkbox"/>
-                    <label >12</label>
-                    <input type="number" placeholder="Cantidad" class="form-control">
-                  </div>
-                </div>
-
-              </div>
-
               <div class="form-group">
                 <label for="precio_compraEdit">Precio de compra</label>
                 <input type="number" min="0" name="precio_compra" placeholder="Precio de compra" id="precio_compraEdit" class="form-control" required>
@@ -359,7 +347,7 @@ $resultado = $conexion->query("
               </div>
 
               <div class="form-group">
-                <input type="number" id="stock" name="stock" class="">
+                <input type="number" id="stock" name="stock" disabled>
                 <label for="stockEdit">stock</label>
                 <input type="number" min="0" name="stock" placeholder="stock" id="stockEdit" class="form-control" required>
               </div>
