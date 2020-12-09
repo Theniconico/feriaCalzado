@@ -29,6 +29,7 @@
                 )
                 ")or die($conexion->error);
                 
+                
                 header("Location: ../admin/productos.php?success");
             }else {
                 header("Location: ../admin/productos.php?error=No se pudo subir la imagen");

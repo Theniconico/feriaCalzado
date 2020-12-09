@@ -74,9 +74,9 @@
                 $totalProductos = mysqli_fetch_row($totalQuery);
                 $totalBotones = round($totalProductos[0] / $limite);
                 if (isset($_GET['limite'])) {
-                  $resultado = $conexion -> query("SELECT * FROM productos WHERE inventario > 0 LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
+                  $resultado = $conexion -> query("SELECT * FROM productos WHERE stock > 0 LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
                 }else {
-                  $resultado = $conexion -> query("SELECT * FROM productos WHERE inventario > 0 LIMIT ".$limite) or die($conexion -> error);
+                  $resultado = $conexion -> query("SELECT * FROM productos WHERE stock > 0 LIMIT ".$limite) or die($conexion -> error);
                 }
                 while ($fila = mysqli_fetch_array($resultado)) {
                   
@@ -86,12 +86,12 @@
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
                     <a href="shop-single.php?id=<?php echo $fila['id'];?>">
-                    <img src="images/<?php echo $fila['imagen'];?>" alt="<?php echo $fila['nombre'] ;?>" class="img-fluid"></a>
+                    <img src="images/referencia/img_feria/<?php echo $fila['imagen'];?>" alt="<?php echo $fila['nombre'] ;?>" class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="shop-single.php?id=<?php echo $fila['id'];?>"><?php echo $fila['nombre'] ;?></a></h3>
                     <p class="mb-0"><?php echo $fila['descripcion'] ;?></p>
-                    <p class="text-primary font-weight-bold">$<?php echo $fila['precio'] ;?></p>
+                    <p class="text-primary font-weight-bold">$<?php echo $fila['precio_venta'] ;?></p>
                   </div>
                 </div>
               </div>
