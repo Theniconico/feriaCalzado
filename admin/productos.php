@@ -215,13 +215,7 @@ $resultado = $conexion->query("
 
                 </div>
           
-                <div class="input-group-prepend">
-                  <div class="input-group">
-                    <input type="checkbox"/>
-                    <label >12</label>
-                    <input type="number" placeholder="Cantidad" class="form-control">
-                  </div>
-                </div>
+
 
               <div class="form-group">
                 <label for="precio_compra">Precio de compra</label>
