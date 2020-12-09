@@ -69,7 +69,9 @@
               </p>
             </a>
           </li>
-         
+         <?php 
+         if($arregloUsuario['cargo']=='1'){
+           ?>
           <li class="nav-item">
             <a href="./productos.php" class="nav-link">
               <i class="nav-icon fa fa-store"></i>
@@ -96,6 +98,7 @@
               </p>
             </a>
           </li>
+         <?php }?>
           <li class="nav-item">
             <a href="../php/cerrar_sesion.php" class="nav-link">
             <i class="nav-icon fa fa-sign-out-alt"></i>

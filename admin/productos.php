@@ -132,17 +132,7 @@ $resultado = $conexion->query("
                   <td><?php echo $f['estado']; ?></td>
                   <td>$<?php echo number_format($f['precio_venta']); ?></td>
                   <td>
-                    <button class="btn btn-primary btn-smal btnEditar" 
-                    data-id="<?php echo  $f['id']; ?>" 
-                    data-nombre = "<?php echo  $f['nombre']; ?>"
-                    data-descripcion = "<?php echo  $f['descripcion']; ?>"
-                    data-precio = "<?php echo  $f['precio_compra']; ?>"
-                    data-inventario = "<?php echo  $f['stock']; ?>"
-                    data-categoria = "<?php echo  $f['id_categoria']; ?>"
-                    data-talla = "<?php echo  $f['color']; ?>"
-                    data-color = "<?php echo  $f['estado']; ?>"
-                    data-color = "<?php echo  $f['precio_venta']; ?>"
-                    data-toggle="modal" data-target="#modalEditar">
+                    <button class="btn btn-primary btn-smal btnEditar" data-id="<?php echo  $f['id']; ?>" data-nombre="<?php echo  $f['nombre']; ?>" data-descripcion="<?php echo  $f['descripcion']; ?>" data-precio="<?php echo  $f['precio_compra']; ?>" data-inventario="<?php echo  $f['stock']; ?>" data-categoria="<?php echo  $f['id_categoria']; ?>" data-talla="<?php echo  $f['color']; ?>" data-color="<?php echo  $f['estado']; ?>" data-color="<?php echo  $f['precio_venta']; ?>" data-toggle="modal" data-target="#modalEditar">
                       <i class="fa fa-edit"></i>
                     </button>
                     <button class="btn btn-danger btn-smal btnEliminar" data-id="<?php echo  $f['id']; ?>" data-toggle="modal" data-target="#modalEliminar">
@@ -179,6 +169,18 @@ $resultado = $conexion->query("
               <div class="form-group">
                 <label for="descripcion">Descripcion</label>
                 <input type="text" name="descripcion" placeholder="DESCRIPCIÓN" id="descripcion" class="form-control" required>
+              </div>
+
+              <button class="accordion">Tallas</button>
+              <div class="panel">
+                <div class="input-group-prepend">
+                  <div class="input-group">
+                    <input type="checkbox"/>
+                    <label >12</label>
+                    <input type="number" placeholder="Cantidad" class="form-control">
+                  </div>
+                </div>
+
               </div>
 
               <div class="form-group">
@@ -257,8 +259,8 @@ $resultado = $conexion->query("
     </div>
     <!-- Modal Eliminar-->
 
-     <!-- Modal Editar-->
-     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditar" aria-hidden="true">
+    <!-- Modal Editar-->
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditar" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <form action="../php/editarProducto.php" method="POST" enctype="multipart/form-data">
@@ -269,8 +271,8 @@ $resultado = $conexion->query("
               </button>
             </div>
             <div class="modal-body">
-                  <input type="hidden" id="idEdit" name="id">
-                  
+              <input type="hidden" id="idEdit" name="id">
+
               <div class="form-group">
                 <label for="nombreEdit">Nombre</label>
                 <input type="text" name="nombre" placeholder="NOMBRE" id="nombreEdit" class="form-control" required>
@@ -386,8 +388,8 @@ $resultado = $conexion->query("
           $(fila).fadeOut(1000);
         });
       });
-      $(".btnEditar").click(function(){
-        idEditar=$(this).data('id');
+      $(".btnEditar").click(function() {
+        idEditar = $(this).data('id');
         var nombre = $(this).data('nombre');
         var descripcion = $(this).data('descripcion');
         var precio = $(this).data('precio');
