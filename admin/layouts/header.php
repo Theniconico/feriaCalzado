@@ -82,15 +82,6 @@
           </li>
 
           <li class="nav-item">
-            <a href="./cupones.php" class="nav-link">
-              <i class="nav-icon fa fa-ticket-alt"></i>
-              <p>
-                Cupones
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
             <a href="./usuarios.php" class="nav-link">
               <i class="nav-icon fa fa-users"></i>
               <p>

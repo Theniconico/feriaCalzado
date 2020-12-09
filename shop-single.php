@@ -42,26 +42,12 @@ include('./php/conexion.php');
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <img src="images/<?php echo $fila[4];?>" alt="<?php echo $fila[1];?>" class="img-fluid"><!--llama a dato por la posicion en el arreglo de la bd -->
+            <img src="images/referencia/img_feria/<?php echo $fila[4];?>" alt="<?php echo $fila[1];?>" class="img-fluid"><!--llama a dato por la posicion en el arreglo de la bd -->
           </div>
           <div class="col-md-6">
             <h2 class="text-black"><?php echo $fila[1];?></h2>
             <p><?php echo $fila[2];?></p>
-            <p><strong class="text-primary h4">$<?php echo $fila[3];?></strong></p>
-            <div class="mb-1 d-flex">
-              <label for="option-sm" class="d-flex mr-3 mb-3">
-                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-sm" name="shop-sizes"></span> <span class="d-inline-block text-black">Pequeño</span>
-              </label>
-              <label for="option-md" class="d-flex mr-3 mb-3">
-                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-md" name="shop-sizes"></span> <span class="d-inline-block text-black">Mediano</span>
-              </label>
-              <label for="option-lg" class="d-flex mr-3 mb-3">
-                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-lg" name="shop-sizes"></span> <span class="d-inline-block text-black">Largo</span>
-              </label>
-              <label for="option-xl" class="d-flex mr-3 mb-3">
-                <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-xl" name="shop-sizes"></span> <span class="d-inline-block text-black"> Extra Largo</span>
-              </label>
-            </div>
+            <p><strong class="text-primary h4">$<?php echo $fila[9];?></strong></p>
             <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 120px;">
               <div class="input-group-prepend">

@@ -15,7 +15,7 @@ $resultado = $conexion->query("
   order by id DESC") or die($conexion->error);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
@@ -147,6 +147,9 @@ $resultado = $conexion->query("
                     </button>
                     <button class="btn btn-danger btn-sm btnEliminar" data-id="<?php echo  $f['id']; ?>" data-toggle="modal" data-target="#modalEliminar">
                       <i class="fa fa-trash"></i>
+                    </button>
+                    <button class="btn btn-success btn-sm btnAddStock" data-id="<?php echo  $f['id']; ?>" data-toggle="modal" data-target="#modalAddStock">
+                      <i class="fa fa-plus"> stock</i>
                     </button>
                     </div>
                    
@@ -528,6 +531,41 @@ $resultado = $conexion->query("
       </div>
     </div>
     <!-- Modal Editar-->
+
+    <!-- Modal Insertar STOCK-->
+    <div class="modal fade" id="modalAddStock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="../php/insertarProducto.php" method="POST" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Actualizar stock</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            <div class="form-group">
+                <label for="stockEdit">stock a agregar</label>
+                <input type="number" min="0" name="stockEdit" placeholder="stock" id="stockEdit" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                
+              <label for="stockActual">Stock actual</label>
+                <input type="number" id="stockActual" name="stock" class="form-control" disabled>
+              </div>
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Insertar stock-->
 
     <?php include "./layouts/footer.php"; ?>
   </div>
