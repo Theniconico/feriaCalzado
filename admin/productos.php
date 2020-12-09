@@ -283,19 +283,32 @@ $resultado = $conexion->query("
                 <input type="text" name="descripcion" placeholder="DESCRIPCIÓN" id="descripcionEdit" class="form-control" required>
               </div>
 
+              <button class="accordion">numero de calzado</button>
+              <div class="panel">
+                <div class="input-group-prepend">
+                  <div class="input-group">
+                    <input type="checkbox"/>
+                    <label >12</label>
+                    <input type="number" placeholder="Cantidad" class="form-control">
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <label for="precio_compraEdit">Precio de compra</label>
+                <input type="number" min="0" name="precio_compra" placeholder="Precio de compra" id="precio_compraEdit" class="form-control" required>
+              </div>
+
               <div class="form-group">
                 <label for="imagen">Imagen</label>
-                <input type="file" name="imagen" id="imagen" class="form-control">
+                <input type="file" name="imagen" id="imagen" class="form-control" required>
               </div>
 
               <div class="form-group">
-                <label for="precioEdit">Precio</label>
-                <input type="number" min="0" name="precio" placeholder="PRECIO" id="precioEdit" class="form-control" required>
-              </div>
-
-              <div class="form-group">
-                <label for="inventarioEdit">Inventario</label>
-                <input type="number" min="0" name="inventario" placeholder="INVENTARIO" id="inventarioEdit" class="form-control" required>
+                <input type="number" id="stock" name="stock" class="">
+                <label for="stockEdit">stock</label>
+                <input type="number" min="0" name="stock" placeholder="stock" id="stockEdit" class="form-control" required>
               </div>
 
               <div class="form-group">
@@ -311,13 +324,18 @@ $resultado = $conexion->query("
               </div>
 
               <div class="form-group">
-                <label for="tallaEdit">Talla</label>
-                <input type="text" name="talla" placeholder="TALLA" id="tallaEdit" class="form-control" required>
+                <label for="colorEdit">Color</label>
+                <input type="text" name="color" placeholder="COLOR" id="colorEdit" class="form-control" required>
               </div>
 
               <div class="form-group">
-                <label for="colorEdit">Color</label>
-                <input type="text" name="color" placeholder="COLOR" id="colorEdit" class="form-control" required>
+                <label for="estado">Estado</label>
+                <input type="number" min="0" name="estado" placeholder="Estado del producto" id="estado" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="precio_ventaEdit">Precio de venta</label>
+                <input type="number" min="0" name="precio_venta" placeholder="Precio de venta" id="precio_ventaEdit" class="form-control" required>
               </div>
 
             </div>
