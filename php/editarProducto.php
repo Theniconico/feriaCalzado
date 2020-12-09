@@ -1,7 +1,7 @@
 <?php
 include "conexion.php";
 if (isset($_POST['nombre']) && isset($_POST['descripcion']) 
-    && isset($_POST['precio_compra']) && isset($_POST['stock'])
+    && isset($_POST['precio_compra']) && isset($_POST['imagen'])
     && isset($_POST['stock']) && isset($_POST['id_categoria'])
     && isset($_POST['color']) && isset($_POST['estado']) && isset($_POST['precio_venta'])) {
 
@@ -17,8 +17,8 @@ if (isset($_POST['nombre']) && isset($_POST['descripcion'])
                 if (move_uploaded_file($_FILES['imagen']['tmp_name'], $carpeta.$nombreFinal)) {
                     $fila = $conexion->query('select imagen from productos where id='.$_POST['id']);
                     $id = mysqli_fetch_row($fila);
-                    if (file_exists('../images/'.$id[0])) {
-                        unlink('../images/'.$id[0]);
+                    if (file_exists('../images/referencia/img_feria/'.$id[0])) {
+                        unlink('../images/referencia/img_feria/'.$id[0]);
                     }
                     $conexion->query("update productos set imagen='".$nombreFinal."' where id=".$_POST['id']);
                 }
