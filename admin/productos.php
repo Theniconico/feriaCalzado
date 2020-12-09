@@ -132,12 +132,15 @@ $resultado = $conexion->query("
                   <td><?php echo $f['estado']; ?></td>
                   <td>$<?php echo number_format($f['precio_venta']); ?></td>
                   <td>
-                    <button class="btn btn-primary btn-smal btnEditar" data-id="<?php echo  $f['id']; ?>" data-nombre="<?php echo  $f['nombre']; ?>" data-descripcion="<?php echo  $f['descripcion']; ?>" data-precio="<?php echo  $f['precio_compra']; ?>" data-inventario="<?php echo  $f['stock']; ?>" data-categoria="<?php echo  $f['id_categoria']; ?>" data-talla="<?php echo  $f['color']; ?>" data-color="<?php echo  $f['estado']; ?>" data-color="<?php echo  $f['precio_venta']; ?>" data-toggle="modal" data-target="#modalEditar">
+                    <div class="btn-group">
+                    <button class="btn btn-sm btn-primary btnEditar" data-id="<?php echo  $f['id']; ?>" data-nombre="<?php echo  $f['nombre']; ?>" data-descripcion="<?php echo  $f['descripcion']; ?>" data-precio="<?php echo  $f['precio_compra']; ?>" data-inventario="<?php echo  $f['stock']; ?>" data-categoria="<?php echo  $f['id_categoria']; ?>" data-talla="<?php echo  $f['color']; ?>" data-color="<?php echo  $f['estado']; ?>" data-color="<?php echo  $f['precio_venta']; ?>" data-toggle="modal" data-target="#modalEditar">
                       <i class="fa fa-edit"></i>
                     </button>
-                    <button class="btn btn-danger btn-smal btnEliminar" data-id="<?php echo  $f['id']; ?>" data-toggle="modal" data-target="#modalEliminar">
+                    <button class="btn btn-danger btn-sm btnEliminar" data-id="<?php echo  $f['id']; ?>" data-toggle="modal" data-target="#modalEliminar">
                       <i class="fa fa-trash"></i>
                     </button>
+                    </div>
+                   
                   </td>
                 </tr>
               <?php } ?>
@@ -175,65 +178,205 @@ $resultado = $conexion->query("
               <div id="collapse" class="accordion" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card">
                   <div class="card-header">
-                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse">
-                                           Ver más
-                                        </button>
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseOne">
+                      Ver más
+                    </button>
 
                   </div>
                   <div class="card-body">
-      <div class="form-group">
-                <table class="table" style="width: 100%; border-collapse: collapse; ">
-<tr><th>Talla</th><th>Cantidad</th><th>Añadir</th></tr>
-<tr><td> 12</td><td> <input type="number" name="talla_12" id="talla_12" class="form-control"></td><td> <input type="checkbox" id="chk_talla12" name="chk_talla12"></td></tr>
-<tr><td> 13</td><td> <input type="number" name="talla_13" id="talla_13" class="form-control"></td><td> <input type="checkbox" id="chk_talla13" name="chk_talla13"></td></tr>
-<tr><td> 14</td><td> <input type="number" name="talla_14" id="talla_14" class="form-control"></td><td> <input type="checkbox" id="chk_talla14" name="chk_talla14"></td></tr>
-<tr><td> 15</td><td> <input type="number" name="talla_15" id="talla_15" class="form-control"></td><td> <input type="checkbox" id="chk_talla15" name="chk_talla15"></td></tr>
-<tr><td> 16</td><td> <input type="number" name="talla_16" id="talla_16" class="form-control"></td><td> <input type="checkbox" id="chk_talla16" name="chk_talla16"></td></tr>
-<tr><td> 17</td><td> <input type="number" name="talla_17" id="talla_17" class="form-control"></td><td> <input type="checkbox" id="chk_talla17" name="chk_talla17"></td></tr>
-<tr><td> 18</td><td> <input type="number" name="talla_18" id="talla_18" class="form-control"></td><td> <input type="checkbox" id="chk_talla18" name="chk_talla18"></td></tr>
-<tr><td> 19</td><td> <input type="number" name="talla_19" id="talla_19" class="form-control"></td><td> <input type="checkbox" id="chk_talla19" name="chk_talla19"></td></tr>
-<tr><td> 20</td><td> <input type="number" name="talla_20" id="talla_20" class="form-control"></td><td> <input type="checkbox" id="chk_talla20" name="chk_talla20"></td></tr>
-<tr><td> 21</td><td> <input type="number" name="talla_21" id="talla_21" class="form-control"></td><td> <input type="checkbox" id="chk_talla21" name="chk_talla21"></td></tr>
-<tr><td> 22</td><td> <input type="number" name="talla_22" id="talla_22" class="form-control"></td><td> <input type="checkbox" id="chk_talla22" name="chk_talla22"></td></tr>
-<tr><td> 23</td><td> <input type="number" name="talla_23" id="talla_23" class="form-control"></td><td> <input type="checkbox" id="chk_talla23" name="chk_talla23"></td></tr>
-<tr><td> 24</td><td> <input type="number" name="talla_24" id="talla_24" class="form-control"></td><td> <input type="checkbox" id="chk_talla24" name="chk_talla24"></td></tr>
-<tr><td> 25</td><td> <input type="number" name="talla_25" id="talla_25" class="form-control"></td><td> <input type="checkbox" id="chk_talla25" name="chk_talla25"></td></tr>
-<tr><td> 26</td><td> <input type="number" name="talla_26" id="talla_26" class="form-control"></td><td> <input type="checkbox" id="chk_talla26" name="chk_talla26"></td></tr>
-<tr><td> 27</td><td> <input type="number" name="talla_27" id="talla_27" class="form-control"></td><td> <input type="checkbox" id="chk_talla27" name="chk_talla27"></td></tr>
-<tr><td> 28</td><td> <input type="number" name="talla_28" id="talla_28" class="form-control"></td><td> <input type="checkbox" id="chk_talla28" name="chk_talla28"></td></tr>
-<tr><td> 29</td><td> <input type="number" name="talla_29" id="talla_29" class="form-control"></td><td> <input type="checkbox" id="chk_talla29" name="chk_talla29"></td></tr>
-<tr><td> 30</td><td> <input type="number" name="talla_30" id="talla_30" class="form-control"></td><td> <input type="checkbox" id="chk_talla30" name="chk_talla30"></td></tr>
-<tr><td> 31</td><td> <input type="number" name="talla_31" id="talla_31" class="form-control"></td><td> <input type="checkbox" id="chk_talla31" name="chk_talla31"></td></tr>
-<tr><td> 32</td><td> <input type="number" name="talla_32" id="talla_32" class="form-control"></td><td> <input type="checkbox" id="chk_talla32" name="chk_talla32"></td></tr>
-<tr><td> 33</td><td> <input type="number" name="talla_33" id="talla_33" class="form-control"></td><td> <input type="checkbox" id="chk_talla33" name="chk_talla33"></td></tr>
-<tr><td> 34</td><td> <input type="number" name="talla_34" id="talla_34" class="form-control"></td><td> <input type="checkbox" id="chk_talla34" name="chk_talla34"></td></tr>
-<tr><td> 35</td><td> <input type="number" name="talla_35" id="talla_35" class="form-control"></td><td> <input type="checkbox" id="chk_talla35" name="chk_talla35"></td></tr>
-<tr><td> 36</td><td> <input type="number" name="talla_36" id="talla_36" class="form-control"></td><td> <input type="checkbox" id="chk_talla36" name="chk_talla36"></td></tr>
-<tr><td> 37</td><td> <input type="number" name="talla_37" id="talla_37" class="form-control"></td><td> <input type="checkbox" id="chk_talla37" name="chk_talla37"></td></tr>
-<tr><td> 38</td><td> <input type="number" name="talla_38" id="talla_38" class="form-control"></td><td> <input type="checkbox" id="chk_talla38" name="chk_talla38"></td></tr>
-<tr><td> 39</td><td> <input type="number" name="talla_39" id="talla_39" class="form-control"></td><td> <input type="checkbox" id="chk_talla39" name="chk_talla39"></td></tr>
-<tr><td> 40</td><td> <input type="number" name="talla_40" id="talla_40" class="form-control"></td><td> <input type="checkbox" id="chk_talla40" name="chk_talla40"></td></tr>
-<tr><td> 41</td><td> <input type="number" name="talla_41" id="talla_41" class="form-control"></td><td> <input type="checkbox" id="chk_talla41" name="chk_talla41"></td></tr>
-<tr><td> 42</td><td> <input type="number" name="talla_42" id="talla_42" class="form-control"></td><td> <input type="checkbox" id="chk_talla42" name="chk_talla42"></td></tr>
-<tr><td> 43</td><td> <input type="number" name="talla_43" id="talla_43" class="form-control"></td><td> <input type="checkbox" id="chk_talla43" name="chk_talla43"></td></tr>
-<tr><td> 44</td><td> <input type="number" name="talla_44" id="talla_44" class="form-control"></td><td> <input type="checkbox" id="chk_talla44" name="chk_talla44"></td></tr>
-<tr><td> 45</td><td> <input type="number" name="talla_45" id="talla_45" class="form-control"></td><td> <input type="checkbox" id="chk_talla45" name="chk_talla45"></td></tr>
-</table>
+                    <div class="form-group">
+                      <table class="table" style="width: 100%; border-collapse: collapse; ">
+                        <tr>
+                          <th>Talla</th>
+                          <th>Cantidad</th>
+                          <th>Añadir</th>
+                        </tr>
+                        <tr>
+                          <td> 12</td>
+                          <td> <input type="number" name="talla_12" id="talla_12" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla12" name="chk_talla12"></td>
+                        </tr>
+                        <tr>
+                          <td> 13</td>
+                          <td> <input type="number" name="talla_13" id="talla_13" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla13" name="chk_talla13"></td>
+                        </tr>
+                        <tr>
+                          <td> 14</td>
+                          <td> <input type="number" name="talla_14" id="talla_14" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla14" name="chk_talla14"></td>
+                        </tr>
+                        <tr>
+                          <td> 15</td>
+                          <td> <input type="number" name="talla_15" id="talla_15" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla15" name="chk_talla15"></td>
+                        </tr>
+                        <tr>
+                          <td> 16</td>
+                          <td> <input type="number" name="talla_16" id="talla_16" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla16" name="chk_talla16"></td>
+                        </tr>
+                        <tr>
+                          <td> 17</td>
+                          <td> <input type="number" name="talla_17" id="talla_17" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla17" name="chk_talla17"></td>
+                        </tr>
+                        <tr>
+                          <td> 18</td>
+                          <td> <input type="number" name="talla_18" id="talla_18" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla18" name="chk_talla18"></td>
+                        </tr>
+                        <tr>
+                          <td> 19</td>
+                          <td> <input type="number" name="talla_19" id="talla_19" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla19" name="chk_talla19"></td>
+                        </tr>
+                        <tr>
+                          <td> 20</td>
+                          <td> <input type="number" name="talla_20" id="talla_20" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla20" name="chk_talla20"></td>
+                        </tr>
+                        <tr>
+                          <td> 21</td>
+                          <td> <input type="number" name="talla_21" id="talla_21" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla21" name="chk_talla21"></td>
+                        </tr>
+                        <tr>
+                          <td> 22</td>
+                          <td> <input type="number" name="talla_22" id="talla_22" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla22" name="chk_talla22"></td>
+                        </tr>
+                        <tr>
+                          <td> 23</td>
+                          <td> <input type="number" name="talla_23" id="talla_23" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla23" name="chk_talla23"></td>
+                        </tr>
+                        <tr>
+                          <td> 24</td>
+                          <td> <input type="number" name="talla_24" id="talla_24" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla24" name="chk_talla24"></td>
+                        </tr>
+                        <tr>
+                          <td> 25</td>
+                          <td> <input type="number" name="talla_25" id="talla_25" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla25" name="chk_talla25"></td>
+                        </tr>
+                        <tr>
+                          <td> 26</td>
+                          <td> <input type="number" name="talla_26" id="talla_26" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla26" name="chk_talla26"></td>
+                        </tr>
+                        <tr>
+                          <td> 27</td>
+                          <td> <input type="number" name="talla_27" id="talla_27" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla27" name="chk_talla27"></td>
+                        </tr>
+                        <tr>
+                          <td> 28</td>
+                          <td> <input type="number" name="talla_28" id="talla_28" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla28" name="chk_talla28"></td>
+                        </tr>
+                        <tr>
+                          <td> 29</td>
+                          <td> <input type="number" name="talla_29" id="talla_29" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla29" name="chk_talla29"></td>
+                        </tr>
+                        <tr>
+                          <td> 30</td>
+                          <td> <input type="number" name="talla_30" id="talla_30" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla30" name="chk_talla30"></td>
+                        </tr>
+                        <tr>
+                          <td> 31</td>
+                          <td> <input type="number" name="talla_31" id="talla_31" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla31" name="chk_talla31"></td>
+                        </tr>
+                        <tr>
+                          <td> 32</td>
+                          <td> <input type="number" name="talla_32" id="talla_32" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla32" name="chk_talla32"></td>
+                        </tr>
+                        <tr>
+                          <td> 33</td>
+                          <td> <input type="number" name="talla_33" id="talla_33" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla33" name="chk_talla33"></td>
+                        </tr>
+                        <tr>
+                          <td> 34</td>
+                          <td> <input type="number" name="talla_34" id="talla_34" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla34" name="chk_talla34"></td>
+                        </tr>
+                        <tr>
+                          <td> 35</td>
+                          <td> <input type="number" name="talla_35" id="talla_35" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla35" name="chk_talla35"></td>
+                        </tr>
+                        <tr>
+                          <td> 36</td>
+                          <td> <input type="number" name="talla_36" id="talla_36" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla36" name="chk_talla36"></td>
+                        </tr>
+                        <tr>
+                          <td> 37</td>
+                          <td> <input type="number" name="talla_37" id="talla_37" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla37" name="chk_talla37"></td>
+                        </tr>
+                        <tr>
+                          <td> 38</td>
+                          <td> <input type="number" name="talla_38" id="talla_38" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla38" name="chk_talla38"></td>
+                        </tr>
+                        <tr>
+                          <td> 39</td>
+                          <td> <input type="number" name="talla_39" id="talla_39" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla39" name="chk_talla39"></td>
+                        </tr>
+                        <tr>
+                          <td> 40</td>
+                          <td> <input type="number" name="talla_40" id="talla_40" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla40" name="chk_talla40"></td>
+                        </tr>
+                        <tr>
+                          <td> 41</td>
+                          <td> <input type="number" name="talla_41" id="talla_41" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla41" name="chk_talla41"></td>
+                        </tr>
+                        <tr>
+                          <td> 42</td>
+                          <td> <input type="number" name="talla_42" id="talla_42" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla42" name="chk_talla42"></td>
+                        </tr>
+                        <tr>
+                          <td> 43</td>
+                          <td> <input type="number" name="talla_43" id="talla_43" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla43" name="chk_talla43"></td>
+                        </tr>
+                        <tr>
+                          <td> 44</td>
+                          <td> <input type="number" name="talla_44" id="talla_44" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla44" name="chk_talla44"></td>
+                        </tr>
+                        <tr>
+                          <td> 45</td>
+                          <td> <input type="number" name="talla_45" id="talla_45" class="form-control"></td>
+                          <td> <input type="checkbox" id="chk_talla45" name="chk_talla45"></td>
+                        </tr>
+                      </table>
+                    </div>
+
+
+
+
+
+                  </div>
+
                 </div>
+              </div>
+              <script>
+                $('.collapse').collapse()
+              </script>
 
-    </div>
 
-
-                </div>
-          </div>
-     
-      </div>
-    </div>
-<script>
-  $('.collapse').collapse()
-</script>
-  
-          
 
 
               <div class="form-group">
@@ -347,9 +490,10 @@ $resultado = $conexion->query("
               </div>
 
               <div class="form-group">
-                <input type="number" id="stock" name="stock" disabled>
+                <label for="stockActual">Stock actual</label>
+                <input type="number" id="stockActual" name="stockActual" class="form-control" disabled>
                 <label for="stockEdit">stock</label>
-                <input type="number" min="0" name="stock" placeholder="stock" id="stockEdit" class="form-control" required>
+                <input type="number" min="0" name="stockEdit" placeholder="stock" id="stockEdit" class="form-control" required>
               </div>
 
               <div class="form-group">
@@ -367,11 +511,6 @@ $resultado = $conexion->query("
               <div class="form-group">
                 <label for="colorEdit">Color</label>
                 <input type="text" name="color" placeholder="COLOR" id="colorEdit" class="form-control" required>
-              </div>
-
-              <div class="form-group">
-                <label for="estado">Estado</label>
-                <input type="number" min="0" name="estado" placeholder="Estado del producto" id="estado" class="form-control" required>
               </div>
 
               <div class="form-group">
@@ -451,18 +590,20 @@ $resultado = $conexion->query("
         idEditar = $(this).data('id');
         var nombre = $(this).data('nombre');
         var descripcion = $(this).data('descripcion');
-        var precio = $(this).data('precio');
-        var inventario = $(this).data('inventario');
+        var precio_compra = $(this).data('precio_compra');
+        var stockActual = $(this).data('stockActual');
+        var stockEdit = $(this).data('stockEdit');
         var categoria = $(this).data('categoria');
-        var talla = $(this).data('talla');
         var color = $(this).data('color');
+        var precio_venta = $(this).data('precio_venta');
         $("#nombreEdit").val(nombre);
         $("#descripcionEdit").val(descripcion);
-        $("#precioEdit").val(precio);
-        $("#inventarioEdit").val(inventario);
+        $("#precio_compraEdit").val(precio_compra);
+        $("#stockActual").val(stockActual);
+        $("#stockEdit").val(stockEdit);
         $("#categoriaEdit").val(categoria);
-        $("#tallaEdit").val(talla);
         $("#colorEdit").val(color);
+        $("#precio_ventaEdit").val(precio_venta);
         $("#idEdit").val(idEditar);
       });
     });

@@ -1,9 +1,9 @@
 <?php
 include "conexion.php";
 if (isset($_POST['nombre']) && isset($_POST['descripcion']) 
-    && isset($_POST['precio_compra']) && isset($_POST['imagen'])
-    && isset($_POST['stock']) && isset($_POST['id_categoria'])
-    && isset($_POST['color']) && isset($_POST['estado']) && isset($_POST['precio_venta'])) {
+    && isset($_POST['precio_compra']) && isset($_POST['stock'])
+    && isset($_POST['categoria']) && isset($_POST['color']) 
+    && isset($_POST['estado']) && isset($_POST['precio_venta'])) {
 
 
     
@@ -28,8 +28,8 @@ if (isset($_POST['nombre']) && isset($_POST['descripcion'])
     $conexion->query("update productos set 
     nombre='".$_POST['nombre']."',
     descripcion='".$_POST['descripcion']."',
-    precio=".$_POST['precio'].",
-    inventario=".$_POST['inventario'].",
+    precio_compra=".$_POST['precio_compra'].",
+    stock=".$_POST['stock'].",
     id_categoria=".$_POST['categoria'].",
     talla='".$_POST['talla']."',
     color='".$_POST['color']."'
