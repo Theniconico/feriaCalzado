@@ -337,7 +337,7 @@ $resultado = $conexion->query("
               </div>
 
               <div class="form-group">
-                <input type="number" id="stock" name="stock" class="">
+                <input type="number" id="stock" name="stock" disabled>
                 <label for="stockEdit">stock</label>
                 <input type="number" min="0" name="stock" placeholder="stock" id="stockEdit" class="form-control" required>
               </div>

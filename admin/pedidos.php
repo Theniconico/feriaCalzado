@@ -5,7 +5,7 @@ if (!isset($_SESSION['datos_login'])) {
     header("Location: ../index.php");
 }
 $arregloUsuario = $_SESSION['datos_login'];
-if ($arregloUsuario['nivel'] != 'admin') {
+if ($arregloUsuario['id_cargo'] != 1) {
     header("Location: ../index.php");
 }
 $resultado = $conexion->query("
