@@ -28,7 +28,12 @@
                     ".$_POST['precio_venta']."
                 )
                 ")or die($conexion->error);
-                
+                $conexion->query("insert into movimiento (tipo_movimiento,id_usuario_movimiento,fechaHora,observaciones) values(
+                    'insertar producto',
+                    '1',
+                    now(),
+                    'se inserto un producto nuevo'
+                )")or die($conexion->error);
                 
                 header("Location: ../admin/productos.php?success");
             }else {
