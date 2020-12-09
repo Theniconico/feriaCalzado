@@ -171,7 +171,12 @@ $resultado = $conexion->query("
                 <input type="text" name="descripcion" placeholder="DESCRIPCIÓN" id="descripcion" class="form-control" required>
               </div>
 
-                <div class="form-group">
+
+              <div class="accordionItem open">
+      <h2 class="accordionItemHeading">About accordions</h2>
+      <div class="accordionItemContent">
+        
+      <div class="form-group">
                 <table class="table" style="  width: 100%; 
   border-collapse: collapse; ">
 <tr><th>Talla</th><th>Cantidad</th><th>Añadir</th></tr>
@@ -210,10 +215,26 @@ $resultado = $conexion->query("
 <tr><td> 44</td><td> <input type="number" name="talla_44" id="talla_44" class="form-control"></td><td> <input type="checkbox" id="chk_talla44" name="chk_talla44"></td></tr>
 <tr><td> 45</td><td> <input type="number" name="talla_45" id="talla_45" class="form-control"></td><td> <input type="checkbox" id="chk_talla45" name="chk_talla45"></td></tr>
 </table>
-
-
-
                 </div>
+
+      </div>
+    </div>
+<script>
+  var accHD = document.getElementsByClassName('accordionItemHeading');
+  for (i = 0; i < accHD.length; i++) {
+        accHD[i].addEventListener('click', toggleItem, false);
+    }
+    function toggleItem() {
+        var itemClass = this.parentNode.className;
+        for (i = 0; i < accItem.length; i++) {
+            accItem[i].className = 'accordionItem close';
+        }
+        if (itemClass == 'accordionItem close') {
+            this.parentNode.className = 'accordionItem open';
+        }
+    }
+</script>
+  
           
 
 
