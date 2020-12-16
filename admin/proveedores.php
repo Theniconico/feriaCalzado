@@ -119,8 +119,6 @@ $resultado = $conexion->query("
                                     <td><?php echo $f['rut']; ?></td>
                                     <td><?php echo $f['telefono']; ?></td>
                                     <td><?php echo $f['direccion']; ?></td>
-                                    <td><?php echo $f['ciudad']; ?></td>
-                                    <td><?php echo $f['region']; ?></td>
                                     <td>
                                         <div class="btn-group">
                                             <button class="btn btn-sm btn-primary btnEditar" 
