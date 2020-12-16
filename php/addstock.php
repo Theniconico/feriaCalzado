@@ -10,3 +10,4 @@ if (isset($_POST['stockEdit']) && isset($_POST['stock'])){
     }
     header("Location: ../admin/productos.php");
 ?>
+<!-- ver k pedo esto-->
