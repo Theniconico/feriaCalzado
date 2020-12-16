@@ -131,7 +131,7 @@ $resultado = $conexion->query("
                                                 <i class="fa fa-edit"></i>
                                             </button>
                                             <button class="btn btn-danger btn-sm btnEliminar" 
-                                            data-id="<?php echo  $f['id_proveedor']; ?>" 
+                                            data-id_proveedor="<?php echo  $f['id_proveedor']; ?>" 
                                             data-toggle="modal" data-target="#modalEliminar">
                                                 <i class="fa fa-trash"></i>
                                             </button>
