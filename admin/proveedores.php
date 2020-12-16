@@ -297,6 +297,40 @@ $resultado = $conexion->query("
     <script src="./dashboard/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="./dashboard/dist/js/pages/dashboard.js"></script>
+    <script>
+    $(document).ready(function(){
+        var idEliminar = -1;
+        var idEditar = -1;
+        var fila;
+        $(".btnEliminar").click(function(){
+            idEliminar = $(this).data('id_proveedor');
+            fila = $(this).parent('td').parent('tr');
+        });
+        $(".eliminar").click(function(){
+            $.ajax({
+                url: '../php/eliminarProveedor.php',
+                method: 'POST',
+                data:{
+                    id_proveedor : idEliminar
+                }
+            }).done(function(res){
+                $(fila).fadeOut(1000);
+            });
+        });
+        $(".btnEditar").click(function(){
+            idEditar = $(this).data('id_proveedor');
+            var nombre = $(this).data('nombre');
+            var rut = $(this).data('rut');
+            var telefono = $(this).data('telefono');
+            var direccion = $(this).data('direccion');
+
+            $("#nombreEdit").val(nombre);
+            $("#rutEdit").val(rut);
+            $("#telefonoEdit").val(telefono);
+            $("#direccionEdit").val(direccion);
+        });
+    });
+    </script>
     
 </body>
 
