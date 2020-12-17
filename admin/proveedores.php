@@ -120,7 +120,7 @@ $resultado = $conexion->query("
                                     <td><?php echo $f['telefono']; ?></td>
                                     <td><?php echo $f['direccion']; ?></td>
                                     <td>
-                                        <div class="btn-group">
+                                            <!-- Boton editar-->
                                             <button class="btn btn-sm btn-primary btnEditar" 
                                             data-id_proveedor="<?php echo  $f['id_proveedor']; ?>" 
                                             data-nombre="<?php echo  $f['nombre']; ?>" 
@@ -130,12 +130,15 @@ $resultado = $conexion->query("
                                             data-toggle="modal" data-target="#modalEditar">
                                                 <i class="fa fa-edit"></i>
                                             </button>
+                                            <!-- Boton editar-->
+                                            <!-- Boton eliminar-->
                                             <button class="btn btn-danger btn-sm btnEliminar" 
                                             data-id_proveedor="<?php echo  $f['id_proveedor']; ?>" 
                                             data-toggle="modal" data-target="#modalEliminar">
                                                 <i class="fa fa-trash"></i>
                                             </button>
-                                        </div>
+                                            <!-- Boton editar-->
+                                        
 
                                     </td>
                                 </tr>
@@ -312,6 +315,7 @@ $resultado = $conexion->query("
                     id_proveedor : idEliminar
                 }
             }).done(function(res){
+                alert(res);
                 $(fila).fadeOut(1000);
             });
         });

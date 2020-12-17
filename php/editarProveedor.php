@@ -6,7 +6,7 @@
         rut='".$_POST['rut']."',
         telefono='".$_POST['telefono']."',
         direccion='".$_POST['direccion']."'
-        where id=".$_POST['id_proveedor']);
+        where id_proveedor=".$_POST['id_proveedor']);
         echo "Datos actualizados correctamente";
     }
     header("Location: ../admin/proveedores.php");
