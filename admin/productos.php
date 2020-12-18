@@ -115,8 +115,6 @@ $resultado = $conexion->query("
 
               <?php
               while ($f = mysqli_fetch_array($resultado)) {
-
-
               ?>
                 <tr>
                   <td><?php echo $f['id']; ?></td>
@@ -190,7 +188,7 @@ $resultado = $conexion->query("
               </div>
 
               <!-- num_calzado-->
-              <div id="collapse" class="accordion" aria-labelledby="headingOne" data-parent="#accordion">
+              <!-- <div id="collapse" class="accordion" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card">
                   <div class="card-header">
                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseOne">
@@ -379,18 +377,11 @@ $resultado = $conexion->query("
                         </tr>
                       </table>
                     </div>
-
-
-
-
-
                   </div>
-
+                  
                 </div>
-              </div>
+              </div> -->
               <!-- FIN num_calzado-->
-
-
 
               <div class="form-group">
                 <label for="precio_compra">Precio de compra</label>
@@ -410,6 +401,7 @@ $resultado = $conexion->query("
               <div class="form-group">
                 <label for="categoria">Categoria</label>
                 <select name="categoria" id="categoria" class="form-control" required>
+                  <option value="">Seleccione una categoria</option>
                   <?php
                   $res = $conexion->query("select * from categorias");
                   while ($f = mysqli_fetch_array($res)) {
@@ -426,7 +418,11 @@ $resultado = $conexion->query("
 
               <div class="form-group">
                 <label for="estado">Estado</label>
-                <input type="number" min="0" name="estado" placeholder="Estado del producto" id="estado" class="form-control" required>
+                <select name="estado" id="estado" class="form-control">
+                  <option value="">Seleccione el estado</option>
+                  <option value="1">Activo</option>
+                  <option value="0">Inactivo</option>
+                </select>
               </div>
 
               <div class="form-group">
