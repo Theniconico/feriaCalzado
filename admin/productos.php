@@ -132,12 +132,11 @@ $resultado = $conexion->query("
                   <td><?php echo $f['estado']; ?></td>
                   <td>$<?php echo number_format($f['precio_venta']); ?></td>
                   <td>
-                    <div class="btn-group">
                     <button class="btn btn-sm btn-primary btnEditar" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-nombre="<?php echo  $f['nombre']; ?>" 
                     data-descripcion="<?php echo  $f['descripcion']; ?>" 
-                    data-precio_compra="<?php echo number_format($f['precio_compra']) ; ?>" 
+                    data-precio_compra="<?php echo $f['precio_compra'] ; ?>" 
                     data-stock="<?php echo  $f['stock']; ?>" 
                     data-categoria="<?php echo  $f['id_categoria']; ?>" 
                     data-color="<?php echo  $f['color']; ?>" 
@@ -156,7 +155,6 @@ $resultado = $conexion->query("
                     data-toggle="modal" data-target="#modalAddStock">
                       <i class="fa fa-plus"> stock</i>
                     </button>
-                    </div>
                    
                   </td>
                 </tr>

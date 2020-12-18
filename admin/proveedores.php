@@ -229,7 +229,7 @@ $resultado = $conexion->query("
                             </button>
                         </div>
                         <div class="modal-body">
-                            <input type="hidden" id="idEdit" name="id">
+                            <input type="hidden" id="idEdit" name="id_proveedor">
 
                             <div class="form-group">
                                 <label for="nombreEdit">Nombre</label>
@@ -315,7 +315,6 @@ $resultado = $conexion->query("
                     id_proveedor : idEliminar
                 }
             }).done(function(res){
-                alert(res);
                 $(fila).fadeOut(1000);
             });
         });
@@ -330,6 +329,7 @@ $resultado = $conexion->query("
             $("#rutEdit").val(rut);
             $("#telefonoEdit").val(telefono);
             $("#direccionEdit").val(direccion);
+            $("#idEdit").val(idEditar);
         });
     });
     </script>
