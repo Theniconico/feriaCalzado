@@ -103,7 +103,6 @@ $resultado = $conexion->query("
                 <th>Nombre</th>
                 <th>Descripcion</th>
                 <th>Precio de compra</th>
-                <th>Stock</th>
                 <th>Categoria</th>
                 <th>Color</th>
                 <th>estado</th>
@@ -124,7 +123,6 @@ $resultado = $conexion->query("
                   </td>
                   <td><?php echo $f['descripcion']; ?></td>
                   <td>$<?php echo number_format($f['precio_compra']); ?></td>
-                  <td><?php echo $f['stock']; ?></td>
                   <td><?php echo $f['catego']; ?></td>
                   <td><?php echo $f['color']; ?></td>
                   <td><?php echo $f['estado']; ?></td>
@@ -135,7 +133,6 @@ $resultado = $conexion->query("
                     data-nombre="<?php echo  $f['nombre']; ?>" 
                     data-descripcion="<?php echo  $f['descripcion']; ?>" 
                     data-precio_compra="<?php echo $f['precio_compra'] ; ?>" 
-                    data-stock="<?php echo  $f['stock']; ?>" 
                     data-categoria="<?php echo  $f['id_categoria']; ?>" 
                     data-color="<?php echo  $f['color']; ?>" 
                     data-precio_venta="<?php echo number_format($f['precio_venta']) ; ?>" 
@@ -147,7 +144,8 @@ $resultado = $conexion->query("
                     data-toggle="modal" data-target="#modalEliminar">
                       <i class="fa fa-trash"></i>
                     </button>
-                    <button class="btn btn-success btn-sm btnAddStock" 
+                    <button class="btn btn-success btn-sm btnAddStock"
+                    disabled 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-stock="<?php echo  $f['stock']; ?>"
                     data-toggle="modal" data-target="#modalAddStock">
@@ -185,6 +183,16 @@ $resultado = $conexion->query("
               <div class="form-group">
                 <label for="descripcion">Descripción</label>
                 <input type="text" name="descripcion" placeholder="DESCRIPCIÓN" id="descripcion" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="precio_compra">Precio de compra</label>
+                <input type="number" min="0" name="precio_compra" placeholder="Precio de compra" id="precio_compra" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="file" name="imagen" id="imagen" class="form-control" required>
               </div>
 
               <!-- num_calzado-->
@@ -384,19 +392,11 @@ $resultado = $conexion->query("
               <!-- FIN num_calzado-->
 
               <div class="form-group">
-                <label for="precio_compra">Precio de compra</label>
-                <input type="number" min="0" name="precio_compra" placeholder="Precio de compra" id="precio_compra" class="form-control" required>
+                <label for="stock">stock - Esto debe ser la suma de los numeros de calzado disponible</label>
+                <input disabled type="number" min="0" name="stock" placeholder="stock" id="stock" class="form-control" required>
               </div>
 
-              <div class="form-group">
-                <label for="imagen">Imagen</label>
-                <input type="file" name="imagen" id="imagen" class="form-control" required>
-              </div>
-
-              <div class="form-group">
-                <label for="stock">stock</label>
-                <input type="number" min="0" name="stock" placeholder="stock" id="stock" class="form-control" required>
-              </div>
+              
 
               <div class="form-group">
                 <label for="categoria">Categoria</label>
@@ -406,6 +406,19 @@ $resultado = $conexion->query("
                   $res = $conexion->query("select * from categorias");
                   while ($f = mysqli_fetch_array($res)) {
                     echo '<option value="' . $f['id'] . '" >' . $f['nombre'] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="proveedor">Proveedores</label>
+                <select name="proveedor" id="proveedor" class="form-control">
+                  <option value="">Seleccione un proveedor</option>
+                  <?php
+                  $res = $conexion->query("select * from proveedores");
+                  while ($f = mysqli_fetch_array($res)) {
+                    echo '<option value="' . $f['id_proveedor'] . '" >' . $f['nombre'] . '</option>';
                   }
                   ?>
                 </select>
