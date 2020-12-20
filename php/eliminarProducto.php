@@ -9,5 +9,13 @@
     $conexion->query("update productos set
     estado='0'
     where id=".$_POST['id']);
+    $conexion->query("insert into movimiento (tipo_movimiento,id_usuario_movimiento,fechahora,observaciones) values
+    (
+        'Producto eliminado',
+        ".$arregloUsuario['id'].",
+        now(),
+        'Se elimino un producto del sistema'
+    )")or die($conexion->error);
+
     header("Location: ../admin/proveedores.php");
 ?>
