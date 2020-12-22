@@ -177,7 +177,7 @@ $resultado = $conexion->query("
             <div class="modal-body">
 
             <div class="form-group">
-                <label for="id_usuario" name="id_usuario" id="id_usuario"><?php echo $arregloUsuario['id']; ?></label>
+                <textarea hidden name="id_usuario" id="id_usuario"><?php echo $arregloUsuario['id']; ?></textarea>
               </div>
 
               <div class="form-group">

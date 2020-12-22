@@ -30,7 +30,7 @@
                 $conexion->query("insert into movimiento (tipo_movimiento,id_usuario_movimiento,fechaHora,observaciones,id_proveedor) values
                 (
                      'insertar producto',
-                     ".$_POST['id_usuario'].",
+                     '".$_POST['id_usuario']."',
                      now(),
                      'se inserto un producto nuevo',
                      ".$_POST['proveedor']."
