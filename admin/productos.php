@@ -140,7 +140,8 @@ $resultado = $conexion->query("
                       <i class="fa fa-edit"></i>
                     </button>
                     <button class="btn btn-danger btn-sm btnEliminar" 
-                    data-id="<?php echo  $f['id']; ?>" 
+                    data-id="<?php echo  $f['id']; ?>"
+                    data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
                     data-toggle="modal" data-target="#modalEliminar">
                       <i class="fa fa-trash"></i>
                     </button>
@@ -174,6 +175,10 @@ $resultado = $conexion->query("
               </button>
             </div>
             <div class="modal-body">
+
+            <div class="form-group">
+                <label for="id_usuario" name="id_usuario" id="id_usuario"><?php echo $arregloUsuario['id']; ?></label>
+              </div>
 
               <div class="form-group">
                 <label for="nombre">Nombre</label>
@@ -458,12 +463,14 @@ $resultado = $conexion->query("
     <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-
           <div class="modal-header">
             <h5 class="modal-title" id="modalEliminarLabel">Eliminar Producto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
+          </div>
+          <div class="center-text form-control" hidden name="id_usuario" id="id_usuario">
+          <?php echo $arregloUsuario['id']; ?>
           </div>
           <div class="modal-body">
             ¿Desea eliminar el producto?
@@ -621,9 +628,11 @@ $resultado = $conexion->query("
     $(document).ready(function() {
       var idEliminar = -1;
       var idEditar = -1;
+      var idUsuario = -1;
       var fila;
       $(".btnEliminar").click(function() {
         idEliminar = $(this).data('id');
+        idUsuario = $(this).data('id_usuario');
         fila = $(this).parent('td').parent('tr');
       });
       $(".eliminar").click(function() {
@@ -631,7 +640,8 @@ $resultado = $conexion->query("
           url: '../php/eliminarProducto.php',
           method: 'POST',
           data: {
-            id: idEliminar
+            id: idEliminar,
+            id_usuario: idUsuario
           }
         }).done(function(res) {
           $(fila).fadeOut(1000);

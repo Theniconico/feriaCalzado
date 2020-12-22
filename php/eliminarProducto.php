@@ -12,10 +12,10 @@
     $conexion->query("insert into movimiento (tipo_movimiento,id_usuario_movimiento,fechahora,observaciones) values
     (
         'Producto eliminado',
-        ".$arregloUsuario['id'].",
+        ".$_POST['id_usuario'].",
         now(),
         'Se elimino un producto del sistema'
-    )")or die($conexion->error);
+    )");
 
-    header("Location: ../admin/proveedores.php");
+    header("Location: ../admin/productos.php");
 ?>
