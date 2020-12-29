@@ -11,7 +11,7 @@
     where id=".$_POST['id']);
     $conexion->query("insert into movimiento (tipo_movimiento,id_usuario_movimiento,fechahora,observaciones) values
     (
-        'Producto eliminado',
+        'eliminacion de producto',
         ".$_POST['id_usuario'].",
         now(),
         'Se elimino un producto del sistema'

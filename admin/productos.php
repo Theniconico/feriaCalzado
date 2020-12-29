@@ -495,12 +495,12 @@ $resultado = $conexion->query("
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" >
               <input type="hidden" id="idEdit" name="id">
-              <!-- <div class="form-group">
+              <div class="form-group" hidden>
                 <label for="id_userEdit"></label>
-                <textarea hidden name="id_user" id="id_userEdit"><?php echo $arregloUsuario['id']; ?></textarea>
-              </div> -->
+                <textarea name="id_user" id="id_userEdit"><?php echo $arregloUsuario['id']; ?></textarea>
+              </div>
 
               <div class="form-group">
                 <label for="nombreEdit">Nombre</label>
@@ -539,7 +539,12 @@ $resultado = $conexion->query("
                 <input type="text" name="color" placeholder="COLOR" id="colorEdit" class="form-control" required>
               </div>
 
-              <!-- <div class="form-group">
+              <div class="form-group">
+                <label for="precio_ventaEdit">Precio de venta</label>
+                <input type="number" min="0" name="precio_venta" placeholder="Precio de venta" id="precio_ventaEdit" class="form-control" required>
+              </div>
+
+              <div class="form-group">
                 <label for="proveedorEdit">Proveedores</label>
                 <select name="proveedor" id="proveedorEdit" class="form-control" require>
                   <option value="">Seleccione un proveedor</option>
@@ -550,11 +555,6 @@ $resultado = $conexion->query("
                   }
                   ?>
                 </select>
-              </div> -->
-
-              <div class="form-group">
-                <label for="precio_ventaEdit">Precio de venta</label>
-                <input type="number" min="0" name="precio_venta" placeholder="Precio de venta" id="precio_ventaEdit" class="form-control" required>
               </div>
 
             </div>

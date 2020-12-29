@@ -32,6 +32,14 @@ if (isset($_POST['nombre']) && isset($_POST['descripcion'])
         color='" . $_POST['color'] . "',
         precio_venta=" . $_POST['precio_venta'] . " 
                 where id=" . $_POST['id']);
+    $conexion->query("insert into movimiento (tipo_movimiento,id_usuario_movimiento,fechaHora,observaciones,id_proveedor) values
+        (
+            'editar producto',
+            '".$_POST['id_user']."',
+            now(),
+            'se edito datos del producto',
+            ".$_POST['proveedor']."
+        )") or die($conexion->error);
 
 }
  header("Location: ../admin/productos.php");
