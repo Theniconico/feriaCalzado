@@ -135,7 +135,7 @@ $resultado = $conexion->query("
                     data-precio_compra="<?php echo $f['precio_compra'] ; ?>" 
                     data-categoria="<?php echo  $f['id_categoria']; ?>" 
                     data-color="<?php echo  $f['color']; ?>" 
-                    data-precio_venta="<?php echo number_format($f['precio_venta']) ; ?>" 
+                    data-precio_venta="<?php echo $f['precio_venta'] ; ?>" 
                     data-toggle="modal" data-target="#modalEditar">
                       <i class="fa fa-edit"></i>
                     </button>
@@ -418,7 +418,7 @@ $resultado = $conexion->query("
 
               <div class="form-group">
                 <label for="proveedor">Proveedores</label>
-                <select name="proveedor" id="proveedor" class="form-control">
+                <select name="proveedor" id="proveedor" class="form-control" require>
                   <option value="">Seleccione un proveedor</option>
                   <?php
                   $res = $conexion->query("select * from proveedores");
@@ -497,6 +497,10 @@ $resultado = $conexion->query("
             </div>
             <div class="modal-body">
               <input type="hidden" id="idEdit" name="id">
+              <!-- <div class="form-group">
+                <label for="id_userEdit"></label>
+                <textarea hidden name="id_user" id="id_userEdit"><?php echo $arregloUsuario['id']; ?></textarea>
+              </div> -->
 
               <div class="form-group">
                 <label for="nombreEdit">Nombre</label>
@@ -534,6 +538,19 @@ $resultado = $conexion->query("
                 <label for="colorEdit">Color</label>
                 <input type="text" name="color" placeholder="COLOR" id="colorEdit" class="form-control" required>
               </div>
+
+              <!-- <div class="form-group">
+                <label for="proveedorEdit">Proveedores</label>
+                <select name="proveedor" id="proveedorEdit" class="form-control" require>
+                  <option value="">Seleccione un proveedor</option>
+                  <?php
+                  $res = $conexion->query("select * from proveedores");
+                  while ($f = mysqli_fetch_array($res)) {
+                    echo '<option value="' . $f['id_proveedor'] . '" >' . $f['nombre'] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div> -->
 
               <div class="form-group">
                 <label for="precio_ventaEdit">Precio de venta</label>
@@ -663,14 +680,14 @@ $resultado = $conexion->query("
         $("#precio_ventaEdit").val(precio_venta);
         $("#idEdit").val(idEditar);
       });
-      $(".btnAddStock").click(function(){
-        idEditStock=$(this).data('id');
-        var stockActual=$(this).data('stock');
-        var stockAdd = $(this).data('stockEdit');
-        $("#stockActual").val(stockActual);
-        $("#stockEdit").val(stockAdd);
-        $("#idEditStock").val(idEditStock);
-      });
+      // $(".btnAddStock").click(function(){
+      //   idEditStock=$(this).data('id');
+      //   var stockActual=$(this).data('stock');
+      //   var stockAdd = $(this).data('stockEdit');
+      //   $("#stockActual").val(stockActual);
+      //   $("#stockEdit").val(stockAdd);
+      //   $("#idEditStock").val(idEditStock);
+      // });
     });
   </script>
 </body>

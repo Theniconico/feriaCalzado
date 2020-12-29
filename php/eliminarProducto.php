@@ -16,6 +16,15 @@
         now(),
         'Se elimino un producto del sistema'
     )");
+    // $con = $conexion->query("SELECT * FROM movimiento ORDER BY id_movimiento ASC");
+    // $idMovimiento=mysqli_insert_id($con);
+    // $conexion->query("insert into movimiento_detalle (cantidad,observacion_por_producto,id_movimiento_fk,id_producto_movdetalle) values 
+    // (
+    //     0,
+    //     'Producto eliminado del sistema por no uso o sin stock',
+    //     '$idMovimiento',
+    //     ".$_POST['id']."
+    // )");
 
     header("Location: ../admin/productos.php");
 ?>

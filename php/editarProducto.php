@@ -1,9 +1,8 @@
 <?php
 include "conexion.php";
 if (isset($_POST['nombre']) && isset($_POST['descripcion']) 
-    && isset($_POST['precio_compra'])
-    && isset($_POST['categoria']) && isset($_POST['color']) 
-    && isset($_POST['precio_venta'])) {
+    && isset($_POST['precio_compra'])&& isset($_POST['categoria']) 
+    && isset($_POST['color']) && isset($_POST['precio_venta'])) {
 
 
     
@@ -23,17 +22,17 @@ if (isset($_POST['nombre']) && isset($_POST['descripcion'])
                     $conexion->query("update productos set imagen='".$nombreFinal."' where id=".$_POST['id']);
                 }
             }//llave tipo archivo
-        }//lave si o esta vacio
-    
+        } //lave si no esta vacio la entrada de imagen
+
     $conexion->query("update productos set 
-    nombre='".$_POST['nombre']."',
-    descripcion='".$_POST['descripcion']."',
-    precio_compra=".$_POST['precio_compra'].",
-    id_categoria=".$_POST['categoria'].",
-    color='".$_POST['color']."',
-    precio_venta=".$_POST['precio_venta'].",
-    where id=".$_POST['id']);
-    echo "Se actualizo";
+        nombre='" . $_POST['nombre'] . "',
+        descripcion='" . $_POST['descripcion'] . "',
+        precio_compra=" . $_POST['precio_compra'] . ",
+        id_categoria=" . $_POST['categoria'] . ",
+        color='" . $_POST['color'] . "',
+        precio_venta=" . $_POST['precio_venta'] . " 
+                where id=" . $_POST['id']);
+
 }
-header("Location: ../admin/productos.php");
+ header("Location: ../admin/productos.php");
 ?>
