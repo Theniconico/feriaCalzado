@@ -27,16 +27,26 @@
                     ".$_POST['precio_venta']."
                 )
                 ");
+                $idProd = mysqli_insert_id($conexion);
                 $conexion->query("insert into movimiento (tipo_movimiento,id_usuario_movimiento,fechaHora,observaciones,id_proveedor) values
                 (
                      'insertar producto',
                      '".$_POST['id_usuario']."',
                      now(),
-                     'se inserto un producto nuevo',
+                     'se inserto un producto',
                      ".$_POST['proveedor']."
-                 )") or die($conexion->error);
+                 )");
+                $idMovimiento=mysqli_insert_id($conexion);
+                $conexion->query("insert into movimiento_detalle (cantidad,observacion_por_producto,id_movimiento_fk,id_producto_movdetalle) values 
+                    (
+                        '0',
+                        'Producto insertado en los registros',
+                        '$idMovimiento',
+                        '$idProd'
+                    )");
                 
                 header("Location: ../admin/productos.php?success");
+                header("Location: ../admin/productos.php");
             }else {
                 header("Location: ../admin/productos.php?error=No se pudo subir la imagen");
             }

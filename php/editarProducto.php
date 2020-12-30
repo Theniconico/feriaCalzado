@@ -39,7 +39,14 @@ if (isset($_POST['nombre']) && isset($_POST['descripcion'])
             now(),
             'se edito datos del producto',
             ".$_POST['proveedor']."
-        )") or die($conexion->error);
+        )");
+    $idMovimiento=mysqli_insert_id($conexion);
+    $conexion->query("insert into movimiento_detalle (observacion_por_producto,id_movimiento_fk,id_producto_movdetalle) values 
+      (
+          'Producto editado por correccion de datos',
+          '$idMovimiento',
+          ".$_POST['id']."
+      )");
 
 }
  header("Location: ../admin/productos.php");
