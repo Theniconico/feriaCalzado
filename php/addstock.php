@@ -1,13 +1,23 @@
 <?php 
 include "./conexion.php";
-if (isset($_POST['stockEdit']) && isset($_POST['stock'])){
-    $stockNew = $_POST['stockEdit']+$_POST['stock'];
-        $conexion->query("update productos set
-        stock=".$stockNew."
-        where id=".$_POST['id']."
-        ");
-        echo "Stock actualizado";
-    }
-    header("Location: ../admin/productos.php");
+        $num_calzado = $_POST['calzado'];
+        $stockCalzado = $_POST['stock'];
+        $conexion->query("delete from num_calzado where id_num =".$_POST['id']);
+
+        for ($i=0; $i < sizeof($num_calzado); $i++) {
+            $id = $i+1;
+            $aux = "insert into num_calzado values(
+                ".$id.",
+                 ".$_POST['id'].",
+                 '".$num_calzado[$i]."'
+            ),";
+             $conexion->query($aux);
+            // echo "insert into num_calzado values(
+            //     ".$id.",
+            //     ".$_POST['id'].",
+            //     '".$num_calzado[$i]."'
+            // )<br>";
+        }
+        
+    //   header("Location: ../admin/productos.php");
 ?>
-<!-- ver k pedo esto-->

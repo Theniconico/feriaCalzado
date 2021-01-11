@@ -30,53 +30,18 @@
 
         <div class="row mb-5">
           <div class="col-md-9 order-2">
-
-            <div class="row">
-              <div class="col-md-12 mb-5">
-                <div class="float-md-left mb-4"><h2 class="text-black h5">Ver todo</h2></div>
-                <div class="d-flex">
-                  <div class="dropdown mr-1 ml-md-auto">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Lo último
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                      <a class="dropdown-item" href="#">Hombre</a>
-                      <a class="dropdown-item" href="#">Mujer</a>
-                      <a class="dropdown-item" href="#">Niños</a>
-                    </div>
-                  </div>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Relevancia</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                      <a class="dropdown-item" href="#">Relevancia</a>
-                      <a class="dropdown-item" href="#">Nombre, A a Z</a>
-                      <a class="dropdown-item" href="#">Nombre, Z a A</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Precio, Menor a mayor</a>
-                      <a class="dropdown-item" href="#">Precio, Mayor a menor</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="row mb-5">
             <!-- Producto -->
               <?php
                 include('./php/conexion.php');
-                /*for ($i=0; $i < 50; $i++) { 
-                  $conexion->query("INSERT INTO productos (nombre,descripcion,precio,imagen,
-                  inventario,id_categoria,talla,color) values(
-                    'Producto $i','Descripcion de producto',".rand(10,1000).",'cloth_2.jpg',".rand(1,100).",1,'XL','Green')")
-                    or die($conexion->error);
-                }*/
                 $limite = 10;//productos por pagina
                 $totalQuery = $conexion->query("SELECT count(*) FROM productos")or die($conexion->error);
                 $totalProductos = mysqli_fetch_row($totalQuery);
                 $totalBotones = round($totalProductos[0] / $limite);
                 if (isset($_GET['limite'])) {
-                  $resultado = $conexion -> query("SELECT * FROM productos WHERE stock > 0 LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
+                  $resultado = $conexion -> query("SELECT * FROM productos WHERE estado = 1 LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
                 }else {
-                  $resultado = $conexion -> query("SELECT * FROM productos WHERE stock > 0 LIMIT ".$limite) or die($conexion -> error);
+                  $resultado = $conexion -> query("SELECT * FROM productos WHERE estado = 1 LIMIT ".$limite) or die($conexion -> error);
                 }
                 while ($fila = mysqli_fetch_array($resultado)) {
                   
