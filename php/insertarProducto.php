@@ -45,8 +45,8 @@
                         '$idProd'
                     )");
                 
-                header("Location: ../admin/productos.php?success");
-                header("Location: ../admin/productos.php");
+                header("Location: ../admin/productos.php?success=producto agregado");
+            
             }else {
                 header("Location: ../admin/productos.php?error=No se pudo subir la imagen");
             }

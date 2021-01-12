@@ -30,8 +30,8 @@
 
         <div class="row mb-5">
           <div class="col-md-9 order-2">
+          <!-- Producto -->
             <div class="row mb-5">
-            <!-- Producto -->
               <?php
                 include('./php/conexion.php');
                 $limite = 10;//productos por pagina
@@ -61,8 +61,9 @@
                 </div>
               </div>
                 <?php }?>
-    <!-- Fin Producto -->
+           
             </div>
+            <!-- Fin Producto -->
             <div class="row" data-aos="fade-up">
               <div class="col-md-12 text-center">
                 <div class="site-block-27">

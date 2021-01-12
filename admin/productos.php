@@ -13,6 +13,7 @@ $resultado = $conexion->query("
   productos
   inner join categorias on productos.id_categoria = categorias.id where productos.estado = 1
   order by id DESC") or die($conexion->error);
+  
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -89,9 +90,9 @@ $resultado = $conexion->query("
 
           ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-              Se ha insertado 1 Producto
+            <?php echo $_GET['success']; ?>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true" header="Location: ../admin/productos.php">&times;</span>
               </button>
             </div>
           <?php } ?>
@@ -107,6 +108,8 @@ $resultado = $conexion->query("
                 <th>Color</th>
                 <th>estado</th>
                 <th>precio de venta</th>
+                <th>stock</th>
+                <th>Numeros</th>
                 <th></th>
               </tr>
             </thead>
@@ -125,8 +128,14 @@ $resultado = $conexion->query("
                   <td>$<?php echo number_format($f['precio_compra']); ?></td>
                   <td><?php echo $f['catego']; ?></td>
                   <td><?php echo $f['color']; ?></td>
-                  <td><?php echo $f['estado']; ?></td>
+                  <td><?php if ($f['estado'] == 1) {echo 'activo';}?></td>
                   <td>$<?php echo number_format($f['precio_venta']); ?></td>
+                  <td><?php echo number_format($f['stock']); ?></td>
+                  <td><button class="btn btn-info btn-sm btnVerNumeros" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-toggle="modal" data-target="#modalVerNumeros">
+                      <i class="fa fa-eye"></i>
+                  </button>
                   <td>
                     <button class="btn btn-sm btn-primary btnEditar" 
                     data-id="<?php echo  $f['id']; ?>" 
@@ -326,6 +335,7 @@ $resultado = $conexion->query("
               <div class="form-group">
                 <label for="categoriaEdit">Categoria</label>
                 <select name="categoria" id="categoriaEdit" class="form-control" required>
+                <option value="">Seleccione un proveedor</option>
                   <?php
                   $res = $conexion->query("select * from categorias");
                   while ($f = mysqli_fetch_array($res)) {
@@ -386,31 +396,30 @@ $resultado = $conexion->query("
                 <input type="checkbox" name="calzado[]" id="num12" value="12">
                 12
               </label>
-              <input value="0" type="number" min="0" name="stock[]" placeholder="Stock" id="stock12" class="form-control">
               <br>
               <label for="num13" class="form-check-label">
                 <input type="checkbox" name="calzado[]" id="num13" value="13">
                 13
               </label>
-              <input value="0" type="number" min="0" name="stock[]" placeholder="Stock" id="stock13" class="form-control">
+              
               <br>
               <label for="num14" class="form-check-label">
                 <input type="checkbox" name="calzado[]" id="num14" value="14">
                 14
               </label>
-              <input value="0" type="number" min="0" name="stock[]" placeholder="Stock" id="stock14" class="form-control">
+              
               <br>
               <label for="num15" class="form-check-label">
                 <input type="checkbox" name="calzado[]" id="num15" value="15">
                 15
               </label>
-              <input value="0" type="number" min="0" name="stock[]" placeholder="Stock" id="stock15" class="form-control">
+              
               <br>
               <label for="num16" class="form-check-label">
                 <input type="checkbox" name="calzado[]" id="num16" value="16">
                 16
               </label>
-              <input value="0" type="number" min="0" name="stock[]" placeholder="Stock" id="stock16" class="form-control">
+              
               <br>
               <div class="form-group">
                 <label for="stockTotal">Stock</label>
@@ -428,6 +437,39 @@ $resultado = $conexion->query("
       </div>
     </div>
     <!--FIN Modal Insertar stock-->
+
+    <!-- Modal ver Numeros disponibles-->
+    <div class="modal fade" id="modalVerNumeros" tabindex="-1" role="dialog" aria-labelledby="modalVerNumerosLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalEliminarLabel"><?php echo $f['nombre']; ?></h5>
+          </div>
+          <div hidden class="center-text form-control" name="id_usuario" id="id_usuario">
+            <?php echo $arregloUsuario['id']; ?>
+          </div>
+          
+          <div class="modal-body">
+          <table>
+          <tr>
+                <th>Numeros disponibles</th>
+              </tr>
+            <?php 
+              $res = $conexion->query("select * from num_calzado");
+              while ($a = mysqli_fetch_array($res)) {
+                
+                echo '<tr><td class="form-label">' . $a['numeros'] . '<td><tr>';
+              }
+            ?>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal ver Numeros disponibles-->
 
     <?php include "./layouts/footer.php"; ?>
   </div>

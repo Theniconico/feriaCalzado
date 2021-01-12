@@ -37,52 +37,19 @@
 
         <div class="row mb-5">
           <div class="col-md-9 order-2">
-
-            <div class="row">
-              <div class="col-md-12 mb-5">
-                <div class="float-md-left mb-4"><h2 class="text-black h5">Buscando resultados para <?php echo $_GET['texto'];?></h2></div>
-                <div class="d-flex">
-                  <div class="dropdown mr-1 ml-md-auto">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Los últimos
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                      <a class="dropdown-item" href="#">Hombre</a>
-                      <a class="dropdown-item" href="#">Mujer</a>
-                      <a class="dropdown-item" href="#">Niños</a>
-                    </div>
-                  </div>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuReference" data-toggle="dropdown">Referencia</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                      <a class="dropdown-item" href="#">Relevancia</a>
-                      <a class="dropdown-item" href="#"></a>
-                      <a class="dropdown-item" href="#">Nombre, de la A a la Z</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Precio, menor a mayor</a>
-                      <a class="dropdown-item" href="#">Precio, mayor a menor</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row mb-5">
-            <!-- Producto -->
+           <!-- Producto -->
+           <div class="row mb-5">
               <?php
-                
-                $resultado = $conexion -> query("SELECT productos.*, categorias.nombre FROM productos 
-                inner join categorias on productos.id_categoria = categorias.id
-                WHERE 
-                productos.nombre like '%".$_GET['texto']."%' or
-                productos.descripcion like '%".$_GET['texto']."%' or
-                categorias.nombre like '%".$_GET['texto']."%' or
-                productos.color like '%".$_GET['texto']."%'
-                
-
-                ORDER BY id DESC LIMIT 10") or die($conexion -> error);
-                if (mysqli_num_rows($resultado) > 0) {
-                    
-                
+                include('./php/conexion.php');
+                $limite = 10;//productos por pagina
+                $totalQuery = $conexion->query("SELECT count(*) FROM productos")or die($conexion->error);
+                $totalProductos = mysqli_fetch_row($totalQuery);
+                $totalBotones = round($totalProductos[0] / $limite);
+                if (isset($_GET['limite'])) {
+                  $resultado = $conexion -> query("SELECT * FROM productos WHERE estado = 1 LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
+                }else {
+                  $resultado = $conexion -> query("SELECT * FROM productos WHERE estado = 1 LIMIT ".$limite) or die($conexion -> error);
+                }
                 while ($fila = mysqli_fetch_array($resultado)) {
                   
                 
@@ -91,53 +58,57 @@
                 <div class="block-4 text-center border">
                   <figure class="block-4-image">
                     <a href="shop-single.php?id=<?php echo $fila['id'];?>">
-                    <img src="images/<?php echo $fila['imagen'];?>" alt="<?php echo $fila['nombre'] ;?>" class="img-fluid"></a>
+                    <img src="images/referencia/img_feria/<?php echo $fila['imagen'];?>" alt="<?php echo $fila['nombre'] ;?>" class="img-fluid"></a>
                   </figure>
                   <div class="block-4-text p-4">
                     <h3><a href="shop-single.php?id=<?php echo $fila['id'];?>"><?php echo $fila['nombre'] ;?></a></h3>
                     <p class="mb-0"><?php echo $fila['descripcion'] ;?></p>
-                    <p class="text-primary font-weight-bold">$<?php echo $fila['precio_compra'] ;?></p>
+                    <p class="text-primary font-weight-bold">$<?php echo $fila['precio_venta'] ;?></p>
                   </div>
                 </div>
               </div>
-                <?php }}else {
-                    echo '<h2>Sin resultados</h2>';
-                }?>
-    <!-- Fin Producto -->
+                <?php }?>
+           
             </div>
-            <div class="row" data-aos="fade-up">
-              <div class="col-md-12 text-center">
+            <!-- Fin Producto -->
+            <div class="col-md-12 text-center">
                 <div class="site-block-27">
                   <ul>
-                    <li><a href="#">&lt;</a></li>
-                    <li class="active"><span>1</span></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&gt;</a></li>
+                    <?php
+                    if (isset($_GET['limite'])) {
+                      if ($_GET['limite'] > 0) {
+                        echo '<li><a href="index.php?limite='.($_GET['limite'] - 10).'">&lt;</a></li>';
+                      }
+                    }
+                      for ($k=0; $k < $totalBotones; $k++) { 
+                        echo '<li><a href="index.php?limite='.($k*10).'">'.($k+1).'</a></li>';
+                      }
+                      if (isset($_GET['limite'])) {
+                          if ($_GET['limite']+10 < $totalBotones*10) {
+                            echo '<li><a href="index.php?limite='.($_GET['limite']+10).'">&gt;</a></li>';
+                          }
+                      }else {
+                        echo '<li><a href="index.php?limite=10">&gt;</a></li>';
+                      }
+                    ?>
+                    
                   </ul>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-3 order-1 mb-5 mb-md-0">
+            <div class="col-md-3 order-1 mb-5 mb-md-0">
           <div class="border p-4 rounded mb-4">
               <h3 class="mb-3 h6 text-uppercase text-black d-block">Categorias</h3>
               <ul class="list-unstyled mb-0">
                <?php 
                $re = $conexion ->query("select * from categorias");
                while($f =mysqli_fetch_array($re)){
-
-               
-                
                ?>
                <li class="mb-1">
                  <a href="./busqueda.php?texto=<?php echo $f['nombre']?>" class="d-flex">
                  <span><?php echo$f['nombre']?></span> 
                  <span class="text-black ml-auto"><?php
-                 $re2 = $conexion -> query("select count(*) from productos where id_categoria = ".$f['id']);
+                 $re2 = $conexion -> query("select count(*) from productos where estado = 1 and id_categoria = ".$f['id']);
                  $fila = mysqli_fetch_row($re2);
                  echo $fila[0];
                  ?></span>
@@ -152,6 +123,10 @@
 
            
           </div>
+          </div>
+
+          
+          
         </div>
 
  

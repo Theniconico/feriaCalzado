@@ -1,23 +1,31 @@
 <?php
 include "./conexion.php";
 $num_calzado = $_POST['calzado'];
-$stockCalzado = $_POST['stock'];
+$stock = $_POST['stockTotal'];
 $conexion->query("delete from num_calzado where id_num =" . $_POST['id']);
 $values = '';
 for ($i = 0; $i < sizeof($num_calzado); $i++) {
-    $id = $i + 1;
-
-    $values .= "(" . $id . ",
-            " . $id  . ",
-            '" . $num_calzado[$i] . "',
-            '" . $_POST['id'] . "'
+    $values .= "(
+                '" . $num_calzado[$i] . "',
+                '" . $_POST['id'] . "'
        ),";
 }
 /* echo $values; */
-$consulta = "INSERT INTO num_calzado (id, id_num, numeros, producto_fk) VALUES ";
+$consulta = "INSERT INTO num_calzado (numeros,producto_fk) VALUES ";
 $values = substr($values, 0, -1);
 /* echo $values.";"; */
 $consulta_final = $consulta . $values . ";";
-echo $consulta_final;
 $conexion->query($consulta_final);
+$idultimoInsert=mysqli_insert_id($conexion);
+$conexion->query("insert into det_num_calzado (stock,id_productoFK,id_num_calzadoFK) values 
+(
+    '$stock',
+    ". $_POST['id'] .",
+    '$idultimoInsert'
+)");
+$conexion->query("update productos set
+    stock='$stock'
+    where id=" . $_POST['id']
+);
+header("Location: ../admin/productos.php?success=stock agregado al producto");
 ?>
