@@ -57,4 +57,3 @@
         header("Location: ../admin/productos.php?error=Favor, llene todos los campos");
 
     }
-?>

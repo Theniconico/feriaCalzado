@@ -25,7 +25,8 @@
     ")or die($conexion->error);
     $id_usuario = $conexion->insert_id;
   $fecha = date('Y-m-d h:m:s');
-  $conexion -> query("INSERT INTO ventas(id_usuario,total,fecha) VALUES($id_usuario,$total,'$fecha')")or die($conexion->error);
+  $conexion -> query("INSERT INTO ventas(id_usuario,total,fecha) VALUES($id_usuario,$total,'$fecha')")
+  or die($conexion->error);
   $id_venta = $conexion -> insert_id;
   for ($i=0; $i < count($arreglo); $i++) { 
     $conexion -> query("INSERT INTO productos_venta (id_venta, id_producto, cantidad, precio, subtotal)

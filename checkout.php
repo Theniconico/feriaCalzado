@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Shoppers &mdash; Colorlib e-Commerce Template</title>
+    <title>Compras &mdash;</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -38,7 +38,7 @@
         <div class="row mb-5">
           <div class="col-md-12">
             <div class="border p-4 rounded" role="alert">
-              Cliente de vuelta? <a href="#">Click aquí</a> para lograrte
+              Cliente? <a href="#">Click aquí</a> para logearte
             </div>
           </div>
         </div>
@@ -48,20 +48,6 @@
           <div class="col-md-6 mb-5 mb-md-0">
             <h2 class="h3 mb-3 text-black">Detalles del envío</h2>
             <div class="p-3 p-lg-5 border">
-              <div class="form-group">
-                <label for="c_country" class="text-black">Pais <span class="text-danger">*</span></label>
-                <select id="c_country" class="form-control" name="country">
-                  <option value="1">Select a country</option>    
-                  <option value="2">bangladesh</option>    
-                  <option value="3">Algeria</option>    
-                  <option value="4">Afghanistan</option>    
-                  <option value="5">Ghana</option>    
-                  <option value="6">Albania</option>    
-                  <option value="7">Bahrain</option>    
-                  <option value="8">Colombia</option>    
-                  <option value="9">Dominican Republic</option>    
-                </select>
-              </div>
               <div class="form-group row">
                 <div class="col-md-6">
                   <label for="c_fname" class="text-black">Nombres <span class="text-danger">*</span></label>
@@ -75,26 +61,8 @@
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <label for="c_companyname" class="text-black">Nombre de compañia </label>
-                  <input type="text" class="form-control" id="c_companyname" name="c_companyname">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
                   <label for="c_address" class="text-black">Dirección <span class="text-danger">*</span></label>
                   <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Street address">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-6">
-                  <label for="c_state_country" class="text-black">Región <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_state_country" name="c_state_country">
-                </div>
-                <div class="col-md-6">
-                  <label for="c_postal_zip" class="text-black">Código Postal <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip">
                 </div>
               </div>
 
@@ -129,22 +97,6 @@
                 <div class="collapse" id="ship_different_address">
                   <div class="py-2">
 
-                    <div class="form-group">
-                      <label for="c_diff_country" class="text-black">Pais <span class="text-danger">*</span></label>
-                      <select id="c_diff_country" class="form-control">
-                        <option value="1">Select a country</option>    
-                        <option value="2">bangladesh</option>    
-                        <option value="3">Algeria</option>    
-                        <option value="4">Afghanistan</option>    
-                        <option value="5">Ghana</option>    
-                        <option value="6">Albania</option>    
-                        <option value="7">Bahrain</option>    
-                        <option value="8">Colombia</option>    
-                        <option value="9">Dominican Republic</option>    
-                      </select>
-                    </div>
-
-
                     <div class="form-group row">
                       <div class="col-md-6">
                         <label for="c_diff_fname" class="text-black">Nombres <span class="text-danger">*</span></label>
@@ -158,13 +110,6 @@
 
                     <div class="form-group row">
                       <div class="col-md-12">
-                        <label for="c_diff_companyname" class="text-black">Nombre de la compañia </label>
-                        <input type="text" class="form-control" id="c_diff_companyname" name="c_diff_companyname">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-md-12">
                         <label for="c_diff_address" class="text-black">Dirección <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="c_diff_address" name="c_diff_address" placeholder="Dirección / calle">
                       </div>
@@ -172,17 +117,6 @@
 
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Apartamento, suite, block, etc. (opcional)">
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-md-6">
-                        <label for="c_diff_state_country" class="text-black">Región <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_state_country" name="c_diff_state_country">
-                      </div>
-                      <div class="col-md-6">
-                        <label for="c_diff_postal_zip" class="text-black">Código de postal <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_postal_zip" name="c_diff_postal_zip">
-                      </div>
                     </div>
 
                     <div class="form-group row mb-5">
@@ -203,7 +137,7 @@
 
               <div class="form-group">
                 <label for="c_order_notes" class="text-black">Notas adicionales del pedido</label>
-                <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="En caso de que quieras dar una especificación adicional, escribala aquí..."></textarea>
+                <textarea class="" name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="En caso de que quieras dar una especificación adicional, escribala aquí..."></textarea>
               </div>
 
             </div>
@@ -244,13 +178,15 @@
                     ?>
                       <tr>
                         <td><?php echo $arreglo[$i]['Nombre']; ?></td>
-                        <td>$<?php echo number_format($total,2,'.',''); ?></td>
+                        <td>$<?php echo $arreglo[$i]['Precio']; ?></td>
                       </tr>
 
-                      <?php }?>
+                      <?php 
+                        }
+                        ?>
                       <tr>
                         <td>Orden Total</td>
-                        <td>$<?php echo number_format($total,2,'.',''); ?></td>
+                        <td>$<?php echo $total; ?></td>
                       </tr>
                     </tbody>
                   </table>
@@ -286,7 +222,7 @@
                   </div>
 
                   <div class="form-group">
-                    <button class="btn btn-primary btn-lg py-3 btn-block" type="submit">Finalizar compra</button>
+                    <button class="btn btn-primary btn-lg py-3 btn-block" type="submit" onclick="window.location='thankyou.php'">Finalizar compra</button>
                   </div>
 
                 </div>

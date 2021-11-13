@@ -19,19 +19,19 @@
       }else{
         //No estaba el registro
         $nombre = "";
-        $precio = "";
+        $precio_venta = "";
         $imagen = "";
         //consulta
         $res = $conexion -> query('SELECT * FROM productos WHERE id='.$_GET['id'])or die($conexion->error);
         $fila = mysqli_fetch_row($res);
         $nombre = $fila[1];
-        $precio = $fila[3];
-        $imagen = $fila[4];
+        $precio_venta = $fila[4];
+        $imagen = $fila[5];
         //arreglo nuevo
         $arregloNuevo = array(
                     'Id' => $_GET['id'],
                     'Nombre' => $nombre,
-                    'Precio' => $precio,
+                    'Precio' => $precio_venta,
                     'Imagen' => $imagen,
                     'Cantidad' => 1
         );
@@ -43,17 +43,17 @@
     //creamos la variable de sesion
     if (isset($_GET['id'])) {
       $nombre = "";
-      $precio = "";
+      $precio_venta = "";
       $imagen = "";
       $res = $conexion -> query('SELECT * FROM productos WHERE id='.$_GET['id'])or die($conexion->error);
       $fila = mysqli_fetch_row($res);
       $nombre = $fila[1];
-      $precio = $fila[3];
-      $imagen = $fila[4];
+      $precio_venta = $fila[4];
+      $imagen = $fila[5];
       $arreglo[] = array(
                   'Id' => $_GET['id'],
                   'Nombre' => $nombre,
-                  'Precio' => $precio,
+                  'Precio' => $precio_venta,
                   'Imagen' => $imagen,
                   'Cantidad' => 1
       );
@@ -116,7 +116,7 @@
                 ?>
                   <tr>
                     <td class="product-thumbnail">
-                      <img src="images/<?php echo $arregloCarrito[$i]['Imagen'];?>" alt="Image" class="img-fluid">
+                      <img src="images/referencia/img_feria/<?php echo $arregloCarrito[$i]['Imagen'];?>" alt="Image" class="img-fluid">
                     </td>
                     <td class="product-name">
                       <h2 class="h5 text-black"><?php echo $arregloCarrito[$i]['Nombre'];?></h2>
@@ -146,6 +146,7 @@
                  
                 </tbody>
               </table>
+              <!-- fin de tabla --> 
             </div>
           </form>
         </div>
@@ -178,7 +179,7 @@
               <div class="col-md-7">
                 <div class="row">
                   <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Carro total</h3>
+                    <h3 class="text-black h4 text-uppercase">Total en carro</h3>
                   </div>
                 </div>
                 <div class="row mb-3">

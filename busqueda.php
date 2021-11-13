@@ -108,7 +108,7 @@
                  <a href="./busqueda.php?texto=<?php echo $f['nombre']?>" class="d-flex">
                  <span><?php echo$f['nombre']?></span> 
                  <span class="text-black ml-auto"><?php
-                 $re2 = $conexion -> query("select count(*) from productos where estado = 1 and id_categoria = ".$f['id']);
+                 $re2 = $conexion -> query("select count(*) from productos where estado = 1 and categoriaFK = ".$f['id']);
                  $fila = mysqli_fetch_row($re2);
                  echo $fila[0];
                  ?></span>

@@ -42,12 +42,12 @@ include('./php/conexion.php');
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <img src="images/referencia/img_feria/<?php echo $fila[4];?>" alt="<?php echo $fila[1];?>" class="img-fluid"><!--llama a dato por la posicion en el arreglo de la bd -->
+            <img src="images/referencia/img_feria/<?php echo $fila[5];?>" alt="<?php echo $fila[1];?>" class="img-fluid"><!--llama a dato por la posicion en el arreglo de la bd -->
           </div>
           <div class="col-md-6">
             <h2 class="text-black"><?php echo $fila[1];?></h2>
             <p><?php echo $fila[2];?></p>
-            <p><strong class="text-primary h4">$<?php echo $fila[9];?></strong></p>
+            <p><strong class="text-primary h4">$<?php echo $fila[4];?></strong></p>
             <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 120px;">
               <div class="input-group-prepend">
