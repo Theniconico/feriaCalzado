@@ -7,50 +7,52 @@
   for ($i=0; $i < count($arreglo); $i++) { 
     $total = $total + ($arreglo[$i]['Precio'] * $arreglo[$i]['Cantidad']);
   }
-  $password = "";
-  if (isset($_POST['c_account_password'])) {
-    if ($_POST['c_account_password'] != "") {
-      $password = $_POST['c_account_password'];
-    }
-  }
-  $conexion->query("INSERT INTO usuario (nombre,telefono,email,password,img_perfil,nivel) 
-    values(
-      '".$_POST['c_fname']." ".$_POST['c_lname']."',
-      '".$_POST['c_phone']."',
-      '".$_POST['c_email_address']."',
-      '".sha1($password)."',
-      'men.jpg',
-      'cliente'
-          )
-    ")or die($conexion->error);
-    $id_usuario = $conexion->insert_id;
+  // $password = "";
+  // if (isset($_POST['c_account_password'])) {
+  //   if ($_POST['c_account_password'] != "") {
+  //     $password = $_POST['c_account_password'];
+  //   }
+  // }
+  // $conexion->query("INSERT INTO usuario (nombre,telefono,email,password,img_perfil,nivel) 
+  //   values(
+  //     '".$_POST['c_fname']." ".$_POST['c_lname']."',
+  //     '".$_POST['c_phone']."',
+  //     '".$_POST['c_email_address']."',
+  //     '".sha1($password)."',
+  //     'men.jpg',
+  //     'cliente'
+  //         )
+  //   ")or die($conexion->error);
+    //  $id_usuario = $conexion->insert_id;
   $fecha = date('Y-m-d h:m:s');
-  $conexion -> query("INSERT INTO ventas(id_usuario,total,fecha) VALUES($id_usuario,$total,'$fecha')")
-  or die($conexion->error);
-  $id_venta = $conexion -> insert_id;
+  $conexion -> query("INSERT INTO pago(medio_pago,total,fecha,id_cliente) 
+  VALUES('efectivo',$total,'$fecha',1)")or die($conexion->error);
+  $pagoFK = $conexion -> insert_id;
+  $id_pedidoFK=1; //$conexion->insert_id;
   for ($i=0; $i < count($arreglo); $i++) { 
-    $conexion -> query("INSERT INTO productos_venta (id_venta, id_producto, cantidad, precio, subtotal)
-    values(
-      $id_venta,
-      ".$arreglo[$i]['Id'].",
-      ".$arreglo[$i]['Cantidad'].",
-      ".$arreglo[$i]['Precio'].",
-      ".$arreglo[$i]['Cantidad']*$arreglo[$i]['Precio']."
-      )")or die($conexion->error);
-      $conexion->query("UPDATE productos SET inventario = inventario-".$arreglo[$i]['Cantidad']." WHERE id=".$arreglo[$i]['Id'])or die($conexion->error);
+     $conexion -> query("INSERT INTO detalle_pedido (id_pedidoFK, productoFK, cantidad, precio, subtotal, pagoFK)
+     values(
+       $id_pedidoFK,
+       ".$arreglo[$i]['Id'].", 
+       ".$arreglo[$i]['Cantidad'].",
+       ".$arreglo[$i]['Precio'].",
+       ".$arreglo[$i]['Cantidad']*$arreglo[$i]['Precio'].",
+        $pagoFK
+       )")or die($conexion->error);
+      //  $conexion->query("UPDATE productos SET inventario = inventario-".$arreglo[$i]['Cantidad']." WHERE id=".$arreglo[$i]['Id'])or die($conexion->error);
   }
 
-  $conexion->query("INSERT INTO envios(pais,company,direccion,estado,cp,id_venta) values
-  (
-    '".$_POST['country']."',
-    '".$_POST['c_companyname']."',
-    '".$_POST['c_address']."',
-    '".$_POST['c_state_country']."',
-    '".$_POST['c_postal_zip']."',
-    $id_venta
-  )
-  ")or die($conexion->error);
-  include "./php/mail.php";
+  // $conexion->query("INSERT INTO envios(pais,company,direccion,estado,cp,id_venta) values
+  // (
+  //   '".$_POST['country']."',
+  //   '".$_POST['c_companyname']."',
+  //   '".$_POST['c_address']."',
+  //   '".$_POST['c_state_country']."',
+  //   '".$_POST['c_postal_zip']."',
+  //   $id_venta
+  // )
+  // ")or die($conexion->error);
+  // include "./php/mail.php";
   unset($_SESSION['carrito']);
 ?>
 
@@ -85,7 +87,7 @@
             <span class="icon-check_circle display-3 text-success"></span>
             <h2 class="display-3 text-black">Gracias!</h2>
             <p class="lead mb-5">Tu orden se ha completado con éxito.</p>
-            <p><a href="verpedido.php?id_venta=<?php echo $id_venta;?>" class="btn btn-sm btn-primary">Ver pedido</a></p>
+            <!-- <p><a href="verpedido.php?id_venta=<?php echo $id_venta;?>" class="btn btn-sm btn-primary">Ver pedido</a></p> -->
           </div>
         </div>
       </div>
