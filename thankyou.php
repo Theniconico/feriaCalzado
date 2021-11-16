@@ -7,26 +7,28 @@
   for ($i=0; $i < count($arreglo); $i++) { 
     $total = $total + ($arreglo[$i]['Precio'] * $arreglo[$i]['Cantidad']);
   }
-  // $password = "";
-  // if (isset($_POST['c_account_password'])) {
-  //   if ($_POST['c_account_password'] != "") {
-  //     $password = $_POST['c_account_password'];
-  //   }
-  // }
-  // $conexion->query("INSERT INTO usuario (nombre,telefono,email,password,img_perfil,nivel) 
-  //   values(
-  //     '".$_POST['c_fname']." ".$_POST['c_lname']."',
-  //     '".$_POST['c_phone']."',
-  //     '".$_POST['c_email_address']."',
-  //     '".sha1($password)."',
-  //     'men.jpg',
-  //     'cliente'
-  //         )
-  //   ")or die($conexion->error);
-    //  $id_usuario = $conexion->insert_id;
+   $password = "";
+   if (isset($_POST['f_password'])) {
+     if ($_POST['f_password'] != "") {
+       $password = $_POST['f_password'];
+     }
+   }
+   $conexion->query("INSERT INTO usuario (email,password,img_perfil,rut,nombre,estado,telefono,id_cargo) 
+     values(
+      '".$_POST['f_email']."',
+      '".sha1($password)."',
+      'men.jpg',
+      '".$_POST['f_rut']."',
+       '".$_POST['f_nombre']." ".$_POST['f_apellido']."',
+       1,
+       '".$_POST['f_telefono']."',
+        2
+           )
+     ")or die($conexion->error);
+      $id_usuario = $conexion->insert_id;
   $fecha = date('Y-m-d h:m:s');
   $conexion -> query("INSERT INTO pago(medio_pago,total,fecha,id_cliente) 
-  VALUES('efectivo',$total,'$fecha',1)")or die($conexion->error);
+  VALUES('efectivo',$total,'$fecha',$id_usuario)")or die($conexion->error);
   $pagoFK = $conexion -> insert_id;
   $id_pedidoFK=1; //$conexion->insert_id;
   for ($i=0; $i < count($arreglo); $i++) { 

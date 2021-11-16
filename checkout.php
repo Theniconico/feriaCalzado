@@ -50,41 +50,45 @@
             <div class="p-3 p-lg-5 border">
               <div class="form-group row">
                 <div class="col-md-6">
-                  <label for="c_fname" class="text-black">Nombres <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_fname" name="c_fname">
+                  <label for="f_nombre" class="text-black">Nombres <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="f_nombre" name="f_nombre">
                 </div>
                 <div class="col-md-6">
-                  <label for="c_lname" class="text-black">Apellidos <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_lname" name="c_lname">
+                  <label for="f_apellido" class="text-black">Apellidos <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="f_apellido" name="f_apellido">
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-12">
-                  <label for="c_address" class="text-black">Dirección <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_address" name="c_address" placeholder="Street address">
+                  <label for="f_direccion" class="text-black">Dirección <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="f_direccion" name="f_direccion" placeholder="">
                 </div>
               </div>
 
               <div class="form-group row mb-5">
                 <div class="col-md-6">
-                  <label for="c_email_address" class="text-black">Dirección de correo <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_email_address" name="c_email_address">
+                  <label for="f_email" class="text-black">Dirección de correo <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="f_email" name="f_email">
                 </div>
                 <div class="col-md-6">
-                  <label for="c_phone" class="text-black">teléfono <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" id="c_phone" name="c_phone" placeholder="Número de teléfono">
+                  <label for="f_telefono" class="text-black">teléfono <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="f_telefono" name="f_telefono" placeholder="">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="c_create_account" class="text-black" data-toggle="collapse" href="#create_an_account" role="button" aria-expanded="false" aria-controls="create_an_account"><input type="checkbox" value="1" id="c_create_account"> Create an account?</label>
+                <label for="c_create_account" class="text-black" data-toggle="collapse" href="#create_an_account" role="button" aria-expanded="false" aria-controls="create_an_account"><input type="checkbox" value="1" id="c_create_account"> Quieres crear una cuenta?</label>
                 <div class="collapse" id="create_an_account">
                   <div class="py-2">
                     <p class="mb-3">Crear la cuenta de usuario con la información proporcionada.</p>
                     <div class="form-group">
-                      <label for="c_account_password" class="text-black">Contraseña de la cuenta</label>
-                      <input type="password" class="form-control" id="c_account_password" name="c_account_password" placeholder="******">
+                      <label for="f_rut" class="text-black">Ingresa tu rut</label>
+                      <input type="text" class="form-control" id="f_rut" name="f_rut" placeholder="">
+                    </div>
+                    <div class="form-group">
+                      <label for="f_password" class="text-black">Contraseña de la cuenta</label>
+                      <input type="password" class="form-control" id="f_password" name="f_password" placeholder="******">
                     </div>
                   </div>
                 </div>
@@ -93,25 +97,25 @@
                 <!-- fin formulario registro-->
 
               <div class="form-group">
-                <label for="c_ship_different_address" class="text-black" data-toggle="collapse" href="#ship_different_address" role="button" aria-expanded="false" aria-controls="ship_different_address"><input type="checkbox" value="1" id="c_ship_different_address"> Ship To A Different Address?</label>
+                <label for="c_ship_different_address" class="text-black" data-toggle="collapse" href="#ship_different_address" role="button" aria-expanded="false" aria-controls="ship_different_address"><input type="checkbox" value="1" id="c_ship_different_address"> Enviar a otra direccion?</label>
                 <div class="collapse" id="ship_different_address">
                   <div class="py-2">
 
                     <div class="form-group row">
                       <div class="col-md-6">
-                        <label for="c_diff_fname" class="text-black">Nombres <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_fname" name="c_diff_fname">
+                        <label for="opc_nombre" class="text-black">Nombres <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="opc_nombre" name="opc_nombre">
                       </div>
                       <div class="col-md-6">
-                        <label for="c_diff_lname" class="text-black">Apellidos <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_lname" name="c_diff_lname">
+                        <label for="opc_apellido" class="text-black">Apellidos <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="opc_apellido" name="opc_apellido">
                       </div>
                     </div>
 
                     <div class="form-group row">
                       <div class="col-md-12">
-                        <label for="c_diff_address" class="text-black">Dirección <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_address" name="c_diff_address" placeholder="Dirección / calle">
+                        <label for="opc_direccion" class="text-black">Dirección <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="opc_direccion" name="opc_direccion" placeholder="Dirección / calle">
                       </div>
                     </div>
 
@@ -121,12 +125,12 @@
 
                     <div class="form-group row mb-5">
                       <div class="col-md-6">
-                        <label for="c_diff_email_address" class="text-black">Dirección de correo <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_email_address" name="c_diff_email_address">
+                        <label for="opc_email" class="text-black">Dirección de correo <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="opc_email" name="opc_email">
                       </div>
                       <div class="col-md-6">
-                        <label for="c_diff_phone" class="text-black">Teléfono <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="c_diff_phone" name="c_diff_phone" placeholder="Número de teléfono">
+                        <label for="opc_telefono" class="text-black">Teléfono <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="opc_telefono" name="opc_telefono" placeholder="Número de teléfono">
                       </div>
                     </div>
 
@@ -136,8 +140,8 @@
               </div>
 
               <div class="form-group">
-                <label for="c_order_notes" class="text-black">Notas adicionales del pedido</label>
-                <textarea class="" name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control" placeholder="En caso de que quieras dar una especificación adicional, escribala aquí..."></textarea>
+                <label for="f_notas" class="text-black">Notas adicionales del pedido</label>
+                <textarea name="f_notas" id="f_notas" cols="30" rows="5" class="form-control" placeholder="En caso de que quieras dar una especificación adicional, escribala aquí..."></textarea>
               </div>
 
             </div>
