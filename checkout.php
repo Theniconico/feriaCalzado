@@ -66,6 +66,21 @@
                 </div>
               </div>
 
+              <div class="form-group">
+                <label for="f_ciudad" class="text-black">Ciudad <span class="text-danger">*</span></label>
+                <select id="f_ciudad" class="form-control" name="f_ciudad">
+                  <option value="">Seleccione una ciudad</option>    
+                  <option value="cauquenes">Cauquenes</option>    
+                  <option value="curico">Curicó</option>    
+                  <option value="linares">Linares</option>    
+                  <option value="talca">Talca</option>    
+                  <option value="san javier">San Javier</option>    
+                  <option value="villa alegre">Villa Alegre</option>    
+                  <option value="yerbas buenas">Yerbas Buenas</option>    
+                  <option value="longavi">Longaví</option>    
+                </select>
+              </div>
+
               <div class="form-group row mb-5">
                 <div class="col-md-6">
                   <label for="f_email" class="text-black">Dirección de correo <span class="text-danger">*</span></label>
