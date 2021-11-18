@@ -1,23 +1,24 @@
 <?php
     include './php/conexion.php';
-    if (!isset($_GET['id_venta'])) {
+    if (!isset($_GET['id_pago'])) {
         header("Location: ./");
 
     }
     $datos = $conexion->query("SELECT 
-    ventas.*,
+    pago.*,
     usuario.nombre,usuario.telefono,usuario.email
-    FROM ventas
-    INNER JOIN usuario ON ventas.id_usuario = usuario.id
-    WHERE ventas.id=".$_GET['id_venta'])or die($conexion->error);
+    FROM pago
+    INNER JOIN usuario ON pago.usuarioFK = usuario.id
+    WHERE pago.id_pago=".$_GET['id_pago'])or die($conexion->error);
     $datosUsuario = mysqli_fetch_row($datos);
-    $datos2 = $conexion -> query("SELECT * FROM envios WHERE id_venta=".$_GET['id_venta'])or die($conexion->error);
+    $datos2 = $conexion -> query("SELECT * FROM pedido WHERE id_venta=".$_GET['id_venta'])or die($conexion->error);
     $datosEnvio = mysqli_fetch_row($datos2);
 
-    $datos3 = $conexion->query("SELECT productos_venta.*,
+    $datos3 = $conexion->query("SELECT detalle_pedido.*,
         productos.nombre as nombre_producto, productos.imagen
-        from productos_venta inner join productos on productos_venta.id_producto = productos.id
-        where id_venta =".$_GET['id_venta'])or die($conexion->error);
+        from detalle_pedido 
+        inner join productos on detalle_pedido.productoFK = productos.id
+        where id_pago =".$_GET['id_pago'])or die($conexion->error);//lo podria usar de ejemplo para descontar el stock
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,43 +60,37 @@
               <div class="p-3 p-lg-5 border">
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Venta #<?php echo $_GET['id_venta']; ?></label>
+                    <label for="c_fname" class="text-black">Venta #<?php echo $_GET['id_pago']; ?></label>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Nombre <?php echo $datosUsuario[4]; ?></label>
+                    <label for="c_fname" class="text-black">Nombre <?php echo $datosUsuario[5]; ?></label>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Email <?php echo $datosUsuario[6]; ?></label>
+                    <label for="c_fname" class="text-black">Email <?php echo $datosUsuario[7]; ?></label>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Telefono <?php echo $datosUsuario[5]; ?></label>
+                    <label for="c_fname" class="text-black">Telefono <?php echo $datosUsuario[6]; ?></label>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Compañia <?php echo $datosEnvio[2]; ?></label>
+                    <label for="c_fname" class="text-black">Direccion <?php echo $datosEnvio[2]; ?></label>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Direccion <?php echo $datosEnvio[3]; ?></label>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Estado <?php echo $datosEnvio[4]; ?></label>
+                    <label for="c_fname" class="text-black">Ciudad <?php echo $datosEnvio[3]; ?></label>
                   </div>
                 </div>
 
@@ -109,7 +104,7 @@
                 
               ?>
             <div class="p-4 border mb-3">
-                <img src="./images/<?php echo $f['imagen'];?>" width="50px">
+                <img src="./images/referencia/img_feria/<?php echo $f['imagen'];?>" width="50px">
               <span class="d-block text-primary h6 text-uppercase"><?php echo $f['nombre_producto'];?></span><br>
               <span class="d-block text-primary h6 text-uppercase">Cantidad: <?php echo $f['cantidad'];?></span>
               <span class="d-block text-primary h6 text-uppercase">Precio: <?php echo $f['precio'];?></span>

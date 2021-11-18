@@ -42,7 +42,7 @@ for ($i = 0; $i < count($arreglo); $i++) {
        " . $arreglo[$i]['Cantidad'] * $arreglo[$i]['Precio'] . ",
         $pagoFK
        )") or die($conexion->error);
-  //  $conexion->query("UPDATE det_num_calzado SET stock = stock-".$arreglo[$i]['Cantidad']." WHERE id=".$arreglo[$i]['Id'])or die($conexion->error);
+    $conexion->query("UPDATE det_num_calzado SET stock = stock-".$arreglo[$i]['Cantidad']." WHERE id_productoFK=".$arreglo[$i]['Id'])or die($conexion->error);
 }
 
  $conexion->query("INSERT INTO pedido(pagoFK,direccion,ciudad,fecha) values
