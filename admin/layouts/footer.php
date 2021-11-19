@@ -1,6 +1,6 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="https://web.facebook.com/fdelcalzado/?_rdc=1&_rdr">Feria del Calzado</a>.</strong>
+    <strong>Copyright &copy; 2021 <a href="https://web.facebook.com/fdelcalzado/?_rdc=1&_rdr">Feria del Calzado</a>.</strong>
     Todos los derechos reservados.
   </footer>
 

@@ -11,7 +11,7 @@
     INNER JOIN usuario ON pago.usuarioFK = usuario.id
     WHERE pago.id_pago=".$_GET['id_pago'])or die($conexion->error);
     $datosUsuario = mysqli_fetch_row($datos);
-    $datos2 = $conexion -> query("SELECT * FROM pedido WHERE id_venta=".$_GET['id_venta'])or die($conexion->error);
+    $datos2 = $conexion -> query("SELECT * FROM pedido WHERE pagoFK=".$_GET['id_pago'])or die($conexion->error);
     $datosEnvio = mysqli_fetch_row($datos2);
 
     $datos3 = $conexion->query("SELECT detalle_pedido.*,
@@ -111,7 +111,7 @@
               <span class="d-block text-primary h6 text-uppercase">Subtotal: <?php echo $f['subtotal'];?></span>
             </div>
                 <?php }?>
-                   <h4>Total: <?php echo $datosUsuario[2];?></h4> 
+                   <h4>Total: <?php echo $datosUsuario[3];?></h4> 
           </div>
         </div>
       </div>

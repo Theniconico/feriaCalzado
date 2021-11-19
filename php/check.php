@@ -6,13 +6,13 @@ if(  isset($_POST['email'])  && isset($_POST['password'])   ){
     
     $resultado = $conexion->query("select * from usuario where 
         email='".$_POST['email']."' and 
-        password='".$_POST['password']."' limit 1")or die($conexion->error);
+        password='".sha1($_POST['password'])."' limit 1")or die($conexion->error);
     if(mysqli_num_rows($resultado)>0){
         $datos_usuario = mysqli_fetch_row($resultado); 
         $email = $datos_usuario[1];
         $id_usuario = $datos_usuario[0];
         $img_perfil = $datos_usuario[3];
-        $id_cargo = $datos_usuario[7];
+        $id_cargo = $datos_usuario[8];
 
         $_SESSION['datos_login']= array(
             'id'=>$id_usuario,

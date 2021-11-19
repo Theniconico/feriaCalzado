@@ -30,7 +30,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index.php" class="brand-link">
-      <span class="brand-text font-weight-light">Administrador</span>
+      <span class="brand-text font-weight-light">Panel de administrador</span>
     </a>
 
     <!-- Sidebar -->
@@ -88,7 +88,7 @@
                 </p>
               </a>
             </li>
-
+            <?php } ?>
             <li class="nav-item">
               <a href="./pedidos.php" class="nav-link">
                 <i class="nav-icon fa fa-shipping-fast"></i>
@@ -98,7 +98,7 @@
               </a>
             </li>
 
-          <?php } ?>
+          
           <li class="nav-item">
             <a href="../php/cerrar_sesion.php" class="nav-link">
               <i class="nav-icon fa fa-sign-out-alt"></i>
