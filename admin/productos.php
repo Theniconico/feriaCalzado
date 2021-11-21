@@ -8,6 +8,7 @@ $arregloUsuario = $_SESSION['datos_login'];
 if ($arregloUsuario['id_cargo'] != 1) {
   header("Location: ../index.php");
 }
+//join para mostrar los datos de la tabla productos y categorias por el nombre y no ID 
 $resultado = $conexion->query("
   select productos.*, categorias.nombre as catego from 
   productos
