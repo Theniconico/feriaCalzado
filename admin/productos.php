@@ -12,7 +12,7 @@ if ($arregloUsuario['id_cargo'] != 1) {
 $resultado = $conexion->query("
   select productos.*, categorias.nombre as catego from 
   productos
-  inner join categorias on productos.id_categoria = categorias.id where productos.estado = 1
+  inner join categorias on productos.categoriaFK = categorias.id where productos.estado = 1
   order by id DESC") or die($conexion->error);
   
 ?>
@@ -131,7 +131,8 @@ $resultado = $conexion->query("
                   <td><?php echo $f['color']; ?></td>
                   <td><?php if ($f['estado'] == 1) {echo 'activo';}?></td>
                   <td>$<?php echo number_format($f['precio_venta']); ?></td>
-                  <td><?php echo number_format($f['stock']); ?></td>
+                  <!-- <td><?php echo number_format($f['stock']); ?></td> -->
+                  <td>111</td>
                   <td><button class="btn btn-info btn-sm btnVerNumeros" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-toggle="modal" data-target="#modalVerNumeros">
@@ -143,7 +144,7 @@ $resultado = $conexion->query("
                     data-nombre="<?php echo  $f['nombre']; ?>" 
                     data-descripcion="<?php echo  $f['descripcion']; ?>" 
                     data-precio_compra="<?php echo $f['precio_compra']; ?>" 
-                    ta-categoria="<?php echo  $f['id_categoria']; ?>" 
+                    data-categoria="<?php echo  $f['id_categoria']; ?>" 
                     data-color="<?php echo  $f['color']; ?>" 
                     data-precio_venta="<?php echo $f['precio_venta']; ?>" 
                     data-toggle="modal" data-target="#modalEditar">
@@ -204,15 +205,24 @@ $resultado = $conexion->query("
               </div>
 
               <div class="form-group">
+                <label for="precio_venta">Precio de venta</label>
+                <input type="number" min="0" name="precio_venta" placeholder="Precio de venta" id="precio_venta" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="color">Color</label>
+                <input type="text" name="color" placeholder="COLOR" id="color" class="form-control" required>
+              </div>
+
+              <div class="form-group">
                 <label for="imagen">Imagen</label>
                 <input type="file" name="imagen" id="imagen" class="form-control" required>
               </div>
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="stock">Stock</label>
                 <input type="number" min="0" name="stock" placeholder="STOCK" id="stock" class="form-control">
-              </div>
-
+              </div> -->
 
               <div class="form-group">
                 <label for="categoria">Categoria</label>
@@ -241,22 +251,12 @@ $resultado = $conexion->query("
               </div>
 
               <div class="form-group">
-                <label for="color">Color</label>
-                <input type="text" name="color" placeholder="COLOR" id="color" class="form-control" required>
-              </div>
-
-              <div class="form-group">
                 <label for="estado">Estado</label>
                 <select name="estado" id="estado" class="form-control">
                   <option value="">Seleccione el estado</option>
                   <option value="1">Activo</option>
                   <option value="0">Inactivo</option>
                 </select>
-              </div>
-
-              <div class="form-group">
-                <label for="precio_venta">Precio de venta</label>
-                <input type="number" min="0" name="precio_venta" placeholder="Precio de venta" id="precio_venta" class="form-control" required>
               </div>
 
             </div>
