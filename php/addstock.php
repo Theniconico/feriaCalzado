@@ -3,6 +3,7 @@ include "./conexion.php";
 $num_calzado = $_POST['calzado'];
 $stock = $_POST['stockTotal'];
 $conexion->query("delete from num_calzado where id_num =" . $_POST['id']);
+$conexion->query("select * from num_calzado");
 $values = '';
 for ($i = 0; $i < sizeof($num_calzado); $i++) {
     $values .= "(
