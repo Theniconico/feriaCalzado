@@ -48,7 +48,21 @@ include('./php/conexion.php');
             <h2 class="text-black"><?php echo $fila[1];?></h2>
             <p><?php echo $fila[2];?></p>
             <p><strong class="text-primary h4">$<?php echo $fila[4];?></strong></p>
-            <div class="mb-5">
+            <!-- Mostrar numeros disponibles -->
+            <div class="form-group">
+                <label for="numeros_dispo">Numeros disponibles</label>
+                <select name="numeros_dispo" id="numeros_dispo" class="form-control" required>
+                  <option value="">Numeros</option>
+                  <?php
+                  $res = $conexion->query("select * from num_calzado");
+                  while ($f = mysqli_fetch_array($res)) {
+                    echo '<option value="' . $f['id_num'] . '" >' . $f['numeros'] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+              <br>
+              <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 120px;">
               <div class="input-group-prepend">
                 <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
@@ -58,7 +72,6 @@ include('./php/conexion.php');
                 <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
               </div>
             </div>
-
             </div>
             <p><a href="cart.php?id=<?php echo $fila[0];?>"class="buy-now btn btn-sm btn-primary">Agregar al carro</a></p>
 

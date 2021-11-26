@@ -15,10 +15,6 @@ $resultado = $conexion->query("
   inner join categorias on productos.categoriaFK = categorias.id where productos.estado = 1
   order by id DESC") or die($conexion->error);
 
-// $resultado2 = $conexion->query("
-//   select det_num_calzado.*, productos.id as id_producto, num_calzado.numeros from
-//   det_num_calzado
-//   inner join productos on det_num_calzado.productofk = productos.id ") or die($conexion->error);
 
 ?>
 <!DOCTYPE html>
@@ -383,29 +379,17 @@ $resultado = $conexion->query("
             </div>
             <div class="modal-body">
               <input type="hidden" id="idStock" name="id">
-              <!-- <div class="form-group">
-                <label for="categoria">Categoria</label>
-                <select name="categoria" id="categoria" class="form-control" required>
-                  <option value="">Seleccione una categoria</option>
+              <div class="form-group">
+                <label for="num_calzado">Numeros de calzado</label>
+                <select name="num_calzado" id="num_calzado" class="form-control" require>
+                  <option value="">Seleccione un numero disponible</option>
                   <?php
-                  $res = $conexion->query("select * from categorias");
-                  while ($f = mysqli_fetch_array($res)) {
-                    echo '<option value="' . $f['id'] . '" >' . $f['nombre'] . '</option>';
-                  }
-                  ?>
-                </select>
-              </div> -->
-
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="numero">
-                <label class="form-check-label" for="numero">
-                  <?php 
                   $res = $conexion->query("select * from num_calzado");
                   while ($f = mysqli_fetch_array($res)) {
                     echo '<option value="' . $f['id_num'] . '" >' . $f['numeros'] . '</option>';
                   }
                   ?>
-                </label>
+                </select>
               </div>
               <br>
               <div class="form-group">
