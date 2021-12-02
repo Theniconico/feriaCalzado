@@ -536,7 +536,7 @@ $resultado = $conexion->query("
         $("#idEdit").val(idEditar);
       });
       $(".btnAddStock").click(function() {
-        idProducto_num = $(this).data('idproducto');
+        idProducto_num = $(this).data('id');
         var stock = $(this).data('stock');
         var num_calzado = $(this).data('num_calzado');
         $("#stock").val(stock);

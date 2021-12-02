@@ -2,15 +2,14 @@
 include "./conexion.php";
 if (isset($_POST['num_calzado']) && isset($_POST['stock'])) {
     if ($_POST['stock'] > 0) {
-        $hola = $conexion->query("insert into det_num_calzado
+        $conexion->query("insert into det_num_calzado
         (stock,id_productoFK,id_num_calzadoFK) values
         (
-        " . $_POST['stock'] . ",
-        '".$_POST['idproducto']."',
-        '".$_POST['num_calzado']."',
-        )
-        ")or die($conexion->error);
-        echo $hola;
+        ". $_POST['stock'] .",
+        ".$_POST['idproducto'].",
+        ".$_POST['num_calzado']."
+        )")or die($conexion->error);
+        echo "talla y stock agregado";
     }else {
         echo "la cantidad de stock debe ser mayor a 0";
     }
