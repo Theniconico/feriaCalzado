@@ -14,8 +14,6 @@ $resultado = $conexion->query("
   productos
   inner join categorias on productos.categoriaFK = categorias.id where productos.estado = 1
   order by id DESC") or die($conexion->error);
-
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -104,15 +102,13 @@ $resultado = $conexion->query("
               <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Descripcion</th>
                 <th>Precio de compra</th>
                 <th>Categoria</th>
                 <th>Color</th>
                 <th>estado</th>
                 <th>precio de venta</th>
-                <th>stock</th>
-                <!-- <th>Numeros</th> -->
-                <th></th>
+                <th>Acciones</th>
+                <th>Ver tallas</th>
               </tr>
             </thead>
             <tbody>
@@ -126,7 +122,6 @@ $resultado = $conexion->query("
                     <img src="../images/referencia/img_feria/<?php echo $f['imagen']; ?>" width="30px" height="30px" alt="">
                     <?php echo $f['nombre']; ?>
                   </td>
-                  <td><?php echo $f['descripcion']; ?></td>
                   <td>$<?php echo number_format($f['precio_compra']); ?></td>
                   <td><?php echo $f['catego']; ?></td>
                   <td><?php echo $f['color']; ?></td>
@@ -134,25 +129,37 @@ $resultado = $conexion->query("
                         echo 'activo';
                       } ?></td>
                   <td>$<?php echo number_format($f['precio_venta']); ?></td>
-                  <!-- <td><?php echo number_format($f['stock']); ?></td> -->
-                  <td>111</td>
                   <td>
-                    <!-- <button class="btn btn-info btn-sm btnVerNumeros" 
+                    <button class="btn btn-sm btn-primary btnEditar" 
                     data-id="<?php echo  $f['id']; ?>" 
-                    data-toggle="modal" data-target="#modalVerNumeros">
-                    <i class="fa fa-eye"></i>
-                  </button> -->
-                  <td>
-                    <button class="btn btn-sm btn-primary btnEditar" data-id="<?php echo  $f['id']; ?>" data-nombre="<?php echo  $f['nombre']; ?>" data-descripcion="<?php echo  $f['descripcion']; ?>" data-precio_compra="<?php echo $f['precio_compra']; ?>" data-categoria="<?php echo  $f['categoriafk']; ?>" data-color="<?php echo  $f['color']; ?>" data-precio_venta="<?php echo $f['precio_venta']; ?>" data-toggle="modal" data-target="#modalEditar">
+                    data-nombre="<?php echo  $f['nombre']; ?>" 
+                    data-descripcion="<?php echo  $f['descripcion']; ?>" 
+                    data-precio_compra="<?php echo $f['precio_compra']; ?>" 
+                    data-categoria="<?php echo  $f['categoriafk']; ?>" 
+                    data-color="<?php echo  $f['color']; ?>" 
+                    data-precio_venta="<?php echo $f['precio_venta']; ?>" 
+                    data-toggle="modal" data-target="#modalEditar">
                       <i class="fa fa-edit"></i>
                     </button>
-                    <button class="btn btn-danger btn-sm btnEliminar" data-id="<?php echo  $f['id']; ?>" data-id_usuario="<?php echo $arregloUsuario['id']; ?>" data-toggle="modal" data-target="#modalEliminar">
+                    <button class="btn btn-danger btn-sm btnEliminar" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
+                    data-toggle="modal" data-target="#modalEliminar">
                       <i class="fa fa-trash"></i>
                     </button>
-                    <button class="btn btn-success btn-sm btnAddStock" data-id="<?php echo  $f['id']; ?>" data-toggle="modal" data-target="#modalAddStock">
+                    <button class="btn btn-success btn-sm btnAddStock" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-toggle="modal" data-target="#modalAddStock">
                       <i class="fa fa-plus"> stock</i>
                     </button>
 
+                  </td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm btnverNum" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-toggle="modal" data-target="#modalVerNumeros">
+                      <i class="fa fa-eye"></i>
+                    </button>
                   </td>
                 </tr>
               <?php } ?>
@@ -372,16 +379,16 @@ $resultado = $conexion->query("
         <div class="modal-content">
           <form action="../php/addstock.php" method="POST" enctype="multipart/form-data">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Actualizar stock</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Insertar numeros de calzado</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <input type="hidden" id="idStock" name="id">
+              <input type="hidden" id="idproducto" name="idproducto">
               <div class="form-group">
                 <label for="num_calzado">Numeros de calzado</label>
-                <select name="num_calzado" id="num_calzado" class="form-control" require>
+                <select required name="num_calzado" id="num_calzado" class="form-control" required>
                   <option value="">Seleccione un numero disponible</option>
                   <?php
                   $res = $conexion->query("select * from num_calzado");
@@ -393,11 +400,9 @@ $resultado = $conexion->query("
               </div>
               <br>
               <div class="form-group">
-                <label for="stockTotal">Stock</label>
-                <input type="number" min="0" name="stockTotal" placeholder="Stock" id="stockTotal" class="form-control">
+                <label for="stock">Stock</label>
+                <input required type="number" min="0" name="stock" placeholder="Stock" id="stock" class="form-control">
               </div>
-
-
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -410,36 +415,47 @@ $resultado = $conexion->query("
     <!--FIN Modal Insertar stock-->
 
     <!-- Modal ver Numeros disponibles-->
-    <!-- <div class="modal fade" id="modalVerNumeros" tabindex="-1" role="dialog" aria-labelledby="modalVerNumerosLabel" aria-hidden="true">
+    <div class="modal fade" id="modalVerNumeros" tabindex="-1" role="dialog" aria-labelledby="modalVerNumerosLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalEliminarLabel"><?php echo $f['nombre']; ?></h5>
+            <h5 class="modal-title" id="modalEliminarLabel">Numeros disponibles</h5>
           </div>
           <div hidden class="center-text form-control" name="id_usuario" id="id_usuario">
             <?php echo $arregloUsuario['id']; ?>
           </div>
           
           <div class="modal-body">
-          <table>
-          <tr>
-                <th>Numeros disponibles</th>
-              </tr>
-            <?php
-            $res = $conexion->query("select * from num_calzado");
-            while ($a = mysqli_fetch_array($res)) {
+          <table class="table">
+                <thead>
+                  <tr>
+                    <th>Numero</th>
+                    <th>stock</th>
+                  </tr>
+                </thead>
+                <tbody>
 
-              echo '<tr><td class="form-label">' . $a['numeros'] . '<td><tr>';
-            }
-            ?>
-            </table>
+                  <?php
+                  while ($k = mysqli_fetch_array($resultado2)) {
+                  ?>
+                    <tr>
+                      <td>
+                      <td></td>
+                      <td></td>
+                      <!-- <td><?php if ($f['estado'] == 1) {
+                            echo 'activo';
+                          } ?></td> -->
+                    </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!-- Modal ver Numeros disponibles-->
 
     <?php include "./layouts/footer.php"; ?>
@@ -484,6 +500,7 @@ $resultado = $conexion->query("
       var idEliminar = -1;
       var idEditar = -1;
       var idUsuario = -1;
+      var idProducto_num = -1;
       var fila;
       $(".btnEliminar").click(function() {
         idEliminar = $(this).data('id');
@@ -519,8 +536,12 @@ $resultado = $conexion->query("
         $("#idEdit").val(idEditar);
       });
       $(".btnAddStock").click(function() {
-        idStock = $(this).data('id');
-        $("#idStock").val(idStock);
+        idProducto_num = $(this).data('idproducto');
+        var stock = $(this).data('stock');
+        var num_calzado = $(this).data('num_calzado');
+        $("#stock").val(stock);
+        $("#idproducto").val(idProducto_num);
+        $("#num_calzado").val(num_calzado);
       });
     });
   </script>
