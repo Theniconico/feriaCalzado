@@ -9,7 +9,7 @@ if (isset($_POST['num_calzado']) && isset($_POST['stock'])) {
         ".$_POST['idproducto'].",
         ".$_POST['num_calzado']."
         )")or die($conexion->error);
-        echo "talla y stock agregado";
+        header("Location: ../admin/productos.php?success=numero de calzado y stock agregado");
     }else {
         echo "la cantidad de stock debe ser mayor a 0";
     }

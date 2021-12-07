@@ -436,17 +436,17 @@ $resultado = $conexion->query("
                 <tbody>
 
                   <?php
-                  while ($k = mysqli_fetch_array($resultado2)) {
+                  $consulta = $conexion->query("select det_num_calzado.*, num_calzado.numeros as numero from 
+                  det_num_calzado
+                  inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num 
+                  where id_productoFK = 1");
+                  while ($a = mysqli_fetch_array($consulta)) {
+                    echo '<tr>';
+                      echo '<td>' . $a['numero'] . '</td>';
+                      echo '<td>' . $a['stock'] . '</td>';
+                      echo '</tr>';
+                  }
                   ?>
-                    <tr>
-                      <td>
-                      <td></td>
-                      <td></td>
-                      <!-- <td><?php if ($f['estado'] == 1) {
-                            echo 'activo';
-                          } ?></td> -->
-                    </tr>
-                  <?php } ?>
                 </tbody>
               </table>
           </div>
