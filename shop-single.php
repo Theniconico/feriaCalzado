@@ -2,6 +2,10 @@
 include('./php/conexion.php');
   if (isset($_GET['id'])) {
     $resultado = $conexion -> query ('SELECT * FROM productos WHERE id='.$_GET['id'])or die($conexion -> error);
+    // $consulta  = $conexion -> query ('SELECT det_num_calzado, num_calzado.numeros as numero 
+    // from det_num_calzado
+    // inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
+    // WHERE id_productoFK='.$_GET['id'])or die($conexion -> error);
     if (mysqli_num_rows($resultado) > 0) {
       $fila = mysqli_fetch_row($resultado);
     }else{
@@ -14,7 +18,7 @@ include('./php/conexion.php');
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <title>Tienda</title>
     <meta charset="utf-8">
@@ -54,13 +58,17 @@ include('./php/conexion.php');
                 <select name="numeros_dispo" id="numeros_dispo" class="form-control" required>
                   <option value="">Numeros</option>
                   <?php
-                  $res = $conexion->query("select * from num_calzado");
-                  while ($f = mysqli_fetch_array($res)) {
-                    echo '<option value="' . $f['id_num'] . '" >' . $f['numeros'] . '</option>';
+                  $consulta  = $conexion -> query ('select det_num_calzado.*, num_calzado.numeros as numero 
+                  from det_num_calzado
+                  inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
+                  WHERE id_productoFK='.$_GET['id']);
+                  while ($f = mysqli_fetch_array($consulta)) {
+                    echo '<option value="' . $f['id_num_calzadoFK'] . '" >' . $f['numero'] . '</option>';
                   }
                   ?>
                 </select>
               </div>
+              <!--FIN Mostrar numeros disponibles -->
               <br>
               <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 120px;">

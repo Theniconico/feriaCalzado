@@ -45,6 +45,10 @@
       $nombre = "";
       $precio_venta = "";
       $imagen = "";
+      $numero_calzado = "";
+      $consulta = $conexion -> query('SELECT det_num_calzado .* FROM det_num_calzado WHERE id_productoFK = '.$_GET['id']. 'AND id_num_calzadoFK ='.$_POST['numeros_dispo'])or die($conexion->error);
+      $fila2 = mysqli_fetch_row($consulta);
+      $numero_calzado = $fila2[3];
       $res = $conexion -> query('SELECT * FROM productos WHERE id='.$_GET['id'])or die($conexion->error);
       $fila = mysqli_fetch_row($res);
       $nombre = $fila[1];
@@ -55,6 +59,7 @@
                   'Nombre' => $nombre,
                   'Precio' => $precio_venta,
                   'Imagen' => $imagen,
+                  'Numero_calzado' => $numero_calzado,
                   'Cantidad' => 1
       );
       $_SESSION['carrito'] = $arreglo;

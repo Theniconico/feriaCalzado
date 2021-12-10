@@ -439,7 +439,7 @@ $resultado = $conexion->query("
                   $consulta = $conexion->query("select det_num_calzado.*, num_calzado.numeros as numero from 
                   det_num_calzado
                   inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num 
-                  where id_productoFK = 1");
+                  where id_productoFK = 1") or die($conexion->error);
                   while ($a = mysqli_fetch_array($consulta)) {
                     echo '<tr>';
                       echo '<td>' . $a['numero'] . '</td>';
