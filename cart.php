@@ -45,10 +45,10 @@
       $nombre = "";
       $precio_venta = "";
       $imagen = "";
-      $numero_calzado = "";
-      $consulta = $conexion -> query('SELECT det_num_calzado .* FROM det_num_calzado WHERE id_productoFK = '.$_GET['id']. 'AND id_num_calzadoFK ='.$_POST['numeros_dispo'])or die($conexion->error);
-      $fila2 = mysqli_fetch_row($consulta);
-      $numero_calzado = $fila2[3];
+      // $numero_calzado = "";
+      // $consulta = $conexion -> query('SELECT det_num_calzado .* FROM det_num_calzado WHERE id_productoFK = '.$_GET['id']. 'AND id_num_calzadoFK ='.$_['numeros_dispo'])or die($conexion->error);
+      // $fila2 = mysqli_fetch_row($consulta);
+      // $numero_calzado = $fila2[3];
       $res = $conexion -> query('SELECT * FROM productos WHERE id='.$_GET['id'])or die($conexion->error);
       $fila = mysqli_fetch_row($res);
       $nombre = $fila[1];
@@ -59,7 +59,7 @@
                   'Nombre' => $nombre,
                   'Precio' => $precio_venta,
                   'Imagen' => $imagen,
-                  'Numero_calzado' => $numero_calzado,
+                  // 'Numero_calzado' => $numero_calzado,
                   'Cantidad' => 1
       );
       $_SESSION['carrito'] = $arreglo;
@@ -105,7 +105,8 @@
                   <tr>
                     <th class="product-thumbnail">Imagen</th>
                     <th class="product-name">Producto</th>
-                    <th class="product-price">Pricio</th>
+                    <th class="product-price">Precio</th>
+                    <!-- <th class="product-number">Talla</th> -->
                     <th class="product-quantity">Cantidad</th>
                     <th class="product-total">Total</th>
                     <th class="product-remove">Quitar</th>
@@ -163,7 +164,7 @@
                 <button class="btn btn-primary btn-sm btn-block">Actualizar Carrito</button>
               </div>
               <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-sm btn-block">Continue Comprando</button>
+                <button onclick="window.location='index.php'" class="btn btn-outline-primary btn-sm btn-block">Continue Comprando</button>
               </div>
             </div>
             <div class="row">

@@ -81,7 +81,10 @@ include('./php/conexion.php');
               </div>
             </div>
             </div>
-            <p><a href="cart.php?id=<?php echo $fila[0];?>"class="buy-now btn btn-sm btn-primary">Agregar al carro</a></p>
+            <div class="form-group">
+              <p><a href="cart.php?id=<?php echo $fila[0];?>"class="buy-now btn btn-sm btn-primary">Agregar al carro</a></p>
+            </div>
+            
 
           </div>
         </div>
