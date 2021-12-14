@@ -1,3 +1,21 @@
+<!-- <?php 
+include('./php/conexion.php');
+  if (isset($_GET['id'])) {
+    $resultado = $conexion -> query ('SELECT * FROM productos WHERE id='.$_GET['id'])or die($conexion -> error);
+    // $consulta  = $conexion -> query ('SELECT det_num_calzado, num_calzado.numeros as numero 
+    // from det_num_calzado
+    // inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
+    // WHERE id_productoFK='.$_GET['id'])or die($conexion -> error);
+    if (mysqli_num_rows($resultado) > 0) {
+      $fila = mysqli_fetch_row($resultado);
+    }else{
+      header('Location: ./index.php');
+    }
+  }else{
+    //redireccionar
+    header('Location: ./index.php');
+  }
+?> -->
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -34,29 +52,39 @@
             <div class="row mb-5">
               <?php
                 include('./php/conexion.php');
-                $limite = 10;//productos por pagina
-                $totalQuery = $conexion->query("SELECT count(*) FROM productos")or die($conexion->error);
+                $limite = 20;//productos por pagina
+                $totalQuery = $conexion->query("SELECT count(*) FROM det_num_calzado where id_productoFK =".$_GET['id'])or die($conexion->error);
                 $totalProductos = mysqli_fetch_row($totalQuery);
                 $totalBotones = round($totalProductos[0] / $limite);
                 if (isset($_GET['limite'])) {
-                  $resultado = $conexion -> query("SELECT * FROM productos WHERE estado = 1 LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
+                  $resultado = $conexion -> query("SELECT det_num_calzado.*, num_calzado.numeros as numero,
+                  productos.nombre as nombreP, productos.imagen as imagenP
+                  FROM det_num_calzado 
+                  inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
+                  inner join productos on det_num_calzado.id_productoFK = productos.id
+                  WHERE id_productoFK =".$_GET['id']." LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
                 }else {
-                  $resultado = $conexion -> query("SELECT * FROM productos WHERE estado = 1 LIMIT ".$limite) or die($conexion -> error);
+                  $resultado = $conexion -> query("SELECT det_num_calzado.*, num_calzado.numeros as numero,
+                  productos.nombre as nombreP, productos.imagen as imagenP
+                  FROM det_num_calzado 
+                  inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
+                  inner join productos on det_num_calzado.id_productoFK = productos.id 
+                  WHERE id_productoFK =".$_GET['id']." LIMIT ".$limite) or die($conexion -> error);
                 }
                 while ($fila = mysqli_fetch_array($resultado)) {
                   
                 
               ?>
-              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+              <div class="col-sm-3 col-lg-3 mb-3" data-aos="fade-up">
                 <div class="block-4 text-center border">
-                  <figure class="block-4-image">
-                    <a href="indextallas.php?id=<?php echo $fila['id'];?>">
-                    <img src="images/referencia/img_feria/<?php echo $fila['imagen'];?>" alt="<?php echo $fila['nombre'] ;?>" class="img-fluid"></a>
+                <figure class="block-4-image">
+                    <a href="shop-single.php?id=<?php echo $fila['id_det'];?>">
+                    <img src="images/referencia/img_feria/<?php echo $fila['imagenP'];?>" class="img-fluid" alt=""></a>
                   </figure>
-                  <div class="block-4-text p-4">
-                    <h3><a href="shop-single.php?id=<?php echo $fila['id'];?>"><?php echo $fila['nombre'] ;?></a></h3>
-                    <p class="mb-0"><?php echo $fila['descripcion'] ;?></p>
-                    <p class="text-primary font-weight-bold">$<?php echo $fila['precio_venta'] ;?></p>
+                  <div class="">
+                      <h4 class="mb-0"><strong class="black"><?php echo $fila['nombreP'] ;?></strong></h4>
+                    <p class="mb-0">Talla: <?php echo $fila['numero'] ;?></p>
+                    <p class="mb-0">Stock: <?php echo $fila['stock'] ;?></p>
                   </div>
                 </div>
               </div>

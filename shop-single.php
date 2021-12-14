@@ -46,15 +46,28 @@ include('./php/conexion.php');
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <img src="images/referencia/img_feria/<?php echo $fila[5];?>" alt="<?php echo $fila[1];?>" class="img-fluid"><!--llama a dato por la posicion en el arreglo de la bd -->
+            <form action="cart.php?id=<?php echo $fila[0];?>" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+              <img src="images/referencia/img_feria/<?php echo $fila[5];?>" alt="<?php echo $fila[1];?>" class="img-fluid"><!--llama a dato por la posicion en el arreglo de la bd -->
+              </div>
+            </form>
           </div>
           <div class="col-md-6">
-            <h2 class="text-black"><?php echo $fila[1];?></h2>
-            <p><?php echo $fila[2];?></p>
-            <p><strong class="text-primary h4">$<?php echo $fila[4];?></strong></p>
+            <div class="form-group">
+              <h2 class="text-black"><?php echo $fila[1];?></h2>
+            </div>
+
+            <div class="form-group">
+              <p><?php echo $fila[2];?></p>
+            </div>
+
+            <div class="form-group">
+              <p><strong class="text-primary h4">$<?php echo $fila[4];?></strong></p>
+            </div>
+
             <!-- Mostrar numeros disponibles -->
             <div class="form-group">
-                <label for="numeros_dispo">Numeros disponibles</label>
+            <label for="numeros_dispo">Numeros disponibles</label>
                 <select name="numeros_dispo" id="numeros_dispo" class="form-control" required>
                   <option value="">Numeros</option>
                   <?php
@@ -67,10 +80,10 @@ include('./php/conexion.php');
                   }
                   ?>
                 </select>
-              </div>
-              <!--FIN Mostrar numeros disponibles -->
-              <br>
-              <div class="mb-5">
+            </div>
+            <!--FIN Mostrar numeros disponibles -->
+
+            <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 120px;">
               <div class="input-group-prepend">
                 <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
@@ -81,8 +94,24 @@ include('./php/conexion.php');
               </div>
             </div>
             </div>
+            <div class="">
+            <!-- <p><a href="cart.php?id=<?php echo $fila[0];?>"class="buy-now btn btn-sm btn-primary">Agregar al carro</a></p> -->
+                  <button type="submit" class="buy-now btn btn-sm btn-primary">
+                    Agregar al carro
+                  </button>
+            </div>
+
             <div class="form-group">
-              <p><a href="cart.php?id=<?php echo $fila[0];?>"class="buy-now btn btn-sm btn-primary">Agregar al carro</a></p>
+
+            </div>
+
+            <div class="form-group">
+
+            </div>
+              
+              <br>
+            <div class="form-group">
+              
             </div>
             
 
