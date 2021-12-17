@@ -3,12 +3,12 @@
   include './php/conexion.php';
   if (isset($_SESSION['carrito'])) {
     //si existe, se busca si esta agregado el producto
-    if(isset($_GET['id'])){
+    if(isset($_GET['id_det'])){
       $arreglo = $_SESSION['carrito'];
       $encontro = false;
       $numero = 0;
       for ($i=0; $i < count($arreglo); $i++) {
-        if ($arreglo[$i]['Id'] == $_GET['id']) {
+        if ($arreglo[$i]['Id'] == $_GET['id_det']) {
           $encontro = true;
           $numero = $i;
         }
@@ -19,20 +19,27 @@
       }else{
         //No estaba el registro
         $nombre = "";
-        $precio_venta = "";
+        $precio = "";
         $imagen = "";
-        //consulta
-        $res = $conexion -> query('SELECT * FROM productos WHERE id='.$_GET['id'])or die($conexion->error);
-        $fila = mysqli_fetch_row($res);
-        $nombre = $fila[1];
-        $precio_venta = $fila[4];
-        $imagen = $fila[5];
-        //arreglo nuevo
+        $talla = "";
+        $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero,
+        productos.nombre as nombreP, productos.descripcion as descripcionP, productos.precio_venta as precio,
+        productos.imagen as imagen 
+        FROM det_num_calzado
+        inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
+        inner join productos on det_num_calzado.id_productoFK = productos.id
+        WHERE id_det='.$_GET['id_det'])or die($conexion -> error);
+        $fila = mysqli_fetch_array($resultado);
+        $nombre = $fila['nombreP'];
+        $precio = $fila['precio'];
+        $imagen = $fila['imagen'];
+        $talla = $fila['numero'];
         $arregloNuevo = array(
-                    'Id' => $_GET['id'],
+                    'Id' => $_GET['id_det'],
                     'Nombre' => $nombre,
-                    'Precio' => $precio_venta,
+                    'Precio' => $precio,
                     'Imagen' => $imagen,
+                    'Numero' => $talla,
                     'Cantidad' => 1
         );
         array_push($arreglo, $arregloNuevo);
@@ -41,25 +48,29 @@
     }
   }else{
     //creamos la variable de sesion
-    if (isset($_GET['id'])) {
+    if (isset($_GET['id_det'])) {
       $nombre = "";
-      $precio_venta = "";
+      $precio = "";
       $imagen = "";
-      // $numero_calzado = "";
-      // $consulta = $conexion -> query('SELECT det_num_calzado .* FROM det_num_calzado WHERE id_productoFK = '.$_GET['id']. 'AND id_num_calzadoFK ='.$_['numeros_dispo'])or die($conexion->error);
-      // $fila2 = mysqli_fetch_row($consulta);
-      // $numero_calzado = $fila2[3];
-      $res = $conexion -> query('SELECT * FROM productos WHERE id='.$_GET['id'])or die($conexion->error);
-      $fila = mysqli_fetch_row($res);
-      $nombre = $fila[1];
-      $precio_venta = $fila[4];
-      $imagen = $fila[5];
+      $talla = "";
+      $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero,
+      productos.nombre as nombreP, productos.descripcion as descripcionP, productos.precio_venta as precio,
+      productos.imagen as imagen 
+      FROM det_num_calzado
+      inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
+      inner join productos on det_num_calzado.id_productoFK = productos.id
+      WHERE id_det='.$_GET['id_det'])or die($conexion -> error);
+      $fila = mysqli_fetch_array($resultado);
+      $nombre = $fila['nombreP'];
+      $precio = $fila['precio'];
+      $imagen = $fila['imagen'];
+      $talla = $fila['numero'];
       $arreglo[] = array(
-                  'Id' => $_GET['id'],
+                  'Id' => $_GET['id_det'],
                   'Nombre' => $nombre,
-                  'Precio' => $precio_venta,
+                  'Precio' => $precio,
                   'Imagen' => $imagen,
-                  // 'Numero_calzado' => $numero_calzado,
+                  'Numero' => $talla,
                   'Cantidad' => 1
       );
       $_SESSION['carrito'] = $arreglo;
@@ -106,7 +117,6 @@
                     <th class="product-thumbnail">Imagen</th>
                     <th class="product-name">Producto</th>
                     <th class="product-price">Precio</th>
-                    <!-- <th class="product-number">Talla</th> -->
                     <th class="product-quantity">Cantidad</th>
                     <th class="product-total">Total</th>
                     <th class="product-remove">Quitar</th>
@@ -161,7 +171,7 @@
           <div class="col-md-6">
             <div class="row mb-5">
               <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-sm btn-block">Actualizar Carrito</button>
+                <button onclick="window.location='cart.php'" class="btn btn-primary btn-sm btn-block">Actualizar Carrito</button>
               </div>
               <div class="col-md-6">
                 <button onclick="window.location='index.php'" class="btn btn-outline-primary btn-sm btn-block">Continue Comprando</button>

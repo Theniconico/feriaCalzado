@@ -1,13 +1,15 @@
 <?php 
 include('./php/conexion.php');
-  if (isset($_GET['id'])) {
-    $resultado = $conexion -> query ('SELECT * FROM productos WHERE id='.$_GET['id'])or die($conexion -> error);
-    // $consulta  = $conexion -> query ('SELECT det_num_calzado, num_calzado.numeros as numero 
-    // from det_num_calzado
-    // inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
-    // WHERE id_productoFK='.$_GET['id'])or die($conexion -> error);
+  if (isset($_GET['id_det'])) {
+    $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero,
+    productos.nombre as nombreP, productos.descripcion as descripcionP, productos.precio_venta as precio,
+    productos.imagen as imagen 
+    FROM det_num_calzado
+    inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
+    inner join productos on det_num_calzado.id_productoFK = productos.id
+    WHERE id_det='.$_GET['id_det'])or die($conexion -> error);
     if (mysqli_num_rows($resultado) > 0) {
-      $fila = mysqli_fetch_row($resultado);
+      $fila = mysqli_fetch_array($resultado);
     }else{
       header('Location: ./index.php');
     }
@@ -44,46 +46,18 @@ include('./php/conexion.php');
 
     <div class="site-section">
       <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <form action="cart.php?id=<?php echo $fila[0];?>" method="POST" enctype="multipart/form-data">
-              <div class="form-group">
-              <img src="images/referencia/img_feria/<?php echo $fila[5];?>" alt="<?php echo $fila[1];?>" class="img-fluid"><!--llama a dato por la posicion en el arreglo de la bd -->
-              </div>
-            </form>
+      <div class="row">
+          <div class="col-md-5">
+            <img src="images/referencia/img_feria/<?php echo $fila['imagen'];?>" alt="<?php echo $fila['nombreP'];?>" class="img-fluid"><!--llama a dato por la posicion en el arreglo de la bd -->
           </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <h2 class="text-black"><?php echo $fila[1];?></h2>
-            </div>
-
-            <div class="form-group">
-              <p><?php echo $fila[2];?></p>
-            </div>
-
-            <div class="form-group">
-              <p><strong class="text-primary h4">$<?php echo $fila[4];?></strong></p>
-            </div>
-
-            <!-- Mostrar numeros disponibles -->
-            <div class="form-group">
-            <label for="numeros_dispo">Numeros disponibles</label>
-                <select name="numeros_dispo" id="numeros_dispo" class="form-control" required>
-                  <option value="">Numeros</option>
-                  <?php
-                  $consulta  = $conexion -> query ('select det_num_calzado.*, num_calzado.numeros as numero 
-                  from det_num_calzado
-                  inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
-                  WHERE id_productoFK='.$_GET['id']);
-                  while ($f = mysqli_fetch_array($consulta)) {
-                    echo '<option value="' . $f['id_num_calzadoFK'] . '" >' . $f['numero'] . '</option>';
-                  }
-                  ?>
-                </select>
-            </div>
-            <!--FIN Mostrar numeros disponibles -->
-
-            <div class="mb-5">
+          <div class="col-md-4">
+            <h2 class="text-black"><?php echo $fila['nombreP'];?></h2>
+            <p><?php echo $fila['descripcionP'];?></p>
+            <h5 class="text-black">Talla: <?php echo $fila['numero'];?></h5>
+            <h5 class="text-black">Stock: <?php echo $fila['stock'];?></h5>
+            <p><strong class="text-primary h4">$<?php echo $fila['precio'];?></strong></p>
+              <br>
+              <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 120px;">
               <div class="input-group-prepend">
                 <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
@@ -94,26 +68,7 @@ include('./php/conexion.php');
               </div>
             </div>
             </div>
-            <div class="">
-            <!-- <p><a href="cart.php?id=<?php echo $fila[0];?>"class="buy-now btn btn-sm btn-primary">Agregar al carro</a></p> -->
-                  <button type="submit" class="buy-now btn btn-sm btn-primary">
-                    Agregar al carro
-                  </button>
-            </div>
-
-            <div class="form-group">
-
-            </div>
-
-            <div class="form-group">
-
-            </div>
-              
-              <br>
-            <div class="form-group">
-              
-            </div>
-            
+            <p><a href="cart.php?id_det=<?php echo $fila['id_det'];?>"class="buy-now btn btn-sm btn-primary">Agregar al carro</a></p>
 
           </div>
         </div>

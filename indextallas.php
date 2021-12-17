@@ -2,10 +2,6 @@
 include('./php/conexion.php');
   if (isset($_GET['id'])) {
     $resultado = $conexion -> query ('SELECT * FROM productos WHERE id='.$_GET['id'])or die($conexion -> error);
-    // $consulta  = $conexion -> query ('SELECT det_num_calzado, num_calzado.numeros as numero 
-    // from det_num_calzado
-    // inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
-    // WHERE id_productoFK='.$_GET['id'])or die($conexion -> error);
     if (mysqli_num_rows($resultado) > 0) {
       $fila = mysqli_fetch_row($resultado);
     }else{
@@ -78,11 +74,11 @@ include('./php/conexion.php');
               <div class="col-sm-3 col-lg-3 mb-3" data-aos="fade-up">
                 <div class="block-4 text-center border">
                 <figure class="block-4-image">
-                    <a href="shop-single.php?id=<?php echo $fila['id_det'];?>">
+                    <a href="shop-single.php?id_det=<?php echo $fila['id_det'];?>">
                     <img src="images/referencia/img_feria/<?php echo $fila['imagenP'];?>" class="img-fluid" alt=""></a>
                   </figure>
                   <div class="">
-                      <h4 class="mb-0"><strong class="black"><?php echo $fila['nombreP'] ;?></strong></h4>
+                    <h4 class="mb-0"><strong class="black"><?php echo $fila['nombreP'] ;?></strong></h4>
                     <p class="mb-0">Talla: <?php echo $fila['numero'] ;?></p>
                     <p class="mb-0">Stock: <?php echo $fila['stock'] ;?></p>
                   </div>
@@ -99,18 +95,18 @@ include('./php/conexion.php');
                     <?php
                     if (isset($_GET['limite'])) {
                       if ($_GET['limite'] > 0) {
-                        echo '<li><a href="index.php?limite='.($_GET['limite'] - 10).'">&lt;</a></li>';
+                        echo '<li><a href="indextallas.php?limite='.($_GET['limite'] - 10).'">&lt;</a></li>';
                       }
                     }
                       for ($k=0; $k < $totalBotones; $k++) { 
-                        echo '<li><a href="index.php?limite='.($k*10).'">'.($k+1).'</a></li>';
+                        echo '<li><a href="indextallas.php?limite='.($k*10).'">'.($k+1).'</a></li>';
                       }
                       if (isset($_GET['limite'])) {
                           if ($_GET['limite']+10 < $totalBotones*10) {
-                            echo '<li><a href="index.php?limite='.($_GET['limite']+10).'">&gt;</a></li>';
+                            echo '<li><a href="indextallas.php?limite='.($_GET['limite']+10).'">&gt;</a></li>';
                           }
                       }else {
-                        echo '<li><a href="index.php?limite=10">&gt;</a></li>';
+                        echo '<li><a href="indextallas.php?limite=10">&gt;</a></li>';
                       }
                     ?>
                     
