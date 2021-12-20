@@ -1,7 +1,7 @@
 <?php 
 include('./php/conexion.php');
   if (isset($_GET['id_det'])) {
-    $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero,
+    $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero, num_calzado.id_num as id_numero,
     productos.nombre as nombreP, productos.descripcion as descripcionP, productos.precio_venta as precio,
     productos.imagen as imagen 
     FROM det_num_calzado
@@ -55,6 +55,7 @@ include('./php/conexion.php');
             <p><?php echo $fila['descripcionP'];?></p>
             <h5 class="text-black">Talla: <?php echo $fila['numero'];?></h5>
             <h5 class="text-black">Stock: <?php echo $fila['stock'];?></h5>
+            <h5 hidden class="text-black">id_numero: <?php echo $fila['id_numero'];?></h5>
             <p><strong class="text-primary h4">$<?php echo $fila['precio'];?></strong></p>
               <br>
               <div class="mb-5">

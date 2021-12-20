@@ -196,7 +196,7 @@
                         $total = $total + ($arreglo[$i]['Precio']* $arreglo[$i]['Cantidad']);
                     ?>
                       <tr>
-                        <td><?php echo $arreglo[$i]['Nombre']; ?></td>
+                        <td><?php echo $arreglo[$i]['Nombre']; ?>, talla <?php echo $arreglo[$i]['Numero']; ?></td>
                         <td>$<?php echo $arreglo[$i]['Precio']; ?></td>
                       </tr>
 

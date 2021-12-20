@@ -22,7 +22,7 @@
         $precio = "";
         $imagen = "";
         $talla = "";
-        $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero,
+        $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero, num_calzado.id_num as id_numero,
         productos.nombre as nombreP, productos.descripcion as descripcionP, productos.precio_venta as precio,
         productos.imagen as imagen 
         FROM det_num_calzado
@@ -53,7 +53,7 @@
       $precio = "";
       $imagen = "";
       $talla = "";
-      $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero,
+      $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero, num_calzado.id_num as id_numero,
       productos.nombre as nombreP, productos.descripcion as descripcionP, productos.precio_venta as precio,
       productos.imagen as imagen 
       FROM det_num_calzado
@@ -79,7 +79,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <title>Tienda </title>
     <meta charset="utf-8">
@@ -117,6 +117,7 @@
                     <th class="product-thumbnail">Imagen</th>
                     <th class="product-name">Producto</th>
                     <th class="product-price">Precio</th>
+                    <th class="product-price">Talla</th>
                     <th class="product-quantity">Cantidad</th>
                     <th class="product-total">Total</th>
                     <th class="product-remove">Quitar</th>
@@ -138,6 +139,7 @@
                       <h2 class="h5 text-black"><?php echo $arregloCarrito[$i]['Nombre'];?></h2>
                     </td>
                     <td>$<?php echo $arregloCarrito[$i]['Precio'];?></td>
+                    <td><?php echo $arregloCarrito[$i]['Numero'];?></td>
                     <td>
                       <div class="input-group mb-3" style="max-width: 120px;">
                         <div class="input-group-prepend">
