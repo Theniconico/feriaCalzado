@@ -34,13 +34,13 @@ $conexion->query("INSERT INTO pago(usuarioFK,medio_pago,total,fecha) VALUES($id_
 $pagoFK = $conexion->insert_id;
 
 for ($i = 0; $i < count($arreglo); $i++) {
-  $conexion->query("INSERT INTO detalle_pedido (productoFK, cantidad, precio, subtotal, FKpago)
+  $conexion->query("INSERT INTO detalle_pedido (productoFK, FKpago, cantidad, precio, subtotal)
      values(
-       " . $arreglo[$i]['Id'] . ", 
+       " . $arreglo[$i]['Id_producto'] . ",
+       $pagoFK, 
        " . $arreglo[$i]['Cantidad'] . ",
        " . $arreglo[$i]['Precio'] . ",
-       " . $arreglo[$i]['Cantidad'] * $arreglo[$i]['Precio'] . ",
-        $pagoFK
+       " . $arreglo[$i]['Cantidad'] * $arreglo[$i]['Precio'] . "
        )") or die($conexion->error);
     $conexion->query("UPDATE det_num_calzado SET stock = stock-".$arreglo[$i]['Cantidad']." WHERE id_productoFK=".$arreglo[$i]['Id']." and id_num_calzadoFK =".$arreglo[$i]['numero_calzado'])or die($conexion->error);
 }

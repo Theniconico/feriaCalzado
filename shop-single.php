@@ -56,6 +56,7 @@ include('./php/conexion.php');
             <h5 class="text-black">Talla: <?php echo $fila['numero'];?></h5>
             <h5 class="text-black">Stock: <?php echo $fila['stock'];?></h5>
             <h5 hidden class="text-black">id_numero: <?php echo $fila['id_numero'];?></h5>
+            <h5 class="text-black">id_producto: <?php echo $fila['id_productoFK'];?></h5>
             <p><strong class="text-primary h4">$<?php echo $fila['precio'];?></strong></p>
               <br>
               <div class="mb-5">

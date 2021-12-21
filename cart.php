@@ -22,6 +22,7 @@
         $precio = "";
         $imagen = "";
         $talla = "";
+        $id_producto="";
         $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero, num_calzado.id_num as id_numero,
         productos.nombre as nombreP, productos.descripcion as descripcionP, productos.precio_venta as precio,
         productos.imagen as imagen 
@@ -34,12 +35,14 @@
         $precio = $fila['precio'];
         $imagen = $fila['imagen'];
         $talla = $fila['numero'];
+        $id_producto = $fila['id_productoFK'];
         $arregloNuevo = array(
                     'Id' => $_GET['id_det'],
                     'Nombre' => $nombre,
                     'Precio' => $precio,
                     'Imagen' => $imagen,
                     'Numero' => $talla,
+                    'Id_producto' => $id_producto,
                     'Cantidad' => 1
         );
         array_push($arreglo, $arregloNuevo);
@@ -53,6 +56,7 @@
       $precio = "";
       $imagen = "";
       $talla = "";
+      $id_producto="";
       $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero, num_calzado.id_num as id_numero,
       productos.nombre as nombreP, productos.descripcion as descripcionP, productos.precio_venta as precio,
       productos.imagen as imagen 
@@ -65,12 +69,14 @@
       $precio = $fila['precio'];
       $imagen = $fila['imagen'];
       $talla = $fila['numero'];
+      $id_producto = $fila['id_productoFK'];
       $arreglo[] = array(
                   'Id' => $_GET['id_det'],
                   'Nombre' => $nombre,
                   'Precio' => $precio,
                   'Imagen' => $imagen,
                   'Numero' => $talla,
+                  'Id_producto' => $id_producto,
                   'Cantidad' => 1
       );
       $_SESSION['carrito'] = $arreglo;
