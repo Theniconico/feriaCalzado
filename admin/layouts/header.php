@@ -90,10 +90,10 @@
             </li>
             <?php } ?>
             <li class="nav-item">
-              <a href="./pedidos.php" class="nav-link">
+              <a href="./reportes.php" class="nav-link">
                 <i class="nav-icon fa fa-shipping-fast"></i>
                 <p>
-                  Pedidos
+                  Reportes
                 </p>
               </a>
             </li>

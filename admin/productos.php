@@ -10,10 +10,17 @@ if ($arregloUsuario['id_cargo'] != 1) {
 }
 //join para mostrar los datos de la tabla productos y categorias por el nombre y no ID 
 $resultado = $conexion->query("
-  select productos.*, categorias.nombre as catego from 
-  productos
-  inner join categorias on productos.categoriaFK = categorias.id where productos.estado = 1
+  select productos.*, categorias.nombre as catego, proveedores.nombre as nombreProveedor
+  from productos
+  inner join categorias on productos.categoriaFK = categorias.id
+  inner join proveedores on productos.proveedorFK = proveedores.id_proveedor
   order by id DESC") or die($conexion->error);
+  require('fpdf/fpdf.php');
+  // $pdf= new FPDF();
+  // $pdf->AddPage();
+  // $pdf->SetFont('Arial','B',16);
+  // $pdf->Cell(40,10,'Listado de productos');
+  // $pdf->Output();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,7 +29,8 @@ $resultado = $conexion->query("
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel de Administrador</title>
-
+<!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -43,6 +51,9 @@ $resultado = $conexion->query("
   <link rel="stylesheet" href="./dashboard/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="./dashboard/plugins/summernote/summernote-bs4.min.css">
+  <!-- datatables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css"/>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -98,6 +109,15 @@ $resultado = $conexion->query("
           <?php } ?>
 
           <table class="table">
+          <button title="Excel" class="btn btn-sm btn-success" extends="excelHtml5">
+                      <i class="fas fa-file-excel"></i>
+          </button>
+          <button title="PDF" extends="pdfHtml5" class="btn btn-sm btn-danger">
+                      <i class="fas fa-file-pdf" placeholder="Excel"></i>
+          </button>
+          <button title="PRINT" extends="print" class="btn btn-sm btn-info">
+                      <i class="fas fa-print" placeholder="Excel"></i>
+          </button>
             <thead>
               <tr>
                 <th>ID</th>
@@ -129,24 +149,30 @@ $resultado = $conexion->query("
                         echo 'activo';
                       } ?></td>
                   <td>$<?php echo number_format($f['precio_venta']); ?></td>
+
                   <td>
+                      <!-- Boton editar -->
                     <button class="btn btn-sm btn-primary btnEditar" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-nombre="<?php echo  $f['nombre']; ?>" 
                     data-descripcion="<?php echo  $f['descripcion']; ?>" 
                     data-precio_compra="<?php echo $f['precio_compra']; ?>" 
-                    data-categoria="<?php echo  $f['categoriafk']; ?>" 
+                    data-categoria="<?php echo  $f['categoriafk']; ?>"
                     data-color="<?php echo  $f['color']; ?>" 
-                    data-precio_venta="<?php echo $f['precio_venta']; ?>" 
+                    data-precio_venta="<?php echo $f['precio_venta']; ?>"
+                    data-proveedor="<?php echo $f['proveedorfk']; ?>" 
                     data-toggle="modal" data-target="#modalEditar">
                       <i class="fa fa-edit"></i>
-                    </button>
+                    </button><!-- Boton editar FIN-->
+
+                    <!-- Boton dar de baja -->
                     <button class="btn btn-danger btn-sm btnEliminar" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
                     data-toggle="modal" data-target="#modalEliminar">
                       <i class="fa fa-trash"></i>
-                    </button>
+                    </button><!-- Boton dar de baja Fin-->
+
                     <button class="btn btn-success btn-sm btnAddStock" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-toggle="modal" data-target="#modalAddStock">
@@ -460,7 +486,8 @@ $resultado = $conexion->query("
 
     <?php include "./layouts/footer.php"; ?>
   </div>
-
+  <!-- datatable -->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
   <!-- jQuery -->
   <script src="./dashboard/plugins/jquery/jquery.min.js"></script>
   <!-- jQuery UI 1.11.4 -->
@@ -495,6 +522,7 @@ $resultado = $conexion->query("
   <script src="./dashboard/dist/js/demo.js"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="./dashboard/dist/js/pages/dashboard.js"></script>
+  <script src="./datatables/Buttons-2.1.1"></script>
   <script>
     $(document).ready(function() {
       var idEliminar = -1;
@@ -527,6 +555,7 @@ $resultado = $conexion->query("
         var categoria = $(this).data('categoria');
         var color = $(this).data('color');
         var precio_venta = $(this).data('precio_venta');
+        var proveedor = $(this).data('proveedor');
         $("#nombreEdit").val(nombre);
         $("#descripcionEdit").val(descripcion);
         $("#precio_compraEdit").val(precio_compra);
@@ -534,6 +563,7 @@ $resultado = $conexion->query("
         $("#colorEdit").val(color);
         $("#precio_ventaEdit").val(precio_venta);
         $("#idEdit").val(idEditar);
+        $("#proveedorEdit").val(proveedor);
       });
       $(".btnAddStock").click(function() {
         idProducto_num = $(this).data('id');

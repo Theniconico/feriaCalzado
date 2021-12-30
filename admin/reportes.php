@@ -8,11 +8,7 @@ $arregloUsuario = $_SESSION['datos_login'];
 if ($arregloUsuario['id_cargo'] != 1) {
     header("Location: ../index.php");
 }
-$resultado = $conexion->query("
-select ventas.*, usuario.nombre, usuario.telefono, usuario.email from ventas
-inner join usuario on ventas.id_usuario = usuario.id
 
-") or die($conexion->error);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +16,7 @@ inner join usuario on ventas.id_usuario = usuario.id
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PEDIDOS</title>
+    <title>REPORTES</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -54,7 +50,7 @@ inner join usuario on ventas.id_usuario = usuario.id
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Pedidos</h1>
+                            <h1 class="m-0 text-dark">Apartado de reportes</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6 text-right">
 
@@ -92,78 +88,79 @@ inner join usuario on ventas.id_usuario = usuario.id
                         </div>
                     <?php } ?>
 
-                    <!-- collapse -->
-                    <div id="accordionExample" class="accordion">
-                        <?php
-                        while ($f = mysqli_fetch_array($resultado)) {
+                    <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio de compra</th>
+                <th>Categoria</th>
+                <th>Color</th>
+                <th>estado</th>
+                <th>precio de venta</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
 
+              <?php
+              while ($f = mysqli_fetch_array($resultado)) {
+              ?>
+                <tr>
+                  <td><?php echo $f['id']; ?></td>
+                  <td>
+                    <img src="../images/referencia/img_feria/<?php echo $f['imagen']; ?>" width="30px" height="30px" alt="">
+                    <?php echo $f['nombre']; ?>
+                  </td>
+                  <td>$<?php echo number_format($f['precio_compra']); ?></td>
+                  <td><?php echo $f['catego']; ?></td>
+                  <td><?php echo $f['color']; ?></td>
+                  <td><?php if ($f['estado'] == 1) {
+                        echo 'activo';
+                      } ?></td>
+                  <td>$<?php echo number_format($f['precio_venta']); ?></td>
 
-                        ?>
-                            <div class="card">
-                                <div class="card-header" id="heading<?php echo $f['id']; ?>">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse<?php echo $f['id']; ?>" aria-expanded="true" aria-controls="collapseOne">
-                                            <?php echo $f['fecha'] . ' - ' . $f['nombre']; ?>
-                                        </button>
-                                    </h5>
-                                </div>
+                  <td>
+                      <!-- Boton editar -->
+                    <button class="btn btn-sm btn-primary btnEditar" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-nombre="<?php echo  $f['nombre']; ?>" 
+                    data-descripcion="<?php echo  $f['descripcion']; ?>" 
+                    data-precio_compra="<?php echo $f['precio_compra']; ?>" 
+                    data-categoria="<?php echo  $f['categoriafk']; ?>"
+                    data-color="<?php echo  $f['color']; ?>" 
+                    data-precio_venta="<?php echo $f['precio_venta']; ?>"
+                    data-proveedor="<?php echo $f['proveedorfk']; ?>" 
+                    data-toggle="modal" data-target="#modalEditar">
+                      <i class="fa fa-edit"></i>
+                    </button><!-- Boton editar FIN-->
 
-                                <div id="collapse<?php echo $f['id']; ?>" class="collapse" aria-labelledby="heading<?php echo $f['id']; ?>" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <p><strong>Datos del Cliente</strong></p>
-                                        <p>Nombre cliente: <?php echo $f['nombre']; ?></p>
-                                        <p>Correo cliente: <?php echo $f['email']; ?></p>
-                                        <p>Telefono cliente: <?php echo $f['telefono']; ?></p>
-                                        <p>Status pedido: <strong><?php echo $f['status']; ?></strong></p>
-                                        <p class="h6"><strong>Datos de envio</strong></p>
-                                        <?php
-                                        $re = $conexion->query("select * from envios where id_venta=" . $f['id']) or die($conexion->error);
-                                        $fila = mysqli_fetch_row($re);
-                                        ?>
-                                        <p>Direccion cliente: <?php echo $fila[3]; ?></p>
-                                        <p>Estado cliente: <?php echo $fila[4]; ?></p>
-                                        <p>Codigo postal: <?php echo $fila[5]; ?></p>
-                                        <!-- tabla -->
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Nombre</th>
-                                                    <th>Precio</th>
-                                                    <th>Talla</th>
-                                                    <th>Color</th>
-                                                    <th>Cantidad</th>
-                                                    <th>SubTotal</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $re = $conexion->query("select productos_venta.*, productos.nombre, productos.talla, productos.color
-                                                    from productos_venta inner join productos on productos_venta.id_producto = productos.id
-                                                    where productos_venta.id_producto = productos.id")or die($conexion->error);
-                                                while ($f2 = mysqli_fetch_array($re)) {
-                                                ?>
-                                                    <tr>
-                                                        <td><?php echo $f['id']; ?></td>
-                                                        <td><?php echo $f2['nombre']; ?></td>
-                                                        <td>$<?php echo $f2['precio']; ?></td>
-                                                        <td><?php echo $f2['talla']; ?></td>
-                                                        <td><?php echo $f2['color']; ?></td>
-                                                        <td><?php echo $f2['cantidad']; ?></td>
-                                                        <td><?php echo $f2['subtotal']; ?></td>
-                                                        
-                                                    </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
-                                        <!--FIN tabla -->
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div>
-                    <!-- fin collapse-->
+                    <!-- Boton dar de baja -->
+                    <button class="btn btn-danger btn-sm btnEliminar" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
+                    data-toggle="modal" data-target="#modalEliminar">
+                      <i class="fa fa-trash"></i>
+                    </button><!-- Boton dar de baja Fin-->
+
+                    <button class="btn btn-success btn-sm btnAddStock" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-toggle="modal" data-target="#modalAddStock">
+                      <i class="fa fa-plus"> stock</i>
+                    </button>
+
+                  </td>
+                  <td>
+                    <button class="btn btn-secondary btn-sm btnverNum" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-toggle="modal" data-target="#modalVerNumeros">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
 
                 </div><!-- /.container-fluid -->
             </section>

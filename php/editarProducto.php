@@ -2,7 +2,8 @@
 include "conexion.php";
 if (isset($_POST['nombre']) && isset($_POST['descripcion']) 
     && isset($_POST['precio_compra'])&& isset($_POST['categoria']) 
-    && isset($_POST['color']) && isset($_POST['precio_venta'])) {
+    && isset($_POST['color']) && isset($_POST['precio_venta'])
+    && isset($_POST['proveedor'])) {
 
 
     
@@ -25,13 +26,14 @@ if (isset($_POST['nombre']) && isset($_POST['descripcion'])
         } //lave si no esta vacio la entrada de imagen
 
     $conexion->query("update productos set 
-        nombre='" . $_POST['nombre'] . "',
-        descripcion='" . $_POST['descripcion'] . "',
-        precio_compra=" . $_POST['precio_compra'] . ",
-        id_categoria=" . $_POST['categoria'] . ",
-        color='" . $_POST['color'] . "',
-        precio_venta=" . $_POST['precio_venta'] . " 
-                where id=" . $_POST['id']);
+        nombre = '" . $_POST['nombre'] . "',
+        descripcion = '" . $_POST['descripcion'] . "',
+        precio_compra = " . $_POST['precio_compra'] . ",
+        categoriafk = " . $_POST['categoria'] . ",
+        proveedorfk= " . $_POST['proveedor'] . ",
+        color= '" . $_POST['color'] . "',
+        precio_venta= " . $_POST['precio_venta'] . " 
+                where id= " . $_POST['id']);
     $conexion->query("insert into movimiento (tipo_movimiento,id_usuario_movimiento,fechaHora,observaciones,id_proveedor) values
         (
             'editar producto',
