@@ -4,21 +4,16 @@
         header("Location: ./");
 
     }
-    $datos = $conexion->query("SELECT 
-    pago.*,
-    usuario.nombre,usuario.telefono,usuario.email
-    FROM pago
-    INNER JOIN usuario ON pago.usuarioFK = usuario.id
-    WHERE pago.id_pago=".$_GET['id_pago'])or die($conexion->error);
-    $datosUsuario = mysqli_fetch_row($datos);
-    $datos2 = $conexion -> query("SELECT * FROM pedido WHERE pagoFK=".$_GET['id_pago'])or die($conexion->error);
-    $datosEnvio = mysqli_fetch_row($datos2);
+    $datos = $conexion->query("SELECT detalle_pedido.* WHERE FKpago=".$_GET['id_pago'])or die($conexion->error);
+    // $datosUsuario = mysqli_fetch_row($datos);
+    // $datos2 = $conexion -> query("SELECT * FROM pedido WHERE pagoFK=".$_GET['id_pago'])or die($conexion->error);
+    // $datosEnvio = mysqli_fetch_row($datos2);
 
-    $datos3 = $conexion->query("SELECT detalle_pedido.*,
-        productos.nombre as nombre_producto, productos.imagen
-        from detalle_pedido 
-        inner join productos on detalle_pedido.productoFK = productos.id
-        where id_pago =".$_GET['id_pago'])or die($conexion->error);//lo podria usar de ejemplo para descontar el stock
+    // $datos3 = $conexion->query("SELECT detalle_pedido.*,
+    //     productos.nombre as nombre_producto, productos.imagen
+    //     from detalle_pedido 
+    //     inner join productos on detalle_pedido.productoFK = productos.id
+    //     where id_pago =".$_GET['id_pago'])or die($conexion->error);//lo podria usar de ejemplo para descontar el stock
 ?>
 <!DOCTYPE html>
 <html lang="en">

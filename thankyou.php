@@ -15,7 +15,13 @@ if (isset($_POST['f_password'])) {
     $password = $_POST['f_password'];
   }
 }
-$conexion->query("INSERT INTO usuario (email,password,img_perfil,rut,nombre,estado,telefono,id_cargo) 
+$re = $conexion->query("select id,email from usuario where email= '".$_POST['f_email']."'") or die($conexion->error);
+$id_usuario = 0;
+if (mysqli_num_rows($re) > 0) {
+  $fila = mysqli_fetch_row($re);
+  $id_usuario = $fila[0];
+}else {
+  $conexion->query("INSERT INTO usuario (email,password,img_perfil,rut,nombre,estado,telefono,id_cargo) 
      values(
       '" . $_POST['f_email'] . "',
       '" . sha1($password) . "',
@@ -27,6 +33,8 @@ $conexion->query("INSERT INTO usuario (email,password,img_perfil,rut,nombre,esta
         2
            )
      ") or die($conexion->error);
+}
+
 $id_usuario = $conexion->insert_id;
 
 $fecha = date('Y-m-d h:m:s');
@@ -90,7 +98,7 @@ unset($_SESSION['carrito']);
             <span class="icon-check_circle display-3 text-success"></span>
             <h2 class="display-3 text-black">Gracias!</h2>
             <p class="lead mb-5">Tu orden se ha completado con éxito.</p>
-            <p><a href="verpedido.php?pagoFK=<?php echo $pagoFK; ?>" class="btn btn-sm btn-primary">Ver pedido</a></p>
+            <p><a href="verpedido.php?id_pago=<?php echo $pagoFK; ?>" class="btn btn-sm btn-primary">Ver pedido</a></p>
           </div>
         </div>
       </div>

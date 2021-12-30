@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include('./php/conexion.php');
   if (isset($_GET['id_det'])) {
     $resultado = $conexion -> query ('SELECT det_num_calzado.*, num_calzado.numeros as numero, num_calzado.id_num as id_numero,
