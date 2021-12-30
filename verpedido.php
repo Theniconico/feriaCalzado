@@ -4,16 +4,23 @@
         header("Location: ./");
 
     }
-    $datos = $conexion->query("SELECT detalle_pedido.* WHERE FKpago=".$_GET['id_pago'])or die($conexion->error);
-    // $datosUsuario = mysqli_fetch_row($datos);
-    // $datos2 = $conexion -> query("SELECT * FROM pedido WHERE pagoFK=".$_GET['id_pago'])or die($conexion->error);
-    // $datosEnvio = mysqli_fetch_row($datos2);
+    $datos = $conexion->query("SELECT detalle_pedido.*, productos.nombre as nombreP, 
+    productos.imagen as imagenP, productos.color as colorP, 
+    pago.medio_pago as medio_pago, pago.total as total, pago.fecha as fecha 
+    from detalle_pedido
+    inner join productos on detalle_pedido.productoFK = productos.id
+    inner join pago on detalle_pedido.FKpago = pago.id_pago
+    WHERE FKpago=".$_GET['id_pago'])or die($conexion->error);
+    
+     $datos2 = $conexion -> query("SELECT pago.*, usuario.telefono as telefono, usuario.nombre as nombreUser 
+     FROM pago
+     inner join usuario on pago.usuarioFK = usuario.id 
+     WHERE id_pago=".$_GET['id_pago'])or die($conexion->error);
+     $datospago = mysqli_fetch_array($datos2);
 
-    // $datos3 = $conexion->query("SELECT detalle_pedido.*,
-    //     productos.nombre as nombre_producto, productos.imagen
-    //     from detalle_pedido 
-    //     inner join productos on detalle_pedido.productoFK = productos.id
-    //     where id_pago =".$_GET['id_pago'])or die($conexion->error);//lo podria usar de ejemplo para descontar el stock
+     $datos3 = $conexion -> query("SELECT pedido.* FROM pedido WHERE pagoFK=".$_GET['id_pago'])or die($conexion->error);
+     $datosPedido = mysqli_fetch_array($datos3);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +60,7 @@
             <form action="#" method="post">
               
               <div class="p-3 p-lg-5 border">
+
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_fname" class="text-black">Venta #<?php echo $_GET['id_pago']; ?></label>
@@ -61,31 +69,25 @@
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Nombre <?php echo $datosUsuario[5]; ?></label>
+                    <label for="c_fname" class="text-black">Nombre <?php echo $datospago['nombreUser']; ?></label>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Email <?php echo $datosUsuario[7]; ?></label>
+                    <label for="c_fname" class="text-black">Telefono <?php echo $datospago['telefono']; ?></label>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Telefono <?php echo $datosUsuario[6]; ?></label>
+                    <label for="c_fname" class="text-black">Direccion <?php echo $datosPedido['direccion']; ?></label>
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Direccion <?php echo $datosEnvio[2]; ?></label>
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <label for="c_fname" class="text-black">Ciudad <?php echo $datosEnvio[3]; ?></label>
+                    <label for="c_fname" class="text-black">Ciudad <?php echo $datosPedido['ciudad']; ?></label>
                   </div>
                 </div>
 
@@ -94,19 +96,20 @@
           </div>
           <div class="col-md-5 ml-auto">
               <?php 
-                while ($f = mysqli_fetch_array($datos3)) {
+                while ($f = mysqli_fetch_array($datos)) {
                     
                 
               ?>
             <div class="p-4 border mb-3">
-                <img src="./images/referencia/img_feria/<?php echo $f['imagen'];?>" width="50px">
-              <span class="d-block text-primary h6 text-uppercase"><?php echo $f['nombre_producto'];?></span><br>
+                <img src="./images/referencia/img_feria/<?php echo $f['imagenP'];?>" width="50px">
+              <span class="d-block text-primary h6 text-uppercase"><?php echo $f['nombreP'];?></span><br>
               <span class="d-block text-primary h6 text-uppercase">Cantidad: <?php echo $f['cantidad'];?></span>
               <span class="d-block text-primary h6 text-uppercase">Precio: <?php echo $f['precio'];?></span>
               <span class="d-block text-primary h6 text-uppercase">Subtotal: <?php echo $f['subtotal'];?></span>
             </div>
+             
                 <?php }?>
-                   <h4>Total: <?php echo $datosUsuario[3];?></h4> 
+                   <h4>Total: <?php echo $datospago['total'];?></h4>
           </div>
         </div>
       </div>
