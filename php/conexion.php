@@ -1,6 +1,6 @@
 <?php 
     $servidor = "localhost";
-    $nombreBd = "feria";
+    $nombreBd = "feria2";
     $usuario = "root";
     $password = "";
     $conexion = new mysqli($servidor,$usuario,$password,$nombreBd);

@@ -10,8 +10,10 @@ if ($arregloUsuario['id_cargo'] != 1) {
 }
 //join para mostrar los datos de la tabla productos y categorias por el nombre y no ID 
 $resultado = $conexion->query("
-  select usuario.*, cargo.nombre_cargo as cargo from usuario
+  select usuario.*, cargo.nombre_cargo as cargo 
+  from usuario
   inner join cargo on cargo.id_cargo = usuario.id_cargo
+  where usuario.id_cargo != 1
   order by id DESC") or die($conexion->error);
 ?>
 <!DOCTYPE html>
@@ -117,6 +119,7 @@ $resultado = $conexion->query("
                 <th>ESTADO</th>
                 <th>TELEFONO</th>
                 <th>CARGO</th>
+                <th>ACCIONES</th>
               </tr>
             </thead>
             <tbody>
@@ -136,6 +139,26 @@ $resultado = $conexion->query("
                       } ?></td>
                     <td><?php echo $f['telefono']; ?></td>
                     <td><?php echo $f['cargo']; ?></td>
+                    <td>
+                      <!-- Boton editar -->
+                    <button class="btn btn-sm btn-primary btnEditar" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-nombre="<?php echo  $f['nombre']; ?>"
+                    data-email="<?php echo  $f['email']; ?>"
+                    data-telefono="<?php echo  $f['telefono']; ?>"
+                    data-toggle="modal" data-target="#modalEditar">
+                      <i class="fa fa-edit"></i>
+                    </button><!-- Boton editar FIN-->
+
+                    <!-- Boton dar de baja -->
+                    <button class="btn btn-danger btn-sm btnEliminar" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
+                    data-toggle="modal" data-target="#modalEliminar">
+                      <i class="fa fa-trash"></i>
+                    </button><!-- Boton dar de baja Fin-->
+
+                  </td>
                 </tr>
               <?php } ?>
             </tbody>
@@ -144,6 +167,74 @@ $resultado = $conexion->query("
       </section>
       <!-- /.content -->
     </div>
+    <!-- Modal Eliminar-->
+    <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalEliminarLabel">Eliminar Producto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="center-text form-control" hidden name="id_usuario" id="id_usuario">
+            <?php echo $arregloUsuario['id']; ?>
+          </div>
+          <div class="modal-body">
+            ¿Desea dar de baja al usuario?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-danger eliminar" data-dismiss="modal">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Eliminar-->
+
+    <!-- Modal Editar-->
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditar" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="../php/editarUsuario.php" method="POST" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalEditar">Editar datos usuario</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" id="idEdit" name="id">
+              <div class="form-group" hidden>
+                <label for="id_userEdit"></label>
+                <textarea name="id_user" id="id_userEdit"><?php echo $arregloUsuario['id']; ?></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="nombreEdit">Nombre</label>
+                <input type="text" name="nombre" placeholder="Nombre" id="nombreEdit" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="emailEdit">Email</label>
+                <input type="text" name="email" placeholder="Email" id="emailEdit" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="telefonoEdit">Telefono</label>
+                <input type="text" min="0" name="telefono" placeholder="Telefono" id="telefonoEdit" class="form-control" required>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary editar">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Editar-->
 
     <?php include "./layouts/footer.php"; ?>
   </div>
@@ -184,3 +275,38 @@ $resultado = $conexion->query("
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="./dashboard/dist/js/pages/dashboard.js"></script>
   <script src="./datatables/Buttons-2.1.1"></script>
+  <script>
+    $(document).ready(function() {
+      var idEliminar = -1;
+      var idEditar = -1;
+      var idUsuario = -1;
+      var fila;
+      $(".btnEliminar").click(function() {
+        idEliminar = $(this).data('id');
+        idUsuario = $(this).data('id_usuario');
+        fila = $(this).parent('td').parent('tr');
+      });
+      $(".eliminar").click(function() {
+        $.ajax({
+          url: '../php/eliminarUsuario.php',
+          method: 'POST',
+          data: {
+            id: idEliminar,
+            id_usuario: idUsuario
+          }
+        }).done(function(res) {
+          $(fila).fadeOut(1000);
+        });
+      });
+      $(".btnEditar").click(function() {
+        idEditar = $(this).data('id');
+        var nombre = $(this).data('nombre');
+        var email = $(this).data('email');
+        var telefono = $(this).data('telefono');
+        $("#nombreEdit").val(nombre);
+        $("#emailEdit").val(email);
+        $("#telefonoEdit").val(telefono);
+        $("#idEdit").val(idEditar);
+      });
+    });
+  </script>
