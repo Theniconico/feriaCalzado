@@ -136,12 +136,14 @@ $resultado = $conexion->query("
                   <td><?php echo $f['rut']; ?></td>
                   <td><?php if ($f['estado'] == 1) {
                         echo 'activo';
+                      }else {
+                        echo 'inactivo';
                       } ?></td>
                     <td><?php echo $f['telefono']; ?></td>
                     <td><?php echo $f['cargo']; ?></td>
                     <td>
                       <!-- Boton editar -->
-                    <button class="btn btn-sm btn-primary btnEditar" 
+                    <button title="Editar" class="btn btn-sm btn-primary btnEditar" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-nombre="<?php echo  $f['nombre']; ?>"
                     data-email="<?php echo  $f['email']; ?>"
@@ -151,12 +153,20 @@ $resultado = $conexion->query("
                     </button><!-- Boton editar FIN-->
 
                     <!-- Boton dar de baja -->
-                    <button class="btn btn-danger btn-sm btnEliminar" 
+                    <button title="Dar de baja" class="btn btn-danger btn-sm btnEliminar" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
                     data-toggle="modal" data-target="#modalEliminar">
                       <i class="fa fa-trash"></i>
                     </button><!-- Boton dar de baja Fin-->
+
+                    <!-- Boton activar -->
+                    <button title="Activar" class="btn btn-success btn-sm btnActivar" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
+                    data-toggle="modal" data-target="#modalActivar">
+                      <i class="fa fa-check"></i>
+                    </button><!-- Boton activar Fin-->
 
                   </td>
                 </tr>
@@ -171,26 +181,59 @@ $resultado = $conexion->query("
     <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
+        <form action="../php/eliminarUsuario.php" method="POST" enctype="multipart/form-data">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalEliminarLabel">Eliminar Producto</h5>
+            <h5 class="modal-title" id="modalEliminarLabel">Desactivar usuario</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          
           <div class="center-text form-control" hidden name="id_usuario" id="id_usuario">
             <?php echo $arregloUsuario['id']; ?>
           </div>
+          <input type="hidden" id="idDelete" name="id">
           <div class="modal-body">
             ¿Desea dar de baja al usuario?
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-danger eliminar" data-dismiss="modal">Eliminar</button>
+            <button type="submit" class="btn btn-danger eliminar">Confirmar</button>
           </div>
+          </form>
         </div>
       </div>
     </div>
     <!-- Modal Eliminar-->
+
+    <!-- Modal Activar-->
+    <div class="modal fade" id="modalActivar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <form action="../php/activarUsuario.php" method="POST" enctype="multipart/form-data">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalEliminarLabel">Activar usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <div class="center-text form-control" hidden name="id_usuario" id="id_usuario">
+            <?php echo $arregloUsuario['id']; ?>
+          </div>
+          <input type="hidden" id="idOn" name="id">
+          <div class="modal-body">
+            ¿Desea activar usuario?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success activar">Confirmar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Activar-->
 
     <!-- Modal Editar-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditar" aria-hidden="true">
@@ -217,7 +260,7 @@ $resultado = $conexion->query("
 
               <div class="form-group">
                 <label for="emailEdit">Email</label>
-                <input type="text" name="email" placeholder="Email" id="emailEdit" class="form-control" required>
+                <input type="email" name="email" placeholder="Email" id="emailEdit" class="form-control" required>
               </div>
 
               <div class="form-group">
@@ -280,23 +323,17 @@ $resultado = $conexion->query("
       var idEliminar = -1;
       var idEditar = -1;
       var idUsuario = -1;
+      var idOn = -1;
       var fila;
       $(".btnEliminar").click(function() {
         idEliminar = $(this).data('id');
         idUsuario = $(this).data('id_usuario');
-        fila = $(this).parent('td').parent('tr');
+        $("#idDelete").val(idEliminar);
       });
-      $(".eliminar").click(function() {
-        $.ajax({
-          url: '../php/eliminarUsuario.php',
-          method: 'POST',
-          data: {
-            id: idEliminar,
-            id_usuario: idUsuario
-          }
-        }).done(function(res) {
-          $(fila).fadeOut(1000);
-        });
+      $(".btnActivar").click(function() {
+        idOn = $(this).data('id');
+        idUsuario = $(this).data('id_usuario');
+        $("#idOn").val(idOn);
       });
       $(".btnEditar").click(function() {
         idEditar = $(this).data('id');
