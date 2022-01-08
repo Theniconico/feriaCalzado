@@ -15,12 +15,6 @@ $resultado = $conexion->query("
   inner join categorias on productos.categoriaFK = categorias.id
   inner join proveedores on productos.proveedorFK = proveedores.id_proveedor
   order by id DESC") or die($conexion->error);
-  require('fpdf/fpdf.php');
-  // $pdf= new FPDF();
-  // $pdf->AddPage();
-  // $pdf->SetFont('Arial','B',16);
-  // $pdf->Cell(40,10,'Listado de productos');
-  // $pdf->Output();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -246,11 +240,11 @@ $resultado = $conexion->query("
               <div class="form-group">
                 <label for="categoria">Categoria</label>
                 <select name="categoria" id="categoria" class="form-control" required>
-                  <option value="">Seleccione una categoria</option>
+                  <option  value="">Seleccione una categoria</option>
                   <?php
                   $res = $conexion->query("select * from categorias");
                   while ($f = mysqli_fetch_array($res)) {
-                    echo '<option value="' . $f['id'] . '" >' . $f['nombre'] . '</option>';
+                    echo '<option required value="' . $f['id'] . '" >' . $f['nombre'] . '</option>';
                   }
                   ?>
                 </select>
@@ -259,11 +253,11 @@ $resultado = $conexion->query("
               <div class="form-group">
                 <label for="proveedor">Proveedores</label>
                 <select name="proveedor" id="proveedor" class="form-control" require>
-                  <option value="">Seleccione un proveedor</option>
+                  <option  value="">Seleccione un proveedor</option>
                   <?php
                   $res = $conexion->query("select * from proveedores");
                   while ($f = mysqli_fetch_array($res)) {
-                    echo '<option value="' . $f['id_proveedor'] . '" >' . $f['nombre'] . '</option>';
+                    echo '<option required value="' . $f['id_proveedor'] . '" >' . $f['nombre'] . '</option>';
                   }
                   ?>
                 </select>
@@ -355,7 +349,7 @@ $resultado = $conexion->query("
               <div class="form-group">
                 <label for="categoriaEdit">Categoria</label>
                 <select name="categoria" id="categoriaEdit" class="form-control" required>
-                  <option value="">Seleccione un proveedor</option>
+                  <option  value="">Seleccione una categoria</option>
                   <?php
                   $res = $conexion->query("select * from categorias");
                   while ($f = mysqli_fetch_array($res)) {
@@ -378,7 +372,7 @@ $resultado = $conexion->query("
               <div class="form-group">
                 <label for="proveedorEdit">Proveedores</label>
                 <select name="proveedor" id="proveedorEdit" class="form-control" require>
-                  <option value="">Seleccione un proveedor</option>
+                  <option  value="">Seleccione un proveedor</option>
                   <?php
                   $res = $conexion->query("select * from proveedores");
                   while ($f = mysqli_fetch_array($res)) {
@@ -419,7 +413,7 @@ $resultado = $conexion->query("
                   <?php
                   $res = $conexion->query("select * from num_calzado");
                   while ($f = mysqli_fetch_array($res)) {
-                    echo '<option value="' . $f['id_num'] . '" >' . $f['numeros'] . '</option>';
+                    echo '<option required value="' . $f['id_num'] . '" >' . $f['numeros'] . '</option>';
                   }
                   ?>
                 </select>

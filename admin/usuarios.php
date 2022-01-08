@@ -64,6 +64,8 @@ $resultado = $conexion->query("
             </div><!-- /.col -->
             <div class="col-sm-6 text-right">
               <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <i class="fa fa-plus"></i> Insertar usuario
               </button>
 
             </div><!-- /.col -->
@@ -148,6 +150,7 @@ $resultado = $conexion->query("
                     data-nombre="<?php echo  $f['nombre']; ?>"
                     data-email="<?php echo  $f['email']; ?>"
                     data-telefono="<?php echo  $f['telefono']; ?>"
+                    data-cargo = "<?php echo  $f['id_cargo']; ?>"
                     data-toggle="modal" data-target="#modalEditar">
                       <i class="fa fa-edit"></i>
                     </button><!-- Boton editar FIN-->
@@ -177,6 +180,86 @@ $resultado = $conexion->query("
       </section>
       <!-- /.content -->
     </div>
+    <!-- Modal Insertar-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="../php/insertarUsuario.php" method="POST" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Insertar usuario</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div class="form-group">
+                <textarea hidden name="id_usuario" id="id_usuario"><?php echo $arregloUsuario['id']; ?></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" placeholder="NOMBRE" id="nombre" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" placeholder="Apellidos" id="apellidos" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" placeholder="Email" id="email" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" placeholder="Contraseña" id="password" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="rut">Rut</label>
+                <input type="text" name="rut" placeholder="Rut" id="rut" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="telefono">Telefono</label>
+                <input placeholder="Telefono" type="text" name="telefono" id="telefono" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="cargo">Cargo</label>
+                <select name="cargo" id="cargo" class="form-control" required>
+                  <option  value="">Seleccione tipo de usuario</option>
+                  <?php
+                  $res = $conexion->query("select * from cargo where nombre_cargo != 'admin'");
+                  while ($f = mysqli_fetch_array($res)) {
+                    echo '<option required value="' . $f['id_cargo'] . '" >' . $f['nombre_cargo'] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="estado">Estado</label>
+                <select required name="estado" id="estado" class="form-control">
+                  <option value="">Seleccione el estado</option>
+                  <option value="1">Activo</option>
+                  <option value="0">Inactivo</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Insertar-->
+
     <!-- Modal Eliminar-->
     <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -268,6 +351,19 @@ $resultado = $conexion->query("
                 <input type="text" min="0" name="telefono" placeholder="Telefono" id="telefonoEdit" class="form-control" required>
               </div>
 
+              <div class="form-group">
+                <label for="cargoEdit">Cargo</label>
+                <select name="cargoEdit" id="cargoEdit" class="form-control" required>
+                  <option  value="">Seleccione tipo de usuario</option>
+                  <?php
+                  $res = $conexion->query("select * from cargo where nombre_cargo != 'admin'");
+                  while ($f = mysqli_fetch_array($res)) {
+                    echo '<option required value="' . $f['id_cargo'] . '" >' . $f['nombre_cargo'] . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -340,10 +436,12 @@ $resultado = $conexion->query("
         var nombre = $(this).data('nombre');
         var email = $(this).data('email');
         var telefono = $(this).data('telefono');
+        var cargo = $(this).data('cargo');
         $("#nombreEdit").val(nombre);
         $("#emailEdit").val(email);
         $("#telefonoEdit").val(telefono);
         $("#idEdit").val(idEditar);
+        $("#cargoEdit").val(cargo);
       });
     });
   </script>
