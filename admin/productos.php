@@ -141,12 +141,14 @@ $resultado = $conexion->query("
                   <td><?php echo $f['color']; ?></td>
                   <td><?php if ($f['estado'] == 1) {
                         echo 'activo';
+                      }else {
+                        echo 'inactivo';
                       } ?></td>
                   <td>$<?php echo number_format($f['precio_venta']); ?></td>
 
                   <td>
                       <!-- Boton editar -->
-                    <button class="btn btn-sm btn-primary btnEditar" 
+                    <button title="Editar producto" class="btn btn-sm btn-primary btnEditar" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-nombre="<?php echo  $f['nombre']; ?>" 
                     data-descripcion="<?php echo  $f['descripcion']; ?>" 
@@ -160,22 +162,30 @@ $resultado = $conexion->query("
                     </button><!-- Boton editar FIN-->
 
                     <!-- Boton dar de baja -->
-                    <button class="btn btn-danger btn-sm btnEliminar" 
+                    <button title="Dar de baja" class="btn btn-danger btn-sm btnEliminar" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
                     data-toggle="modal" data-target="#modalEliminar">
                       <i class="fa fa-trash"></i>
                     </button><!-- Boton dar de baja Fin-->
 
-                    <button class="btn btn-success btn-sm btnAddStock" 
+                    <!-- Boton activar -->
+                    <button title="Activar" class="btn btn-success btn-sm btnActivar" 
+                    data-id="<?php echo  $f['id']; ?>" 
+                    data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
+                    data-toggle="modal" data-target="#modalActivar">
+                      <i class="fa fa-check"></i>
+                    </button><!-- Boton activar Fin-->
+
+                    <button title="Add talla/stock" class="btn btn-dark btn-sm btnAddStock" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-toggle="modal" data-target="#modalAddStock">
-                      <i class="fa fa-plus"> stock</i>
+                      <i class="fa fa-plus"> Stock</i>
                     </button>
 
                   </td>
                   <td>
-                    <button class="btn btn-secondary btn-sm btnverNum" 
+                    <button title="Ver tallas disponibles" class="btn btn-info btn-sm btnverNum" 
                     data-id="<?php echo  $f['id']; ?>" 
                     data-toggle="modal" data-target="#modalVerNumeros">
                       <i class="fa fa-eye"></i>
@@ -287,26 +297,59 @@ $resultado = $conexion->query("
     <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
+        <form action="../php/eliminarProducto.php" method="POST" enctype="multipart/form-data">
           <div class="modal-header">
-            <h5 class="modal-title" id="modalEliminarLabel">Eliminar Producto</h5>
+            <h5 class="modal-title" id="modalEliminarLabel">Desactivar producto</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
+          
           <div class="center-text form-control" hidden name="id_usuario" id="id_usuario">
             <?php echo $arregloUsuario['id']; ?>
           </div>
+          <input type="hidden" id="idDelete" name="id">
           <div class="modal-body">
-            ¿Desea eliminar el producto?
+            ¿Desea dar de baja el producto?
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-danger eliminar" data-dismiss="modal">Eliminar</button>
+            <button type="submit" class="btn btn-danger eliminar">Confirmar</button>
           </div>
+          </form>
         </div>
       </div>
     </div>
     <!-- Modal Eliminar-->
+
+    <!-- Modal Activar-->
+    <div class="modal fade" id="modalActivar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <form action="../php/activarProducto.php" method="POST" enctype="multipart/form-data">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalEliminarLabel">Activar usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <div class="center-text form-control" hidden name="id_usuario" id="id_usuario">
+            <?php echo $arregloUsuario['id']; ?>
+          </div>
+          <input type="hidden" id="idOn" name="id">
+          <div class="modal-body">
+            ¿Desea activar usuario?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success activar">Confirmar</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Activar-->
 
     <!-- Modal Editar-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditar" aria-hidden="true">
@@ -523,24 +566,18 @@ $resultado = $conexion->query("
       var idEditar = -1;
       var idUsuario = -1;
       var idProducto_num = -1;
+      var idOn = -1;
       var fila;
       $(".btnEliminar").click(function() {
         idEliminar = $(this).data('id');
         idUsuario = $(this).data('id_usuario');
-        fila = $(this).parent('td').parent('tr');
+        $("#idDelete").val(idEliminar);
       });
-      $(".eliminar").click(function() {
-        $.ajax({
-          url: '../php/eliminarProducto.php',
-          method: 'POST',
-          data: {
-            id: idEliminar,
-            id_usuario: idUsuario
-          }
-        }).done(function(res) {
-          $(fila).fadeOut(1000);
-        });
-      });
+       $(".btnActivar").click(function() {
+         idOn = $(this).data('id');
+         idUsuario = $(this).data('id_usuario');
+         $("#idOn").val(idOn);
+       });
       $(".btnEditar").click(function() {
         idEditar = $(this).data('id');
         var nombre = $(this).data('nombre');
