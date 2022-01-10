@@ -103,15 +103,6 @@ $resultado = $conexion->query("
           <?php } ?>
 
           <table class="table">
-          <button title="Excel" class="btn btn-sm btn-success" extends="excelHtml5">
-                      <i class="fas fa-file-excel"></i>
-          </button>
-          <button title="PDF" extends="pdfHtml5" class="btn btn-sm btn-danger">
-                      <i class="fas fa-file-pdf" placeholder="Excel"></i>
-          </button>
-          <button title="PRINT" extends="print" class="btn btn-sm btn-info">
-                      <i class="fas fa-print" placeholder="Excel"></i>
-          </button>
             <thead>
               <tr>
                 <th>ID</th>

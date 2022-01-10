@@ -58,14 +58,14 @@ include('./php/conexion.php');
                   FROM det_num_calzado 
                   inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
                   inner join productos on det_num_calzado.id_productoFK = productos.id
-                  WHERE id_productoFK =".$_GET['id']." LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
+                  WHERE stock > 0 and id_productoFK =".$_GET['id']." LIMIT ".$_GET['limite'].",".$limite) or die($conexion -> error);
                 }else {
                   $resultado = $conexion -> query("SELECT det_num_calzado.*, num_calzado.numeros as numero,
                   productos.nombre as nombreP, productos.imagen as imagenP
                   FROM det_num_calzado 
                   inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num
                   inner join productos on det_num_calzado.id_productoFK = productos.id 
-                  WHERE id_productoFK =".$_GET['id']." LIMIT ".$limite) or die($conexion -> error);
+                  WHERE stock > 0 and id_productoFK =".$_GET['id']." LIMIT ".$limite) or die($conexion -> error);
                 }
                 while ($fila = mysqli_fetch_array($resultado)) {
                   

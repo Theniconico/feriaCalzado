@@ -188,18 +188,6 @@
                 <button onclick="window.location='index.php'" class="btn btn-outline-primary btn-sm btn-block">Continue Comprando</button>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Coupon</label>
-                <p>Ingresa el código de tu cupón, si es que tienes uno</p>
-              </div>
-              <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Código de cupón">
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-primary btn-sm">Aplicar cupón</button>
-              </div>
-            </div>
           </div>
           <div class="col-md-6 pl-5">
             <div class="row justify-content-end">

@@ -102,16 +102,12 @@ $resultado = $conexion->query("
             </div>
           <?php } ?>
 
-          <table class="table">
-          <button title="Excel" class="btn btn-sm btn-success" extends="excelHtml5">
-                      <i class="fas fa-file-excel"></i>
+          <table class="table" id="tableProd">
+          <button onclick="window.location='reporte.php'" title="PDF" class="btn btn-sm btn-danger">
+                      <i class="fas fa-file-pdf" placeholder="Excel"> Reporte</i>
           </button>
-          <button title="PDF" extends="pdfHtml5" class="btn btn-sm btn-danger">
-                      <i class="fas fa-file-pdf" placeholder="Excel"></i>
-          </button>
-          <button title="PRINT" extends="print" class="btn btn-sm btn-info">
-                      <i class="fas fa-print" placeholder="Excel"></i>
-          </button>
+          <br>
+          <br>
             <thead>
               <tr>
                 <th>ID</th>
@@ -494,22 +490,53 @@ $resultado = $conexion->query("
                   <tr>
                     <th>Numero</th>
                     <th>stock</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-
-                  <?php
+                  <tr>
+                  <?php  
                   $consulta = $conexion->query("select det_num_calzado.*, num_calzado.numeros as numero from 
                   det_num_calzado
                   inner join num_calzado on det_num_calzado.id_num_calzadoFK = num_calzado.id_num 
-                  where id_productoFK = 1") or die($conexion->error);
+                  where id_productoFK = 6")or die($conexion->error);
                   while ($a = mysqli_fetch_array($consulta)) {
-                    echo '<tr>';
-                      echo '<td>' . $a['numero'] . '</td>';
-                      echo '<td>' . $a['stock'] . '</td>';
-                      echo '</tr>';
-                  }
                   ?>
+                  <td><?php echo $a['numero']?></td>
+                  <td><?php echo $a['stock']?></td>
+                  <td><?php if ($a['estado'] == 1) {
+                        echo 'activo';
+                      }else {
+                        echo 'inactivo';
+                      } ?></td>
+                  <td>
+                   <!-- Boton add stock -->
+                   <button title="Editar stock" class="btn btn-sm btn-primary btnEditarStock" 
+                    data-id="<?php echo  $a['id_det']; ?>" 
+                    data-nombre="<?php echo  $f['nombre']; ?>"
+                    data-toggle="modal" data-target="#modalEditarStock">
+                      <i class="fa fa-edit"></i>
+                    </button><!-- Boton editar FIN-->
+
+                    <!-- Boton dar de baja -->
+                    <button title="Dar de baja" class="btn btn-danger btn-sm btnEliminar" 
+                    data-id="<?php echo  $a['id_det']; ?>" 
+                    data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
+                    data-toggle="modal" data-target="#modalEliminarStock">
+                      <i class="fa fa-trash"></i>
+                    </button><!-- Boton dar de baja Fin-->
+
+                    <!-- Boton activar -->
+                    <button title="Activar" class="btn btn-success btn-sm btnActivarStock" 
+                    data-id="<?php echo  $a['id_det']; ?>"  
+                    data-id_usuario="<?php echo $arregloUsuario['id']; ?>" 
+                    data-toggle="modal" data-target="#modalActivar">
+                      <i class="fa fa-check"></i>
+                    </button><!-- Boton activar Fin-->
+                    </td>
+                  </tr>
+                  <?php } ?>
                 </tbody>
               </table>
           </div>
@@ -520,6 +547,45 @@ $resultado = $conexion->query("
       </div>
     </div>
     <!-- Modal ver Numeros disponibles-->
+
+    <!-- Modal add stock-->
+    <div class="modal fade" id="modalEditarStock" tabindex="-1" role="dialog" aria-labelledby="modalEditarStock" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form action="../php/editarProducto.php" method="POST" enctype="multipart/form-data">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalEditar">Agregar stock</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" id="idEdit" name="id">
+              <div class="form-group" hidden>
+                <label for="id_userEdit"></label>
+                <textarea name="id_user" id="id_userEdit"><?php echo $arregloUsuario['id']; ?></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="nombreEdit">Numero</label>
+                <input type="text" name="nombre" placeholder="NOMBRE" id="nombreEdit" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="descripcionEdit">stock</label>
+                <input type="text" name="descripcion" placeholder="DESCRIPCIÓN" id="descripcionEdit" class="form-control" required>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary editar">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--FIN Modal editar stock-->
 
     <?php include "./layouts/footer.php"; ?>
   </div>
